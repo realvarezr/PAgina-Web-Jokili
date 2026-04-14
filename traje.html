@@ -382,6 +382,35 @@
       .traje-intro { margin-bottom: 2.5rem; }
       .future-points div { font-size: .95rem; }
     }
+    @media (max-width: 560px) {
+  .hs-dot {
+    width: 22px;
+    height: 22px;
+    border-width: 2px;
+  }
+
+  .hs-dot::before {
+    width: 8px;
+    height: 8px;
+  }
+
+  .hs-dot::after {
+    inset: -5px;
+    border-width: 1.5px;
+  }
+}
+@media (max-width: 480px) {
+  .hs-dot {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hs-dot::before {
+    width: 6px;
+    height: 6px;
+  }
+}
+
 
   </style>
 </head>
