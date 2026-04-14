@@ -83,7 +83,7 @@
 
     @media (min-width: 961px) {
       .site-header.scrolled        { height: 110px; }
-      .scrolled .logo-placeholder  { width: 90px; height: 70px; }
+      .scrolled .logo-placeholder  { width: 81px; height: 63px; }
     }
 
     /* línea decorativa inferior */
@@ -334,8 +334,8 @@
     }
 
     .logo-placeholder {
-      width: 141px;
-      height: 119px;
+      width: 127px;
+      height: 107px;
       border-radius: 0;
       overflow: visible;
       background: transparent;
@@ -366,8 +366,8 @@
 
     /* logo encoge al hacer scroll */
     .scrolled .logo-placeholder {
-      width: 52px;
-      height: 42px;
+      width: 47px;
+      height: 38px;
     }
 
     /* ── HAMBURGUESA ───────────────────────────────────── */
@@ -482,7 +482,7 @@
         letter-spacing: .14em;
       }
       .nav-center-divider { margin: 0 .9rem; }
-      .logo-placeholder { width: 110px; height: 90px; }
+      .logo-placeholder { width: 99px; height: 81px; }
     }
 
     /* Breakpoint principal del header: menú hamburguesa */
@@ -508,13 +508,13 @@
   .menu-toggle { display: flex; }
 
   .logo-placeholder {
-    width: 121px;
-    height: 95px;
+    width: 109px;
+    height: 86px;
   }
 
   .scrolled .logo-placeholder {
-    width: 52px;
-    height: 42px;
+    width: 47px;
+    height: 38px;
   }
 }
   

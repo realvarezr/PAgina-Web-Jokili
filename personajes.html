@@ -37,6 +37,9 @@
       padding-left: 2rem;
       padding-right: 2rem;
     }
+    .nota-pie {
+      display: none; /* Oculta por defecto, mostrar solo si se dispone de información relevante o como nota general */
+    }
 
     /* Intro */
     .personajes-intro {
@@ -353,6 +356,7 @@
 
     /* Zona de actualización pendiente */
     .update-zone {
+      display: none; /* Oculta por defecto, mostrar solo en casos necesarios */
       margin-top: 1.6rem;
       padding: 1.2rem 1.4rem;
       border-radius: 12px;
@@ -470,6 +474,8 @@
       color: rgba(245,237,224,.45);
     }
 
+   
+
     @media (max-width: 480px) {
       .titular-wrap { flex-direction: column; align-items: flex-start; }
     }
@@ -545,6 +551,11 @@
       .oberjokili-grid { grid-template-columns: 1fr; }
       .titular-wrap { flex-direction: column; align-items: flex-start; gap: .3rem; }
       .jerarquia-bar { flex-wrap: wrap; }
+    }
+    
+    /* Ocultar seccion de Zunftmeisters */
+    #zunftmeisters { 
+      display: none; 
     }
   </style>
 </head>
@@ -722,7 +733,7 @@
       ═══════════════════════════════════════════════════ -->
       <article class="personaje-card" id="zunftmeisters">
         <div class="personaje-foto">
-        <img src="imagenes/ZunftmeisterReel.png" alt="Zunftmeisters"> -->
+        <!--<img src="imagenes/ZunftmeisterReel.png" alt="Zunftmeisters"> -->
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
         </div>
@@ -777,7 +788,7 @@
       ═══════════════════════════════════════════════════ -->
       <article class="personaje-card" id="oberjokili">
         <div class="personaje-foto">
-          <img src="imagenes/Oberjokili_SantiagoReel.png" alt="Oberjokili"> -->
+          <!--<img src="imagenes/Oberjokili_SantiagoReel.png" alt="Oberjokili"> -->
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
         </div>
@@ -951,30 +962,7 @@
           <span>Figura de nueva creación</span>
         </div>
 
-        <div class="titular-wrap">
-          <div class="titular-foto">
-            <!-- Reemplazar src con la foto del portador actual -->
-            <svg class="titular-foto-placeholder" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="8" r="4" stroke="rgba(245,237,224,.6)" stroke-width="1.5"/>
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="rgba(245,237,224,.6)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="titular-info">
-            <div class="titular-label">Portador actual</div>
-            <div class="titular-nombre">[ Por designar ]</div>
-            <div class="titular-desde">Figura en proceso de establecimiento oficial</div>
-          </div>
-        </div>
-
-        <div class="update-zone">
-          <div class="update-zone-label">Pendiente de actualización</div>
-          <p>
-            Definir y añadir: imagen o ilustración oficial de La Cigüeña, descripción del
-            vestuario o atributos visuales de la figura, primer año en que fue portada
-            oficialmente, y nombre del portador designado para el carnaval en curso.
-          </p>
-          <div class="update-field">[ Imagen de la figura ] &nbsp; [ Año de debut ] &nbsp; [ Portador actual ]</div>
-        </div>
+        
 
         <div class="banda-colores">
           <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
