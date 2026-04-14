@@ -1023,7 +1023,11 @@
     border-left: none;
     border-top: 1px solid rgba(201,151,43,.18);
     padding: 1.2rem 1.4rem;
-    text-align: left;
+    text-align: center;
+  }
+  .card-icon img {
+    width: 64px;
+    height: 64px;
   }
 }
 
@@ -1045,7 +1049,11 @@
     border-left: none;
     border-top: 1px solid rgba(201,151,43,.18);
     padding: 1rem 1.2rem;
-    text-align: left;
+    text-align: center;
+  }
+  .card-icon img {
+    width: 52px;
+    height: 52px;
   }
 }
 
