@@ -26,7 +26,7 @@
 
       <a href="${homeHref}" class="header-logo" aria-label="Tovarerjokili – Inicio">
         <div class="logo-placeholder">
-          <img src="imagenes/Gorro con brillo.png" alt="Tovarerjokili Logo">
+          <img src="imagenes/Gorro.png" alt="Tovarerjokili Logo">
         </div>
       </a>
 
