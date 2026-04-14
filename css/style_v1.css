@@ -935,6 +935,15 @@
   font-size: 1.6rem;
   line-height: 1;
   margin-bottom: .3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-icon img {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  display: block;
 }
 
 .card-title {
