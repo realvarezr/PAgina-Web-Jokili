@@ -1,0 +1,626 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Nuestro Traje - Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <style>
+    body {
+      display: block;
+      text-align: left;
+      background-size: auto 120px, auto 280px, 24% auto, contain;
+      background-position: bottom center, bottom center, center 42%, center;
+    }
+
+    .traje-wrap {
+      width: min(98%, 1600px);
+      margin: 0 auto;
+      padding: 4rem clamp(1rem, 2vw, 3rem) 16rem;
+    }
+
+    .traje-intro {
+      max-width: 760px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .traje-intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(245,237,224,.88);
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .8rem;
+      margin: 0 auto 3rem;
+      max-width: 900px;
+    }
+
+    .quick-links a {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(245,237,224,.88);
+      padding: .85rem 1rem;
+      border: 1px solid rgba(201,151,43,.26);
+      border-radius: 999px;
+      background: rgba(0,0,0,.18);
+      transition: transform .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+    }
+
+    .quick-links a:hover {
+      transform: translateY(-2px);
+      border-color: var(--amarillo);
+      color: var(--dorado-claro);
+    }
+
+    .traje-banner-placeholder {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.16);
+      text-align: center;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+
+    .destacado {
+      margin-bottom: 3rem;
+      padding: 2.2rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,.26);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.28);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .destacado-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .9;
+      margin-bottom: .9rem;
+    }
+
+    .destacado h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .destacado p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: rgba(245,237,224,.84);
+    }
+
+    .component-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .component-card {
+      grid-column: span 6;
+      padding: 1.8rem 2rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,.24);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,151,43,.26);
+      box-shadow: 0 18px 40px rgba(0,0,0,.28);
+      scroll-margin-top: 100px;
+    }
+
+    .component-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .component-copy {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .component-label {
+      font-family: 'Cinzel', serif;
+      font-size: .66rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .9;
+      margin-bottom: .7rem;
+    }
+
+    .component-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: .8rem;
+    }
+
+    .component-copy p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.02rem;
+      line-height: 1.78;
+      color: rgba(245,237,224,.82);
+      margin-bottom: .8rem;
+    }
+
+    .component-copy p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .data-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: 1rem;
+    }
+
+    .data-strip span {
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .45rem .65rem;
+      border-radius: 999px;
+      color: var(--azul-oscuro);
+      background: rgba(232,201,107,.95);
+    }
+
+    .future-card {
+      margin-top: 3rem;
+      padding: 2rem;
+      border-radius: 18px;
+      border: 1px solid rgba(201,151,43,.28);
+      background:
+        linear-gradient(135deg, rgba(201,151,43,.12), rgba(10,15,60,.2)),
+        rgba(0,0,0,.2);
+      box-shadow: 0 20px 50px rgba(0,0,0,.28);
+    }
+
+.future-card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: .9rem;
+    }
+
+    .future-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(245,237,224,.84);
+      margin-bottom: .75rem;
+    }
+
+    .future-points {
+      display: grid;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    .future-points div {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: rgba(245,237,224,.88);
+      padding-left: 1rem;
+      border-left: 2px solid rgba(245,197,24,.38);
+    }
+
+    .link-dorado { color: var(--dorado-claro); }
+
+    /* ── Imagen interactiva ── */
+    .jokili-map-wrap {
+      position: relative;
+      max-width: 508px;
+      margin: 0 auto 3rem;
+      padding: 2rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,.26);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.28);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .jokili-map-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hs {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      text-decoration: none;
+    }
+
+    .hs-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #c9972b;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.6), 0 4px 14px rgba(0,0,0,.7);
+      transition: background .2s, transform .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hs-dot::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #c9972b;
+    }
+
+    .hs-dot::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.5);
+      animation: hs-pulse 2s ease-out infinite;
+    }
+
+    @keyframes hs-pulse {
+      0%   { transform: scale(1);   opacity: .8; }
+      100% { transform: scale(2.2); opacity: 0;  }
+    }
+
+    .hs:hover .hs-dot {
+      background: #e8c96b;
+      transform: scale(1.25);
+    }
+
+    .hs-tip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: normal;
+      max-width: 140px;
+      text-align: center;
+      background: rgba(10,15,60,.93);
+      border: 1px solid rgba(232,201,107,.55);
+      border-radius: 7px;
+      padding: .35rem .75rem;
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--dorado-claro);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .18s;
+    }
+
+    .hs-tip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: rgba(232,201,107,.55);
+    }
+
+    .hs:hover .hs-tip { opacity: 1; }
+
+    .banda-colores {
+      display: flex;
+      height: 3px;
+      margin-top: 1.5rem;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .banda-colores span { flex: 1; }
+    .banda-colores .bc-am { background: var(--amarillo); }
+    .banda-colores .bc-az { background: #1a3a8f; }
+    .banda-colores .bc-ro { background: var(--rojo); }
+
+    @media (max-width: 980px) {
+      .component-card,
+      .component-card.wide { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 768px) {
+      .traje-wrap { padding: 2rem 1.2rem 4rem; }
+      .destacado, .future-card, .component-card { padding: 1.2rem; border-radius: 12px; }
+      .quick-links { justify-content: flex-start; }
+      .destacado p { font-size: 1rem; }
+      .component-copy p { font-size: 1rem; }
+      .future-card p { font-size: 1rem; }
+    }
+
+    @media (max-width: 560px) {
+      .traje-wrap { padding: 1.5rem 1rem 3rem; }
+      .destacado, .future-card, .component-card { padding: 1rem; }
+      .quick-links { gap: .4rem; }
+      .quick-links a { padding: .6rem .75rem; font-size: .62rem; letter-spacing: .1em; }
+      .destacado-eyebrow { letter-spacing: .2em; font-size: .64rem; }
+      .component-label { letter-spacing: .18em; font-size: .6rem; }
+      .data-strip span { font-size: .58rem; letter-spacing: .1em; padding: .35rem .5rem; }
+      .traje-intro p { font-size: clamp(1rem, 3.5vw, 1.3rem); }
+    }
+
+    @media (max-width: 480px) {
+      .traje-wrap { padding: 1rem .9rem 2.5rem; }
+      .destacado, .future-card, .component-card { padding: .9rem; }
+      .quick-links a { padding: .5rem .6rem; font-size: .6rem; letter-spacing: .08em; }
+      .jokili-map-wrap { padding: 1rem; }
+      .traje-intro { margin-bottom: 2.5rem; }
+      .future-points div { font-size: .95rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <section class="page-banner" style="background-image: url('imagenes/Muchacha.png')" id="pageBanner">
+      <div class="page-banner-content">
+        </div>
+      <div class="page-banner-content">
+        <div class="page-banner-subtitulo">Tradicion, simbolo y artesania</div>
+        <h1 class="page-banner-titulo">Nuestro Traje</h1>
+        <div class="page-banner-divider">
+          <div class="page-banner-divider-dots">
+            <div class="dot dot-amarillo"></div>
+            <div class="dot dot-azul"></div>
+            <div class="dot dot-rojo"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page-banner-bands">
+        <span class="pb-am"></span>
+        <span class="pb-az"></span>
+        <span class="pb-ro"></span>
+      </div>
+    </section>
+
+    <div class="traje-wrap">
+
+      <div class="traje-intro" id="intro">
+        <p>
+          El traje tradicional del Jokili de la Colonia Tovar conserva el espiritu del arlequin
+          del Kaiserstuhl, pero adquiere una identidad propia en Venezuela: un lenguaje visual
+          tricolor, una mascara de fuerte personalidad y una confeccion artesanal que sigue
+          transmitiendose dentro de la comunidad.
+        </p>
+      </div>
+
+      <div class="jokili-map-wrap">
+        <img src="imagenes/Ilustracion_Jokili_1.png" alt="Ilustracion del Jokili" class="jokili-map-img">
+
+        <a class="hs" href="#traje-gorro" style="left:36%;top:14%;" aria-label="Gorro">
+          <div class="hs-dot"></div>
+          <div class="hs-tip">Gorro de tres puntas</div>
+        </a>
+        <a class="hs" href="#baston" style="left:68%;top:20%;" aria-label="Baston">
+          <div class="hs-dot"></div>
+          <div class="hs-tip">Baston con vejiga</div>
+        </a>
+        <a class="hs" href="#mascara" style="left:37%;top:24%;" aria-label="Mascara">
+          <div class="hs-dot"></div>
+          <div class="hs-tip">Mascara de madera</div>
+        </a>
+        <a class="hs" href="#cuello" style="left:38%;top:34%;" aria-label="Cuello">
+          <div class="hs-dot"></div>
+          <div class="hs-tip">Cuello blanco</div>
+        </a>
+        <a class="hs" href="#flecos" style="left:44%;top:58%;" aria-label="Flecos">
+          <div class="hs-dot"></div>
+          <div class="hs-tip">Flecos tricolor</div>
+        </a>
+        <p style="text-align:center; margin-top:1.2rem; font-family:'Cormorant Garamond',serif; font-size:.9rem; font-style:italic; color:rgba(245,237,224,.5); letter-spacing:.04em;">
+          Pasa el cursor sobre los puntos para explorar cada elemento
+        </p>
+      </div>
+
+      <nav class="quick-links" aria-label="Secciones del traje">
+        <a href="#vision-general">Vision general</a>
+        <a href="#mascara">Mascara</a>
+        <a href="#cuello">Cuello</a>
+        <a href="#traje-gorro">Traje y gorro</a>
+        <a href="#flecos">Flecos</a>
+        <a href="#baston">Baston</a>
+      </nav>
+
+      <section class="destacado" id="vision-general">
+        
+        <h2>Traje Folklorico Tradicional</h2>
+        <p>
+          El atuendo del Jokili de Tovar presenta una variacion frente al traje del arlequin
+          aleman. Sobre la base roja aparecen tres juegos de flecos superpuestos en amarillo,
+          azul y rojo, rematados con sesgo blanco. A esto se suman la mascara tallada en madera
+          oscura, el cuello blanco, el gorro de tres puntas, los guantes y el baston con vejiga,
+          formando un conjunto que hoy simboliza orgullo, memoria y continuidad cultural.
+        </p>
+        <div class="banda-colores">
+          <span class="bc-am"></span>
+          <span class="bc-az"></span>
+          <span class="bc-ro"></span>
+        </div>
+      </section>
+
+      <section class="component-grid">
+
+        <article class="component-card" id="mascara">
+          <div class="component-copy">
+            <div class="component-label">Elemento esencial</div>
+            <h2 class="component-title">La Mascara</h2>
+            <p>
+              La mascara del Jokili es una de las piezas mas representativas del personaje.
+              Desde 1974 mantiene una forma reconocible: facciones marcadas, nariz pronunciada
+              y una sonrisa amplia que le da presencia escenica y un caracter inconfundible.
+            </p>
+            <p>
+              Su elaboracion combina reproduccion tecnica y acabado manual. A partir de un molde,
+              el artesano trabaja la madera para reforzar cejas, nariz, lineas de expresion y
+              sonrisa, de modo que cada mascara conserve rasgos comunes pero tambien detalles unicos.
+            </p>
+            <p>
+              Segun el material del libro, estas mascaras se realizan en maderas como pino,
+              cipres o cedro dulce, pasan por lijado, barnizado y pintura, y su produccion se
+              reserva para miembros de la organizacion.
+            </p>
+            <div class="data-strip">
+              <span>Madera tallada</span>
+              <span>Forma estable desde 1974</span>
+              <span>Mas de 150 fabricadas</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-card" id="cuello">
+          <div class="component-copy">
+            <div class="component-label">Confeccion textil</div>
+            <h2 class="component-title">El Cuello</h2>
+            <p>
+              El cuello blanco del Jokili ha sido una pieza de aprendizaje colectivo. Los primeros
+              modelos se hicieron de manera experimental y con el tiempo su elaboracion se perfecciono
+              gracias al intercambio con Endingen y a la experiencia de costureras de la Colonia Tovar.
+            </p>
+            <p>
+              El proceso descrito en el libro parte de una pieza larga de tela blanca que se dobla
+              en forma de abanico muchas veces, se divide con una cinta central y se prepara para
+              ajustarse al cuello del arlequin. Esa repeticion de pliegues es la que le da su forma
+              distintiva.
+            </p>
+            <p>
+              Mas que un accesorio, el cuello muestra el paso de un saber importado a una practica
+              dominada y sostenida localmente.
+            </p>
+            <div class="data-strip">
+              <span>Color blanco</span>
+              <span>Plisado manual</span>
+              <span>Herencia de Endingen</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-card wide" id="traje-gorro">
+          <div class="component-copy">
+            <div class="component-label">Estructura del personaje</div>
+            <h2 class="component-title">El Traje y el Gorro</h2>
+            <p>
+              El traje del Jokili se confecciona a la medida y presenta variantes segun quien lo porta.
+              En el caso de las damas se trabaja en piezas separadas, mientras que para los caballeros
+              se utiliza una braga. En ambos casos domina el rojo, que sirve como base para el juego de
+              flecos y campanillas.
+            </p>
+            <p>
+              El gorro de tres puntas se fabrica con la misma tela del traje y se rellena para darle
+              firmeza. Cada uno se personaliza para ajustarse a la mascara de su portador, por lo que
+              no se trata de un accesorio generico, sino de una pieza medida y pensada para cada Jokili.
+            </p>
+            <p>
+              El libro tambien destaca el papel de la costurera oficial y de la organizacion en la
+              coordinacion del trabajo, reafirmando que el traje es resultado de una labor comunitaria.
+            </p>
+            <div class="data-strip">
+              <span>Base roja</span>
+              <span>Gorro de tres puntas</span>
+              <span>Confeccion a medida</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-card" id="flecos">
+          <div class="component-copy">
+            <div class="component-label">Ritmo visual</div>
+            <h2 class="component-title">Los Flecos</h2>
+            <p>
+              Los flecos son una de las señas visuales mas fuertes del traje. En la version tovareña,
+              se preparan en amarillo, azul y rojo, evocando la bandera nacional y diferenciando al
+              Jokili local de su referente aleman.
+            </p>
+            <p>
+              Su produccion se organiza en grupo: se marcan los picos sobre patrones, se corta la tela
+              y despues se cosen con sesgo blanco para colocarlos en mangas, botas del pantalon y piezas
+              removibles de cuello y cintura.
+            </p>
+            <p>
+              El resultado final crea movimiento, sonido y una silueta festiva que hace al personaje
+              inmediatamente reconocible en desfile.
+            </p>
+            <div class="data-strip">
+              <span>Amarillo, azul y rojo</span>
+              <span>Sesgo blanco</span>
+              <span>Trabajo colectivo</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-card" id="baston">
+          <div class="component-copy">
+            <div class="component-label">Accesorio distintivo</div>
+            <h2 class="component-title">El Baston con Vejiga</h2>
+            <p>
+              El baston con vejiga de cerdo es uno de los accesorios mas singulares del Jokili.
+              El libro lo presenta como un elemento heredado de practicas carnavalescas del sur de
+              Alemania, donde se usaba como parte del juego callejero propio de la fiesta.
+            </p>
+            <p>
+              En la Colonia Tovar esta costumbre llego directamente con el Jokili y paso a ser un rasgo
+              diferenciador dentro del carnaval local. Cada año, uno de los miembros se encarga de conseguir
+              las vejigas y prepararlas antes de su uso.
+            </p>
+            <p>
+              Es una pieza de fuerte carga simbolica porque conecta la puesta en escena actual con una
+              memoria festiva mucho mas antigua.
+            </p>
+            <div class="data-strip">
+              <span>Accesorio unico</span>
+              <span>Tradicion alemana</span>
+              <span>Uso ceremonial y festivo</span>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+
+    </div>
+
+    <div class="footer">
+      Powered by
+      <a href="https://am-itsolutions.de" target="_blank" rel="noopener">AM Solutions</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

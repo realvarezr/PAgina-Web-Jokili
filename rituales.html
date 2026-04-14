@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Rituales – Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <style>
+    body {
+      display: block;
+      text-align: left;
+      background-size: auto 120px, auto 280px, 24% auto, contain;
+      background-position: bottom center, bottom center, center 42%, center;
+    }
+
+    .rituales-wrap {
+      width: min(98%, 1600px);
+      margin: 0 auto;
+      padding: 4rem clamp(1rem, 2vw, 3rem) 16rem;
+    }
+
+    /* Intro */
+    .rituales-intro {
+      max-width: 780px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .rituales-intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(245,237,224,.88);
+    }
+
+    /* Quick links */
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .8rem;
+      margin: 0 auto 3.5rem;
+      max-width: 960px;
+    }
+
+    .quick-links a {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(245,237,224,.88);
+      padding: .75rem 1rem;
+      border: 1px solid rgba(201,151,43,.26);
+      border-radius: 999px;
+      background: rgba(0,0,0,.18);
+      transition: transform .25s, border-color .25s, color .25s;
+    }
+
+    .quick-links a:hover {
+      transform: translateY(-2px);
+      border-color: var(--amarillo);
+      color: var(--dorado-claro);
+    }
+
+    /* Ritual card */
+    .ritual-card {
+      margin-bottom: 2.4rem;
+      padding: 2.4rem 2.6rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,.26);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.28);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      scroll-margin-top: 100px;
+    }
+
+    .ritual-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: .66rem;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .9;
+      margin-bottom: .9rem;
+    }
+
+    .ritual-card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: .2rem;
+    }
+
+    .ritual-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--dorado-claro);
+      opacity: .85;
+      margin-bottom: 1.6rem;
+    }
+
+    /* Layout: texto + foto en dos columnas */
+    .ritual-body {
+      display: grid;
+      grid-template-columns: 1fr clamp(220px, 30%, 320px);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .ritual-body.foto-izq {
+      grid-template-columns: clamp(220px, 30%, 320px) 1fr;
+    }
+
+    .ritual-body.foto-izq .ritual-foto {
+      order: -1;
+    }
+
+    .ritual-texto p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.06rem;
+      line-height: 1.82;
+      color: rgba(245,237,224,.84);
+      margin-bottom: .9rem;
+    }
+
+    .ritual-texto p:last-child { margin-bottom: 0; }
+
+    /* Cita destacada */
+    .ritual-cita {
+      margin: 1.2rem 0;
+      padding: 1rem 1.4rem;
+      border-left: 3px solid rgba(201,151,43,.5);
+      background: rgba(201,151,43,.07);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .ritual-cita p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(245,237,224,.75);
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Testimonio */
+    .ritual-testimonio {
+      margin-top: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(201,151,43,.15);
+    }
+
+    .ritual-testimonio p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .98rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(245,237,224,.62);
+      margin: 0 0 .4rem;
+    }
+
+    .ritual-testimonio cite {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .65;
+      font-style: normal;
+    }
+
+    /* Foto placeholder */
+    .ritual-foto {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .ritual-foto-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(201,151,43,.3);
+      background: rgba(0,0,0,.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .8rem;
+      position: relative;
+    }
+
+    .ritual-foto-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ritual-foto-frame.cuadrada {
+      aspect-ratio: 4/3;
+    }
+
+    .foto-placeholder-icon {
+      width: 48px;
+      height: 48px;
+      opacity: .2;
+    }
+
+    .foto-placeholder-label {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.3);
+      text-align: center;
+    }
+
+    .ritual-foto-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .85rem;
+      font-style: italic;
+      color: rgba(245,237,224,.4);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Tags */
+    .ritual-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin: 1.4rem 0 0;
+    }
+
+    .ritual-tags span {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .35rem .65rem;
+      border-radius: 999px;
+      color: var(--azul-oscuro);
+      background: rgba(232,201,107,.88);
+    }
+
+    /* Banda tricolor */
+    .banda-colores {
+      display: flex;
+      height: 3px;
+      margin-top: 1.8rem;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .banda-colores span { flex: 1; }
+    .bc-am { background: var(--amarillo); }
+    .bc-az { background: #1a3a8f; }
+    .bc-ro { background: var(--rojo); }
+
+    /* Nota al pie */
+    .nota-pie {
+      margin-top: 2.8rem;
+      padding: 1.4rem 1.8rem;
+      border-radius: 14px;
+      border: 1px solid rgba(201,151,43,.18);
+      background: rgba(0,0,0,.18);
+    }
+
+    .nota-pie p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .95rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(245,237,224,.5);
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .ritual-body,
+      .ritual-body.foto-izq {
+        grid-template-columns: 1fr;
+      }
+      .ritual-body.foto-izq .ritual-foto { order: 0; }
+      .ritual-foto-frame { aspect-ratio: 16/9; }
+      .ritual-foto-frame.cuadrada { aspect-ratio: 16/9; }
+      .ritual-subtitulo { font-size: 1rem; }
+    }
+
+    @media (max-width: 560px) {
+      .rituales-wrap { padding: 1.5rem 1rem 3rem; }
+      .ritual-card { padding: 1.4rem 1.1rem; border-radius: 12px; }
+      .quick-links { gap: .4rem; }
+      .quick-links a { padding: .6rem .8rem; font-size: .62rem; letter-spacing: .1em; }
+      .ritual-eyebrow { letter-spacing: .2em; font-size: .62rem; }
+      .ritual-texto p { font-size: 1rem; }
+      .ritual-cita p { font-size: 1rem; }
+      .ritual-testimonio p { font-size: .92rem; }
+      .ritual-testimonio cite { letter-spacing: .12em; font-size: .55rem; }
+      .rituales-intro p { font-size: clamp(1rem, 3.5vw, 1.3rem); }
+    }
+
+    @media (max-width: 480px) {
+      .rituales-wrap { padding: 1rem .9rem 2.5rem; }
+      .ritual-card { padding: 1.1rem .9rem; }
+      .quick-links a { padding: .5rem .65rem; font-size: .6rem; letter-spacing: .08em; }
+      .rituales-intro { margin-bottom: 2rem; }
+      .ritual-tags span { font-size: .54rem; padding: .3rem .5rem; }
+      .ritual-foto-frame { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <section class="page-banner" style="background-image: url('imagenes/Jokili_2.png')" id="pageBanner">
+      <div class="page-banner-content">
+        <h1 class="page-banner-titulo">Rituales con un Toque Venezolano</h1>
+        <div class="page-banner-divider">
+          <div class="page-banner-divider-dots">
+            <div class="dot dot-amarillo"></div>
+            <div class="dot dot-azul"></div>
+            <div class="dot dot-rojo"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page-banner-bands">
+        <span class="pb-am"></span>
+        <span class="pb-az"></span>
+        <span class="pb-ro"></span>
+      </div>
+    </section>
+
+    <div class="rituales-wrap">
+
+      <div class="rituales-intro">
+        <p>
+          Alrededor del Jokili se desarrollan una serie de rituales que en conjunto son llamados
+          juegos de carnaval. Estas ceremonias simbolizan el despertar, la vida y la muerte del
+          espíritu del carnaval. Cada uno con características propias y llenos de jocosidad,
+          se han convertido en expresiones culturales que confieren un toque característico a
+          las fiestas carnestolendas de la Colonia Tovar.
+        </p>
+      </div>
+
+      <nav class="quick-links" aria-label="Rituales">
+        <a href="#bautizo">El Bautizo</a>
+        <a href="#batas-blancas">Las Batas Blancas</a>
+        <a href="#misa">La Misa</a>
+        <a href="#dias-carnaval">Días de Carnaval</a>
+        <a href="#entierro">El Entierro del Jokili</a>
+      </nav>
+
+      <!-- ═══════════════════════════════════════════════════
+           1. EL BAUTIZO (TAUFEN)
+      ═══════════════════════════════════════════════════ -->
+      <article class="ritual-card" id="bautizo">
+        <div class="ritual-eyebrow">11/11 a las 11:11</div>
+        <h2>El Bautizo</h2>
+        <div class="ritual-subtitulo">Taufen</div>
+
+        <div class="ritual-body">
+          <div class="ritual-texto">
+            <p>
+              Las actividades de esta agrupación dan inicio, formalmente, el día 11 del mes 11
+              a las 11 y 11 de la noche. En esta fecha se declara el Carnaval en Alemania, y en
+              la Colonia Tovar este día coincide con la celebración del aniversario del patrono
+              del pueblo, San Martín de Tours. Esa noche se da la bienvenida a los nuevos
+              miembros bautizándolos.
+            </p>
+            <p>
+              En el ritual participan el maestro de ceremonias, los monaguillos, los jokilis y
+              todo el que quiere curiosear. Durante el acto los nuevos miembros, que deben ser
+              mayores de edad, son mojados con agua helada mientras recitan dichos Jokili o
+              <em>Jokili sprichli</em> en el dialecto típico de la Colonia Tovar, el Alemannisch:
+            </p>
+
+            <div class="ritual-cita">
+              <p>
+                Jokili isch in Brunnä gheit<br>
+                I hab herä blumbsä<br>
+                I hab gmeint s isch ä großä Mann,<br>
+                Jetz isch-äs nur ä Stumpa
+              </p>
+            </div>
+
+            <div class="ritual-testimonio">
+              <p>
+                "El chapuzón no se acaba hasta que no repites bien lo que te dijo el
+                Zeremonienmaister (maestro de ceremonias), y con ese frío. Pero vale la pena
+                porque la gente de aquí y de afuera lo disfruta mucho, nosotros le ponemos
+                el toque venezolano, es que la rochela no es normal."
+              </p>
+              <cite>— Carolina Gutt, bautizada en el 2005</cite>
+            </div>
+
+            <div class="ritual-tags">
+              <span>11 / 11 · 11:11 pm</span>
+              <span>Agua helada</span>
+              <span>Alemannisch</span>
+              <span>Nuevos miembros</span>
+            </div>
+          </div>
+
+          <div class="ritual-foto">
+            <div class="ritual-foto-frame">
+              <!-- Reemplazar con: <img src="ruta/foto.jpg" alt="Ceremonia de bautizo"> -->
+              <svg class="foto-placeholder-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <circle cx="12" cy="11" r="3" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <path d="M3 17l4-4 3 3 3-3 4 4" stroke="rgba(245,237,224,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="foto-placeholder-label">Añadir foto del bautizo</div>
+            </div>
+            <div class="ritual-foto-caption">Ceremonia de bautizo</div>
+          </div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           2. LAS BATAS BLANCAS (HEMDGLUNKERUMZUG)
+      ═══════════════════════════════════════════════════ -->
+      <article class="ritual-card" id="batas-blancas">
+        <div class="ritual-eyebrow">Jueves antes de Carnaval</div>
+        <h2>Las Batas Blancas</h2>
+        <div class="ritual-subtitulo">Hemdglunkerumzug</div>
+
+        <div class="ritual-body foto-izq">
+          <div class="ritual-texto">
+            <p>
+              El Jokili despierta el jueves antes de Carnaval en la llamada noche de las batas
+              blancas. Los miembros del grupo, y quienes quieren acompañarlos, vestidos de
+              blanco y tocando pitos e instrumentos ruidosos, recorren las calles del pueblo
+              para lograr que el arlequín abandone su profundo sueño.
+            </p>
+            <p>
+              Acto seguido, los asistentes y el maestro de ceremonias rodean la fuente
+              pidiéndole que salga. Todos gritan: <em>Jokili Kumm</em> —que significa
+              «Jokili ven»— y sin mucho esfuerzo, en medio de un ambiente de alegría,
+              emerge el <em>Oberjokili</em>, un arlequín sin máscara que representa
+              al espíritu del carnaval de ese año.
+            </p>
+
+            <div class="ritual-tags">
+              <span>Vestimenta blanca</span>
+              <span>Desfile nocturno</span>
+              <span>La fuente</span>
+              <span>Jokili Kumm</span>
+              <span>Emerge el Oberjokili</span>
+            </div>
+          </div>
+
+          <div class="ritual-foto">
+            <div class="ritual-foto-frame">
+              <!-- Reemplazar con: <img src="ruta/foto.jpg" alt="Desfile nocturno en batas blancas"> -->
+              <svg class="foto-placeholder-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <circle cx="12" cy="11" r="3" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <path d="M3 17l4-4 3 3 3-3 4 4" stroke="rgba(245,237,224,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="foto-placeholder-label">Añadir foto de las batas blancas</div>
+            </div>
+            <div class="ritual-foto-caption">Desfile nocturno en batas blancas</div>
+          </div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           3. LA MISA — VIERNES DE CARNAVAL
+      ═══════════════════════════════════════════════════ -->
+      <article class="ritual-card" id="misa">
+        <div class="ritual-eyebrow">Viernes de Carnaval — Iglesia San Martín</div>
+        <h2>La Misa</h2>
+        <div class="ritual-subtitulo">Solemne celebración en la Iglesia Católica San Martín de Tours</div>
+
+        <div class="ritual-body">
+          <div class="ritual-texto">
+            <p>
+              El viernes de Carnaval, antes de que comiencen los días de desfile y jolgorio,
+              la organización se reúne en la Iglesia Católica San Martín de Tours de la
+              Colonia Tovar para una misa solemne. Este momento recuerda que el Carnaval es,
+              ante todo, una fiesta de raíz católica: una celebración de la vida que precede
+              al recogimiento de la Cuaresma.
+            </p>
+            <p>
+              Durante la ceremonia se elevan palabras de gratitud por todo lo bueno que
+              aconteció a lo largo del año: los logros de la comunidad, los nuevos miembros
+              que se sumaron a la organización, y las alegrías compartidas bajo el espíritu
+              del Jokili. Es un instante de pausa y reflexión en medio de la festividad.
+            </p>
+            <p>
+              La misa incluye también un sentido honorario a los jokilis que ya no están
+              entre nosotros. Sus nombres resuenan en el interior de la iglesia como
+              recordatorio de que quienes forjaron esta tradición siguen presentes en cada
+              cascabel, en cada sprichli y en cada salto de arlequín.
+            </p>
+            <p>
+              Este ritual reafirma que El Jokili no es únicamente una actividad carnestolenda:
+              es familia, es cultura, es identidad. Una herencia que se cuida y se transmite
+              de generación en generación en la Colonia Tovar.
+            </p>
+
+            <div class="ritual-tags">
+              <span>Viernes de Carnaval</span>
+              <span>Iglesia San Martín de Tours</span>
+              <span>Acción de gracias</span>
+              <span>Honorario a los fallecidos</span>
+              <span>Familia y cultura</span>
+            </div>
+          </div>
+
+          <div class="ritual-foto">
+            <div class="ritual-foto-frame">
+              <!-- Reemplazar con: <img src="ruta/foto.jpg" alt="Misa en la Iglesia San Martín"> -->
+              <img src="imagenes/Misa_1Reel.png" alt="Misa en la Iglesia San Martín">
+                
+              
+            </div>
+            <div class="ritual-foto-caption">Misa solemne en la Iglesia San Martín de Tours</div>
+          </div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           4. DÍAS DE CARNAVAL (FASNETSTAGE)
+      ═══════════════════════════════════════════════════ -->
+      <article class="ritual-card" id="dias-carnaval">
+        <div class="ritual-eyebrow">Sábado a lunes de Carnaval</div>
+        <h2>Días de Carnaval</h2>
+        <div class="ritual-subtitulo">Fasnetstage</div>
+
+        <div class="ritual-body">
+          <div class="ritual-texto">
+            <p>
+              Desde el sábado al lunes de la temporada carnestolenda, los miembros que integran
+              El Jokili visitan los diferentes hoteles y restaurantes de la Colonia Tovar.
+              También recorren las calles con sus pintorescas carrozas en forma de zapato y
+              sombrero jokili, mientras danzan al ritmo de la música alemana y juegan golpeando
+              a los turistas con una vejiga de cerdo seca amarrada a un bastón.
+            </p>
+            <p>
+              Es por ello que durante todos estos días puede escucharse como, al compás de los
+              cascabeles de sus trajes, entonan dichos de Carnaval que tienen más de 200 años
+              de antigüedad. Cantos que son parte de la tradición oral, ya que eran conocidos
+              por los colonos aún sin celebrar esta tradición formalmente, y se mantienen
+              intactos.
+            </p>
+
+            <div class="ritual-tags">
+              <span>Sábado a lunes</span>
+              <span>Carrozas alegóricas</span>
+              <span>Vejiga de cerdo</span>
+              <span>Cantos + 200 años</span>
+              <span>Cascabeles</span>
+            </div>
+          </div>
+
+          <div class="ritual-foto">
+            <div class="ritual-foto-frame cuadrada">
+              <!-- Reemplazar con: <img src="ruta/foto.jpg" alt="Desfile de Carnaval"> -->
+              <svg class="foto-placeholder-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <circle cx="12" cy="11" r="3" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <path d="M3 17l4-4 3 3 3-3 4 4" stroke="rgba(245,237,224,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="foto-placeholder-label">Añadir foto del desfile</div>
+            </div>
+            <div class="ritual-foto-caption">Desfile de Carnaval</div>
+          </div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           4. EL ENTIERRO DEL JOKILI (TRAUERUMZUG)
+      ═══════════════════════════════════════════════════ -->
+      <article class="ritual-card" id="entierro">
+        <div class="ritual-eyebrow">Martes de Carnaval</div>
+        <h2>El Entierro del Jokili</h2>
+        <div class="ritual-subtitulo">Trauerumzug</div>
+
+        <div class="ritual-body foto-izq">
+          <div class="ritual-texto">
+            <p>
+              Todo llega a su final el martes de Carnaval. Se deja de un lado el rojo que
+              simboliza la alegría de las fiestas para mostrar el luto que anuncia la muerte
+              del espíritu del carnaval. Esa noche los habitantes del pueblo y miembros del
+              grupo se visten del color de la tristeza para, entre sollozos y lágrimas, realizar
+              la ceremonia de entierro en la que se regresa al Jokili a la fuente para que
+              descanse, pero sólo hasta el próximo año.
+            </p>
+            <p>
+              Para el desfile de despedida los miembros se reúnen a las cinco de la tarde.
+              Predomina el color negro con el cuello blanco del traje jokili y los zapatos rojos.
+              Algunos utilizan pelucas, barbas, bigotes, sombreros de diferentes formas y
+              maquillaje. Hacen presencia unas cuantas viudas que lloran su pérdida detrás de
+              un velo negro, además de varios sepultureros con sus cuervos o herramientas al
+              hombro.
+            </p>
+            <p>
+              Desde el año 2005, El Jokili de la Colonia Tovar introdujo la figura del
+              <em>Jokili Negro</em>: cuatro arlequines en traje gris, negro y blanco acompañan
+              al maestro de ceremonias y a los monaguillos mientras pasan en una carroza con
+              música fúnebre.
+            </p>
+            <p>
+              Al culminar el desfile y la ceremonia de despedida, se dejan de un lado los
+              formalismos para dar inicio a una fiesta en la que se puede bailar, comer y
+              beber en honor al Jokili que regresará el siguiente Carnaval.
+            </p>
+
+            <div class="ritual-tags">
+              <span>Martes de Carnaval</span>
+              <span>Vestimenta negra</span>
+              <span>Jokili Negro — desde 2005</span>
+              <span>Regreso a la fuente</span>
+              <span>Sepultureros</span>
+            </div>
+          </div>
+
+          <div class="ritual-foto">
+            <div class="ritual-foto-frame">
+              <!-- Reemplazar con: <img src="ruta/foto.jpg" alt="El entierro del Jokili"> -->
+              <svg class="foto-placeholder-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <circle cx="12" cy="11" r="3" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
+                <path d="M3 17l4-4 3 3 3-3 4 4" stroke="rgba(245,237,224,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="foto-placeholder-label">Añadir foto del entierro</div>
+            </div>
+            <div class="ritual-foto-caption">El entierro del Jokili — Trauerumzug</div>
+          </div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+      </article>
+
+      <div class="nota-pie">
+        <p>
+          Si bien es cierto que el Jokili de la Colonia Tovar conserva en esencia las normas y rituales
+          de la asociación original, al presenciar cualquiera de las ceremonias se hace evidente el
+          toque criollo. Diferencias que son el resultado de la exitosa mezcla entre la disciplina
+          de los alemanes y la chispa de los venezolanos.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

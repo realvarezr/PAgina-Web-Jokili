@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Jokili Sprichli – Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <style>
+
+    body {
+      display: block;
+      text-align: left;
+      background-size: auto 120px, auto 280px, 24% auto, contain;
+      background-position: bottom center, bottom center, center 42%, center;
+    }
+
+    .sprichli-wrap {
+      width: min(98%, 1600px);
+      margin: 0 auto;
+      padding: 4rem clamp(1rem, 2vw, 3rem) 16rem;
+    }
+
+    /* Intro */
+    .sprichli-intro {
+      max-width: 760px;
+      margin: 0 auto 3.5rem;
+      text-align: center;
+    }
+
+    .sprichli-intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(245,237,224,.88);
+    }
+
+    /* Bloque contexto */
+    .contexto-card {
+      margin-bottom: 3.5rem;
+      padding: 2.2rem 2.4rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,.26);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.28);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .contexto-card .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .9;
+      margin-bottom: .9rem;
+    }
+
+    .contexto-card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+
+    .contexto-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.06rem;
+      line-height: 1.82;
+      color: rgba(245,237,224,.84);
+      margin-bottom: .85rem;
+    }
+
+    .contexto-card p:last-of-type { margin-bottom: 0; }
+
+    .banda-colores {
+      display: flex;
+      height: 3px;
+      margin-top: 1.6rem;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .banda-colores span { flex: 1; }
+    .banda-colores .bc-am { background: var(--amarillo); }
+    .banda-colores .bc-az { background: #1a3a8f; }
+    .banda-colores .bc-ro { background: var(--rojo); }
+
+    /* Grid de dichos */
+    .dichos-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .85;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .dichos-grid {
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
+    }
+
+    .dicho-card {
+      border-radius: 18px;
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,151,43,.22);
+      box-shadow: 0 14px 40px rgba(0,0,0,.25);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: minmax(0, 1fr) auto;
+      height: 100%;
+    }
+
+    .dicho-card.full {
+      grid-column: 1 / -1;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .dicho-col {
+      padding: 1.8rem 1.6rem;
+      height: 100%;
+    }
+
+    .dicho-col.alemannisch {
+      border-right: 1px solid rgba(201,151,43,.18);
+      background: rgba(201,151,43,.04);
+    }
+
+    .dicho-lang {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .75;
+      margin-bottom: 1rem;
+    }
+
+    .dicho-col p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(245,237,224,.88);
+      margin: 0;
+    }
+
+    .dicho-col.alemannisch p {
+      font-style: italic;
+    }
+
+    .dicho-col.espanol p {
+      color: rgba(245,237,224,.72);
+    }
+
+    /* Foto placeholder en el grid */
+    .dicho-foto-placeholder {
+      grid-column: span 2;
+      grid-row: span 2;
+      border-radius: 18px;
+      border: 1.5px dashed rgba(201,151,43,.35);
+      background: rgba(0,0,0,.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dicho-foto-placeholder img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .dicho-foto-icon {
+      width: 52px;
+      height: 52px;
+    }
+
+    .dicho-foto-label {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.28);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    /* Audio player */
+    .dicho-audio {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      padding: .9rem 1.6rem 1.1rem;
+      border-top: 1px solid rgba(201,151,43,.14);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .55rem;
+    }
+
+    .dicho-audio-label {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(201,151,43,.65);
+      white-space: nowrap;
+    }
+
+    .dicho-audio audio {
+      flex: none;
+      width: 100%;
+      height: 28px;
+      min-width: 0;
+      filter: invert(1) brightness(.65) sepia(1) hue-rotate(5deg) saturate(1.5);
+      opacity: .82;
+    }
+
+    .dicho-audio audio::-webkit-media-controls-panel {
+      background: transparent;
+    }
+
+    /* Canción Narri Narro */
+    .narri-card {
+      margin-top: 3rem;
+      padding: 2rem 2.4rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .narri-card .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .8;
+      margin-bottom: .7rem;
+    }
+
+    .narri-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.4rem;
+    }
+
+    .narri-card audio {
+      width: 100%;
+      height: 32px;
+      filter: invert(1) brightness(.65) sepia(1) hue-rotate(5deg) saturate(1.5);
+      opacity: .85;
+    }
+
+    /* Nota al pie */
+    .nota-pie {
+      margin-top: 2.8rem;
+      padding: 1.4rem 1.8rem;
+      border-radius: 14px;
+      border: 1px solid rgba(201,151,43,.18);
+      background: rgba(0,0,0,.18);
+    }
+
+    .nota-pie p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .95rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(245,237,224,.55);
+      margin: 0;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .dichos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Colapsar las columnas INTERNAS de cada card antes de que se apilen */
+    @media (max-width: 800px) {
+      .dicho-card,
+      .dicho-card.full {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      .dicho-col {
+        height: auto;
+      }
+      .dicho-col.alemannisch {
+        border-right: none;
+        border-bottom: 1px solid rgba(201,151,43,.18);
+      }
+      .dicho-audio {
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .dichos-grid {
+        grid-template-columns: 1fr;
+      }
+      .dicho-card,
+      .dicho-card.full,
+      .dicho-foto-placeholder {
+        grid-column: 1 / -1;
+      }
+      /* Evitar que el placeholder ocupe 2 filas en layout de 1 columna */
+      .dicho-foto-placeholder {
+        grid-row: span 1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .sprichli-wrap { padding: 1.5rem 1rem 3rem; }
+      .contexto-card { padding: 1.4rem 1.1rem; border-radius: 12px; }
+      .dicho-audio audio {
+        width: 100%;
+      }
+      .sprichli-intro p { font-size: clamp(1rem, 3.5vw, 1.3rem); }
+    }
+
+    @media (max-width: 480px) {
+      .sprichli-wrap { padding: 1rem .9rem 2.5rem; }
+      .contexto-card { padding: 1.1rem .9rem; }
+      .sprichli-intro { margin-bottom: 2.5rem; }
+      .dicho-card { border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <section class="page-banner" style="background-image: url('imagenes/Jokili_5.png')" id="pageBanner">
+      <div class="page-banner-content">
+        <div class="page-banner-subtitulo">Dialecto Alemannisch</div>
+        <h1 class="page-banner-titulo">Jokili Sprichli</h1>
+        <div class="page-banner-divider">
+          <div class="page-banner-divider-dots">
+            <div class="dot dot-amarillo"></div>
+            <div class="dot dot-azul"></div>
+            <div class="dot dot-rojo"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page-banner-bands">
+        <span class="pb-am"></span>
+        <span class="pb-az"></span>
+        <span class="pb-ro"></span>
+      </div>
+    </section>
+
+    <div class="sprichli-wrap">
+
+      <div class="sprichli-intro">
+        <p>
+          Dichos de carnaval transmitidos oralmente de generación en generación,
+          en el dialecto Alemannisch que los colonos trajeron desde el sur de Alemania
+          hasta la Colonia Tovar. Un legado vivo que Endingen olvidó
+          y Venezuela preservó por más de 130 años.
+        </p>
+      </div>
+
+      <div class="contexto-card">
+        
+        <h2>El Jokili Sprichli: dichos de carnaval</h2>
+        <p>
+          El Jokili, como organización formal, llega a la Colonia Tovar en el año 1976.
+          No obstante, ese hombre que jugaba al Carnaval llegó a Venezuela con los colonos
+          gracias al Jokili-Sprichli: dichos que narran en forma de rimas, en el dialecto
+          Alemannisch, las aventuras y ocurrencias del arlequín. Estos eran recitados por
+          colonos y colonieros transmitiéndolos de una generación a otra.
+        </p>
+        <p>
+          En 1974, Franz Vollherbst confirmó durante su visita a la Colonia Tovar que
+          "el Jokili-Sprichli era conocido por todos y que se había mantenido por más de
+          130 años". Lo extraordinario es que la mayoría de estos dichos ya no se utilizan
+          en Endingen porque fueron olvidados o reemplazados por canciones nuevas.
+          El Sprichli nos vincula con nuestros orígenes y son parte del legado oral
+          dejado por nuestros antepasados.
+        </p>
+        <p>
+          El Jokili-Sprichli fue además la inspiración para que la nueva generación
+          de arlequines compusiera su himno: una canción en Alemannisch acompañada por
+          instrumentos tradicionales venezolanos y alemanes, estrenada en la celebración
+          de los 225 años del Jokili de Endingen, en enero de 2007.
+        </p>
+        <div class="banda-colores">
+          <span class="bc-am"></span>
+          <span class="bc-az"></span>
+          <span class="bc-ro"></span>
+        </div>
+      </div>
+
+      <div class="dichos-titulo">Los dichos</div>
+
+      <div class="dichos-grid">
+
+        <div class="dicho-card">
+          <div class="dicho-col alemannisch">
+            <div class="dicho-lang">Alemannisch</div>
+            <p>
+              Jokili, Jokili jo jo<br>
+              het dr Stäckä stoh lo,<br>
+              het ä widr gfundä<br>
+              mit-ämä aldä Lumpä!
+            </p>
+          </div>
+          <div class="dicho-col espanol">
+            <div class="dicho-lang">Español</div>
+            <p>
+              Jokili, Jokili jo jo<br>
+              dejó el bastón parado<br>
+              lo encontró otra vez<br>
+              con un trapo viejo <br>amarrado<br>
+              
+            </p>
+          </div>
+          <div class="dicho-audio">
+            <span class="dicho-audio-label">Escuchar</span>
+            <audio controls preload="none">
+              <source src="mp3/Jokili jokili jo jo.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+        </div>
+
+        <div class="dicho-card">
+          <div class="dicho-col alemannisch">
+            <div class="dicho-lang">Alemannisch</div>
+            <p>
+              Jokili isch in Brunnä gheit,<br>
+              i hab ä herä blumbsä,<br>
+              i hab gmeint s isch ä großä Mann,<br>
+              jetz isch-äs nur ä Stumpä.
+            </p>
+          </div>
+          <div class="dicho-col espanol">
+            <div class="dicho-lang">Español</div>
+            <p>
+              Jokili se cayó en la fuente<br>
+              yo escuché como chapoteaba<br>
+              lo que era un hombre grande<br>
+              ahora no sirve para nada
+            </p>
+          </div>
+          <div class="dicho-audio">
+            <span class="dicho-audio-label">Escuchar</span>
+            <audio controls preload="none">
+              <source src="mp3/jokili isch in brunna ghit.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+        </div>
+
+        <div class="dicho-card">
+          <div class="dicho-col alemannisch">
+            <div class="dicho-lang">Alemannisch</div>
+            <p>
+              Jokili, wu bisch geschdert gsi?<br>
+              Hindrem Hüs im Gärtli!<br>
+              Wär isch geschdert bi dr gsi?<br>
+              Dr Jokili mit-äm Bärtli!
+            </p>
+          </div>
+          <div class="dicho-col espanol">
+            <div class="dicho-lang">Español</div>
+            <p>
+              ¿Jokili dónde estabas ayer?<br>
+              Detrás de la casa en el huertito<br>
+              ¿Y quién estaba ayer contigo?<br>
+              El Jokili con el bigotito
+            </p>
+          </div>
+          <div class="dicho-audio">
+            <span class="dicho-audio-label">Escuchar</span>
+            <audio controls preload="none">
+              <source src="mp3/jokili wu bisch geschdert.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+        </div>
+
+        <div class="dicho-card">
+          <div class="dicho-col alemannisch">
+            <div class="dicho-lang">Alemannisch</div>
+            <p>
+              Maidli wu bisch geschdert gsi?<br>
+              Hindrem Hüs im Gärtli!<br>
+              Wär isch aü noch bi dr gsi?<br>
+              S Jokili mit-äm Bärtli!<br>
+              Was het s aü noch bi dr glo?<br>
+              Ä rächdä Scheiß in d Hosä!
+            </p>
+          </div>
+          <div class="dicho-col espanol">
+            <div class="dicho-lang">Español</div>
+            <p>
+              ¿Muchachita dónde estabas ayer?<br>
+              Detrás de la casa en el huertito<br>
+              ¿Y quién más estaba contigo?<br>
+              El Jokili con el bigotito<br>
+              ¿Qué fue lo que te dejó?<br>
+              Una tremenda caca en los pantalones
+            </p>
+          </div>
+          <div class="dicho-audio">
+            <span class="dicho-audio-label">Escuchar</span>
+            <audio controls preload="none">
+              <source src="mp3/maidli.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+        </div>
+
+        <div class="dicho-foto-placeholder">
+          <svg class="dicho-foto-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.35)" stroke-width="1.2"/>
+            <circle cx="8.5" cy="8.5" r="1.8" stroke="rgba(245,237,224,.35)" stroke-width="1.2"/>
+            <path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.35)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="dicho-foto-label">Fotografía<br>del Jokili Sprichli</span>
+          <img src="imagenes/Jokili_16_1Reel.png" alt="Jokili Sprichli"> -->
+        </div>
+
+        <div class="dicho-card">
+          <div class="dicho-col alemannisch">
+            <div class="dicho-lang">Alemannisch</div>
+            <p>
+              Jokili mit-äm Bärtli<br>
+              isch ä aldä Lumpä,<br>
+              süft dr Wii vu anderä<br>
+              üsm großä Humpä.
+            </p>
+          </div>
+          <div class="dicho-col espanol">
+            <div class="dicho-lang">Español</div>
+            <p>
+              Jokili con bigotito<br>
+              es un trapo viejo<br>
+              se bebe el vino de los demás<br>
+              en un gran tazón
+            </p>
+          </div>
+          <div class="dicho-audio">
+            <span class="dicho-audio-label">Escuchar</span>
+            <audio controls preload="none">
+              <source src="mp3/Jokili mit-am bartli.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+        </div>
+
+      </div><!-- /.dichos-grid -->
+
+      <div class="narri-card">
+        <div class="eyebrow">Canción del Tovarer Jokili</div>
+        <h3>Narri Narro</h3>
+        <audio controls preload="none">
+          <source src="mp3/Narri Narro.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <div class="nota-pie">
+        <p>
+          Las traducciones no son textuales, son aproximaciones porque algunas
+          de las palabras no tienen equivalentes en español.
+        </p>
+      </div>
+
+    </div><!-- /.sprichli-wrap -->
+
+    <div class="footer">
+      Powered by
+      <a href="https://am-itsolutions.de" target="_blank" rel="noopener">AM Solutions</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

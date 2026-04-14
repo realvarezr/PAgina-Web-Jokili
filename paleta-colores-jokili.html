@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paleta de Colores - Jokili Verein</title>
+  <style>
+    :root {
+      --azul-oscuro: #0a0f3c;
+      --amarillo: #f5c518;
+      --rojo: #cc0001;
+      --dorado: #c9972b;
+      --dorado-claro: #e8c96b;
+      --crema: #f5ede0;
+      --negro: #000000;
+      --azul-bandera: #1a3a8f;
+      --azul-acento: #4a6cf7;
+      --azul-header: #0a0ba8;
+      --azul-radial: #283278;
+      --azul-banner: #1c255a;
+      --azul-footer: #b7bcff;
+      --texto: #1b2248;
+      --borde: #d8d3c6;
+      --fondo: #f7f2e8;
+      --papel: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--texto);
+      background:
+        linear-gradient(180deg, rgba(245,197,24,.08), rgba(10,15,60,.02)),
+        var(--fondo);
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 16mm 16mm 18mm;
+      background: var(--papel);
+    }
+
+    .hero {
+      padding: 14mm;
+      border-radius: 18px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(10,15,60,.96), rgba(28,37,90,.92)),
+        var(--azul-oscuro);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      max-width: 560px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(245,237,224,.9);
+    }
+
+    .band {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      height: 10px;
+      margin-top: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .band span:nth-child(1) { background: var(--amarillo); }
+    .band span:nth-child(2) { background: var(--azul-bandera); }
+    .band span:nth-child(3) { background: var(--rojo); }
+    .band span:nth-child(4) { background: var(--negro); }
+    .band span:nth-child(5) { background: var(--rojo); }
+    .band span:nth-child(6) { background: var(--dorado-claro); }
+
+    h2 {
+      margin: 24px 0 10px;
+      font-size: 15px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .swatch {
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      overflow: hidden;
+      background: white;
+      break-inside: avoid;
+    }
+
+    .sample {
+      height: 92px;
+    }
+
+    .meta {
+      padding: 10px 12px 12px;
+    }
+
+    .name {
+      margin: 0 0 5px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .code {
+      margin: 0;
+      font-size: 12px;
+      color: #5b6184;
+      line-height: 1.5;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(245,237,224,.7);
+      border: 1px solid var(--borde);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 11px;
+      color: #717796;
+      text-align: right;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Jokili Verein</p>
+      <h1>Paleta de Colores del Proyecto</h1>
+      <p class="subtitle">
+        Resumen visual de los tonos principales y secundarios detectados en
+        `style_v1.css`, `index.html`, `historia.html`, `eventos.html` y `contacto.html`.
+      </p>
+      <div class="band">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <h2>Colores Principales</h2>
+    <section class="grid">
+      <article class="swatch">
+        <div class="sample" style="background:#0a0f3c"></div>
+        <div class="meta">
+          <p class="name">Azul oscuro base</p>
+          <p class="code">HEX: #0A0F3C<br>Uso: fondo principal, banners, contraste base</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#f5c518"></div>
+        <div class="meta">
+          <p class="name">Amarillo bandera</p>
+          <p class="code">HEX: #F5C518<br>Uso: destacados, botones, divisores, acentos</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#cc0001"></div>
+        <div class="meta">
+          <p class="name">Rojo bandera</p>
+          <p class="code">HEX: #CC0001<br>Uso: franjas, puntos y gradientes tricolor</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#1a3a8f"></div>
+        <div class="meta">
+          <p class="name">Azul bandera</p>
+          <p class="code">HEX: #1A3A8F<br>Uso: bandas inferiores, tricolor y secciones internas</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#c9972b"></div>
+        <div class="meta">
+          <p class="name">Dorado</p>
+          <p class="code">HEX: #C9972B<br>Uso: bordes, sombras y líneas decorativas</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#e8c96b"></div>
+        <div class="meta">
+          <p class="name">Dorado claro</p>
+          <p class="code">HEX: #E8C96B<br>Uso: hover, detalles finos y acentos suaves</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#f5ede0"></div>
+        <div class="meta">
+          <p class="name">Crema</p>
+          <p class="code">HEX: #F5EDE0<br>Uso: tipografía clara, contraste suave y overlays</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#000000"></div>
+        <div class="meta">
+          <p class="name">Negro</p>
+          <p class="code">HEX: #000000<br>Uso: profundidad, overlays y guiño a la bandera alemana</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#4a6cf7"></div>
+        <div class="meta">
+          <p class="name">Azul acento</p>
+          <p class="code">HEX: #4A6CF7<br>Uso: punto decorativo del hero</p>
+        </div>
+      </article>
+    </section>
+
+    <h2>Tonos de Apoyo</h2>
+    <section class="grid">
+      <article class="swatch">
+        <div class="sample" style="background:#0a0ba8"></div>
+        <div class="meta">
+          <p class="name">Azul header</p>
+          <p class="code">HEX: #0A0BA8<br>Uso: header al hacer scroll</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#283278"></div>
+        <div class="meta">
+          <p class="name">Azul radial</p>
+          <p class="code">HEX: #283278<br>Uso: degradado del fondo principal</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#1c255a"></div>
+        <div class="meta">
+          <p class="name">Azul banner</p>
+          <p class="code">HEX: #1C255A<br>Uso: placeholder y fondos auxiliares</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:#b7bcff"></div>
+        <div class="meta">
+          <p class="name">Azul enlace</p>
+          <p class="code">HEX: #B7BCFF<br>Uso: enlace del footer</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:linear-gradient(135deg, rgba(0,0,0,.28), rgba(0,0,0,.4))"></div>
+        <div class="meta">
+          <p class="name">Overlay oscuro</p>
+          <p class="code">RGBA: rgba(0,0,0,.28) a rgba(0,0,0,.40)<br>Uso: tarjetas, contenedores y profundidad</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="sample" style="background:linear-gradient(135deg, rgba(245,197,24,.08), rgba(245,197,24,.55))"></div>
+        <div class="meta">
+          <p class="name">Brillo amarillo</p>
+          <p class="code">RGBA: rgba(245,197,24,.08) a rgba(245,197,24,.55)<br>Uso: bordes, hover y líneas decorativas</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="note">
+      La identidad visual del proyecto combina la tricolor venezolana con acentos dorados
+      ceremoniales y guiños alemanes en negro, rojo y dorado. La base dominante es un azul
+      nocturno profundo que sostiene casi todos los contrastes de la interfaz.
+    </section>
+
+    <p class="footer">Generado para el proyecto Jokili Verein</p>
+  </main>
+</body>
+</html>

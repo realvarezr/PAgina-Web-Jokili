@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen Tipografico - Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul: #0a0f3c;
+      --azul-claro: #1f2c73;
+      --crema: #f5ede0;
+      --dorado: #c9972b;
+      --dorado-claro: #e8c96b;
+      --panel: rgba(255, 255, 255, 0.08);
+      --borde: rgba(201, 151, 43, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Cormorant Garamond', serif;
+      background:
+        radial-gradient(circle at top, rgba(31, 44, 115, 0.9), rgba(10, 15, 60, 1) 60%),
+        linear-gradient(135deg, #0a0f3c, #101958);
+      color: var(--crema);
+      padding: 48px 20px;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--dorado-claro);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: rgba(245, 237, 224, 0.88);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: 18px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dorado-claro);
+      margin-bottom: 14px;
+    }
+
+    .sample-cinzel {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .sample-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    p, li {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(245, 237, 224, 0.9);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--azul);
+      background: var(--dorado-claro);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 1rem;
+      color: rgba(245, 237, 224, 0.72);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Sistema tipografico actual</div>
+      <h1>Resumen de Tipografia</h1>
+      <p class="intro">
+        Tu web usa una combinacion elegante y ceremonial: una serif clasica para identidad y titulos, y otra serif mas expresiva para frases, lemas y textos de apoyo.
+      </p>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <span class="tag">Fuente principal</span>
+        <h2>Cinzel</h2>
+        <div class="sample-cinzel">Jokili Verein</div>
+        <ul>
+          <li>Se usa como tipografia base en `html, body`.</li>
+          <li>Aparece en el menu, titulos hero, botones, tarjetas y banners internos.</li>
+          <li>Transmite identidad, solemnidad y estilo institucional.</li>
+          <li>Normalmente va en mayusculas y con bastante `letter-spacing`.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <span class="tag">Fuente secundaria</span>
+        <h2>Cormorant Garamond</h2>
+        <div class="sample-cormorant">Narri-Narro: Tovarer Jokili sind wieder do!</div>
+        <ul>
+          <li>Se usa en slogans, descripciones y textos con tono mas poetico.</li>
+          <li>Aparece en `.hero-slogan`, `.card-desc` y placeholders del banner.</li>
+          <li>Transmite elegancia, tradicion y un aire editorial.</li>
+          <li>En tu CSS suele ir en cursiva y con peso ligero.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <span class="tag">Resumen rapido</span>
+        <h2>Como se reparte</h2>
+        <ul>
+          <li>`Cinzel`: navegacion, titulos, subtitulos, botones, flechas y estructura visual.</li>
+          <li>`Cormorant Garamond`: lemas, descripciones y textos de apoyo con tono mas emocional.</li>
+          <li>La combinacion funciona bien porque una da autoridad y la otra sensibilidad.</li>
+          <li>El contraste entre ambas refuerza el estilo cultural y ceremonial del sitio.</li>
+        </ul>
+      </section>
+    </main>
+
+    <p class="footer-note">
+      Archivo pensado como referencia visual rapida de la tipografia que ya estas utilizando en tu proyecto.
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Personajes – Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <style>
+    body {
+      display: block;
+      text-align: left;
+      background-size: auto 120px, auto 280px, 24% auto, contain;
+      background-position: bottom center, bottom center, center 42%, center;
+    }
+
+    .personajes-wrap {
+      max-width: 100%;
+      margin: 0;
+      padding: 4rem 0 16rem;
+    }
+
+    /* Intro y quick-links siguen centrados */
+    .personajes-intro,
+    .quick-links,
+    .jerarquia-bar,
+    .nota-pie {
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    /* Intro */
+    .personajes-intro {
+      max-width: 760px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .personajes-intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(245,237,224,.88);
+    }
+
+    /* Quick links */
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .8rem;
+      margin: 0 auto 3.5rem;
+      max-width: 960px;
+    }
+
+    .quick-links a {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(245,237,224,.88);
+      padding: .75rem 1rem;
+      border: 1px solid rgba(201,151,43,.26);
+      border-radius: 999px;
+      background: rgba(0,0,0,.18);
+      transition: transform .25s, border-color .25s, color .25s;
+    }
+
+    .quick-links a:hover {
+      transform: translateY(-2px);
+      border-color: var(--amarillo);
+      color: var(--dorado-claro);
+    }
+
+    /* Jerarquía visual */
+    .jerarquia-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .jerarquia-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .jerarquia-num {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--amarillo);
+      opacity: .6;
+      line-height: 1;
+    }
+
+    .jerarquia-label {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.55);
+      text-align: center;
+    }
+
+    .jerarquia-arrow {
+      font-size: 1rem;
+      color: rgba(201,151,43,.35);
+      margin-top: -10px;
+    }
+
+    /* Personaje card — full width, foto alterna izq/der */
+    .personaje-card {
+      margin-bottom: 0;
+      padding: 0;
+      border-radius: 0;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(14px);
+      border: none;
+      border-top: 1px solid rgba(201,151,43,.18);
+      box-shadow: none;
+      scroll-margin-top: 100px;
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      min-height: 520px;
+    }
+
+    /* Cards pares: foto a la derecha */
+    .personaje-card:nth-of-type(even) {
+      grid-template-columns: 1fr 42%;
+    }
+
+    /* La foto ocupa toda la altura */
+    .personaje-foto {
+      grid-column: 1;
+      grid-row: 1;
+      border-radius: 0;
+      overflow: hidden;
+      background: rgba(0,0,0,.35);
+      border: none;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: 1.2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .personaje-card:nth-of-type(even) .personaje-foto {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .personaje-foto img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Zona de texto */
+    .personaje-contenido {
+      grid-column: 2;
+      grid-row: 1;
+      padding: 3rem 3.5rem;
+    }
+
+    .personaje-card:nth-of-type(even) .personaje-contenido {
+      grid-column: 1;
+    }
+
+    .personaje-foto-hint {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .78rem;
+      font-style: italic;
+      color: rgba(245,237,224,.18);
+      line-height: 1.6;
+    }
+
+    .personaje-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: .66rem;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .9;
+      margin-bottom: .9rem;
+    }
+
+    .personaje-card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: .35rem;
+    }
+
+    .personaje-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--dorado-claro);
+      opacity: .85;
+      margin-bottom: 1.2rem;
+    }
+
+    .personaje-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.82;
+      color: rgba(245,237,224,.84);
+      margin-bottom: .85rem;
+    }
+
+    .personaje-card p:last-of-type { margin-bottom: 0; }
+
+    .data-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin: 1rem 0;
+    }
+
+    .data-strip span {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .4rem .65rem;
+      border-radius: 999px;
+      color: var(--azul-oscuro);
+      background: rgba(232,201,107,.92);
+    }
+
+    /* Tabla de miembros */
+    .miembros-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .75;
+      margin: 1.6rem 0 .8rem;
+    }
+
+    .miembros-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .miembros-lista li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: rgba(245,237,224,.8);
+      padding: .55rem .8rem;
+      border-radius: 8px;
+      background: rgba(0,0,0,.18);
+      border-left: 2px solid rgba(201,151,43,.35);
+    }
+
+    .miembros-lista li strong {
+      color: rgba(245,237,224,.95);
+      font-weight: 400;
+    }
+
+    /* Grid Zunftmeisters */
+    .zunft-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .4rem .8rem;
+      margin: .8rem 0 1rem;
+    }
+
+    .zunft-grid li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .97rem;
+      line-height: 1.5;
+      color: rgba(245,237,224,.78);
+      padding: .45rem .7rem;
+      border-radius: 8px;
+      background: rgba(0,0,0,.16);
+      border-left: 2px solid rgba(201,151,43,.28);
+      list-style: none;
+    }
+
+    /* Grid Oberjokili por año */
+    .oberjokili-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: .5rem;
+      margin: .8rem 0 1rem;
+    }
+
+    .oberjokili-item {
+      display: flex;
+      flex-direction: column;
+      padding: .6rem .9rem;
+      border-radius: 10px;
+      background: rgba(0,0,0,.2);
+      border: 1px solid rgba(201,151,43,.18);
+    }
+
+    .oberjokili-anio {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      color: var(--amarillo);
+      opacity: .8;
+      margin-bottom: .2rem;
+    }
+
+    .oberjokili-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .98rem;
+      color: rgba(245,237,224,.85);
+      line-height: 1.4;
+    }
+
+    .oberjokili-nota {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .78rem;
+      font-style: italic;
+      color: rgba(245,237,224,.45);
+      margin-top: .15rem;
+    }
+
+    /* Zona de actualización pendiente */
+    .update-zone {
+      margin-top: 1.6rem;
+      padding: 1.2rem 1.4rem;
+      border-radius: 12px;
+      border: 1.5px dashed rgba(201,151,43,.45);
+      background: rgba(201,151,43,.06);
+    }
+
+    .update-zone-label {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .7;
+      margin-bottom: .6rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .update-zone-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amarillo);
+      opacity: .6;
+    }
+
+    .update-zone p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .95rem;
+      font-style: italic;
+      color: rgba(245,237,224,.45);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .update-field {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: rgba(245,237,224,.35);
+      font-style: italic;
+      margin-top: .4rem;
+      padding: .5rem .7rem;
+      border-radius: 8px;
+      background: rgba(0,0,0,.1);
+      border: 1px dashed rgba(245,237,224,.12);
+    }
+
+    /* Titular actual */
+    .titular-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.55rem;
+      margin: 1.6rem 0 0;
+      padding: 1.32rem 1.55rem;
+      border-radius: 14px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(201,151,43,.22);
+    }
+
+    .titular-foto {
+      flex-shrink: 0;
+      width: 107px;
+      height: 107px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(201,151,43,.45);
+      background: rgba(0,0,0,.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .titular-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .titular-foto-placeholder {
+      width: 34px;
+      height: 34px;
+      opacity: .28;
+    }
+
+    .titular-info {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+
+    .titular-label {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .75;
+    }
+
+    .titular-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.27rem;
+      color: rgba(245,237,224,.9);
+      line-height: 1.3;
+    }
+
+    .titular-desde {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .97rem;
+      font-style: italic;
+      color: rgba(245,237,224,.45);
+    }
+
+    @media (max-width: 480px) {
+      .titular-wrap { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* Banda tricolor */
+    .banda-colores {
+      display: flex;
+      height: 3px;
+      margin-top: 1.6rem;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .banda-colores span { flex: 1; }
+    .banda-colores .bc-am { background: var(--amarillo); }
+    .banda-colores .bc-az { background: #1a3a8f; }
+    .banda-colores .bc-ro { background: var(--rojo); }
+
+    /* Nota pie */
+    .nota-pie {
+      margin-top: 2.8rem;
+      padding: 1.4rem 1.8rem;
+      border-radius: 14px;
+      border: 1px solid rgba(201,151,43,.18);
+      background: rgba(0,0,0,.18);
+    }
+
+    .nota-pie p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .95rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(245,237,224,.5);
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .zunft-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Tablet portrait: colapsar cards antes de que el texto quede demasiado estrecho */
+    @media (max-width: 780px) {
+      .personaje-card,
+      .personaje-card:nth-of-type(even) { grid-template-columns: 1fr; }
+      .personaje-foto,
+      .personaje-card:nth-of-type(even) .personaje-foto {
+        grid-column: 1; grid-row: 1; min-height: 280px;
+      }
+      .personaje-contenido,
+      .personaje-card:nth-of-type(even) .personaje-contenido {
+        grid-column: 1; grid-row: 2; padding: 1.6rem 1.4rem;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .personaje-foto,
+      .personaje-card:nth-of-type(even) .personaje-foto { min-height: 240px; }
+    }
+
+    @media (max-width: 560px) {
+      .personajes-wrap { padding: 0 0 3rem; }
+      .oberjokili-grid { grid-template-columns: 1fr 1fr; }
+      .jerarquia-bar { gap: .5rem; padding: 0 .8rem; }
+      .personaje-contenido,
+      .personaje-card:nth-of-type(even) .personaje-contenido { padding: 1.2rem 1rem; }
+      .personaje-foto,
+      .personaje-card:nth-of-type(even) .personaje-foto { min-height: 200px; }
+      .nota-pie { padding: 1.1rem 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .oberjokili-grid { grid-template-columns: 1fr; }
+      .titular-wrap { flex-direction: column; align-items: flex-start; gap: .3rem; }
+      .jerarquia-bar { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <section class="page-banner" style="background-image: url('imagenes/Jokili_5.png')" id="pageBanner">
+      <div class="page-banner-content">
+        
+        <h1 class="page-banner-titulo">Personajes dentro de la Organización</h1>
+        <div class="page-banner-divider">
+          <div class="page-banner-divider-dots">
+            <div class="dot dot-amarillo"></div>
+            <div class="dot dot-azul"></div>
+            <div class="dot dot-rojo"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page-banner-bands">
+        <span class="pb-am"></span>
+        <span class="pb-az"></span>
+        <span class="pb-ro"></span>
+      </div>
+    </section>
+
+    <div class="personajes-wrap">
+
+      <div class="personajes-intro">
+        <p>
+          Dentro de la organización existen diferentes figuras vinculadas a su estructura jerárquica,
+          cada una con un significado específico, funciones, atribuciones, responsabilidades y beneficios.
+          A través de ellas se pueden entender muchos aspectos de esta manifestación cultural que se ha
+          mantenido por más de treinta años en la Colonia Tovar.
+        </p>
+      </div>
+
+      <nav class="quick-links" aria-label="Personajes emblemáticos">
+        <a href="#oberzunftmeister">Oberzunftmeister</a>
+        <a href="#zeremonienmeister">Zeremonienmeister</a>
+        <a href="#zunftmeisters">Zunftmeisters</a>
+        <a href="#oberjokili">Oberjokili</a>
+        <a href="#stadttier">Stadttier</a>
+        <a href="#ciguena">La Cigüeña</a>
+        <a href="#carga-bandera">Carga Bandera</a>
+        <a href="#carga-estandarte">Carga Estandarte</a>
+        <a href="#arlequines">Arlequines</a>
+      </nav>
+
+      <!-- ═══════════════════════════════════════════════════
+           1. OBERZUNFTMEISTER
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="oberzunftmeister">
+        <div class="personaje-foto">
+          <!-- <img src="imagenes/personaje_oberzunftmeister.jpg" alt="Oberzunftmeister"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">Primer cargo — Escala jerárquica</div>
+        <h2>Oberzunftmeister</h2>
+        <div class="personaje-subtitulo">Maestro principal</div>
+
+        <p>
+          Es el primer miembro en la escala jerárquica. Para optar por este cargo se debe tener una
+          larga y reconocida trayectoria dentro de la organización, además de haber pasado por los
+          cargos de Oberjokili, Stadttier y carga estandarte por lo menos alguna vez en su actividad
+          como Jokili.
+        </p>
+        <p>
+          No viste como arlequín sino que posee un traje diferente compuesto por: un pantalón corto
+          rojo amarrado justo debajo de las rodillas, medias amarillas, zapatos jokili, camisa blanca,
+          chaleco rojo con botones y capa camisón vinotinto con solapas amarillas. Sombrero de tres
+          puntas vinotinto y no usa máscara.
+        </p>
+
+        <div class="data-strip">
+          <span>Pantalón corto rojo</span>
+          <span>Medias amarillas</span>
+          <span>Chaleco rojo</span>
+          <span>Capa vinotinto</span>
+          <span>Sin máscara</span>
+          <span>Sombrero tres puntas</span>
+        </div>
+
+        <div class="miembros-titulo">Miembros que han ocupado este cargo desde la fundación</div>
+        <ul class="miembros-lista">
+          <li><strong>Pablo Dürr Misle</strong> — 17 de febrero de 1977 al 21 de enero de 2006</li>
+          <li><strong>Ralf Andrés Muttach Fehr</strong> — Desde el 21 de enero de 2006 al ????</li>
+          <li><strong>Ronald Gutmann </strong> — Desde el ??? al ?????</li>
+          
+        </ul>
+
+        <div class="titular-wrap">
+          <div class="titular-foto">
+            <!-- Reemplazar src con la foto del titular actual -->
+            <img src="imagenes/ArgenisReel.png" alt="Foto del titular actual del cargo">
+          </div>
+          <div class="titular-info">
+            <div class="titular-label">Titular actual</div>
+            <div class="titular-nombre">Argenis Aurelio Gerig Smith</div>
+            <div class="titular-desde">Desde ????</div>
+          </div>
+        </div>
+
+       
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           2. ZEREMONIENMEISTER
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="zeremonienmeister">
+        <div class="personaje-foto">
+          <!-- <img src="imagenes/personaje_zeremonienmeister.jpg" alt="Zeremonienmeister"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">Segundo cargo — Escala jerárquica</div>
+        <h2>Zeremonienmeister</h2>
+        <div class="personaje-subtitulo">Maestro de ceremonias</div>
+
+        <p>
+          Suplente del maestro principal, segundo miembro en la escala jerárquica. Este cargo es
+          propuesto por el anterior maestro de ceremonias. La reelección es válida sólo por abandono
+          voluntario o muerte.
+        </p>
+        <p>
+          Es el encargado de animar y presidir cada una de las ceremonias, por lo cual sólo se escogen
+          miembros con mucho carisma y desenvolvimiento. La vestimenta formal es similar a la del
+          Oberzunftmeister, pero varía en ocasiones como el bautizo y el entierro, en que viste de
+          capa negra y sombrero.
+        </p>
+
+        <div class="data-strip">
+          <span>Segundo en jerarquía</span>
+          <span>Propuesto por su predecesor</span>
+          <span>Capa negra en ceremonias especiales</span>
+          <span>Alto carisma requerido</span>
+        </div>
+
+        <div class="miembros-titulo">Maestros de ceremonias hasta la fecha del libro</div>
+        <ul class="miembros-lista">
+          <li><strong>Wolfgang Gutmann</strong> — Desde el 10 de octubre de 1977 hasta el 21 de enero de 2006</li>
+          
+        </ul>
+
+        <div class="titular-wrap">
+          <div class="titular-foto">
+            <!-- Reemplazar src con la foto del titular actual -->
+            <img src="imagenes/Escudo_Jokili.png" alt="Julio Carrillo Misle">
+          </div>
+          <div class="titular-info">
+            <div class="titular-label">Titular actual</div>
+            <div class="titular-nombre">Julio Carrillo Misle</div>
+            <div class="titular-desde">Desde el 21 de enero de 2006</div>
+          </div>
+        </div>
+
+        
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           3. ZUNFTMEISTERS
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="zunftmeisters">
+        <div class="personaje-foto">
+        <img src="imagenes/ZunftmeisterReel.png" alt="Zunftmeisters"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">Miembros honorarios</div>
+        <h2>Zunftmeisters</h2>
+        <div class="personaje-subtitulo">Maestros de la asociación</div>
+
+        <p>
+          Es la denominación para aquellos miembros honorarios —fundadores, autoridades, etc.— que
+          han tenido trayectoria dentro de la organización o la comunidad. Visten igual al
+          Oberzunftmeister. Tienen voz y voto en las asambleas.
+        </p>
+
+        <div class="miembros-titulo">Miembros registrados al momento de la publicación del libro</div>
+        <ul class="zunft-grid">
+          <li>Paul Wödl — 15/03/1978 †</li>
+          <li>Ignacio Muttach Gerig — 02/03/1984</li>
+          <li>Juan Claudio Cerne — 07/10/1980 †</li>
+          <li>Pedro Sonnekalb — 11/11/1985</li>
+          <li>Aurelio Gerig Collin — 07/10/1980</li>
+          <li>Freddy Gerig — 11/11/1987</li>
+          <li>Eleazar Gutt Gerig — 07/10/1980</li>
+          <li>Argenis Gerig Smith — 21/01/2006</li>
+          <li>Oscar Gerig Collin — 07/10/1980</li>
+          <li>Eduardo Gerig Muttach — 21/01/2006</li>
+          <li>Antonio Marek — 07/10/1980 †</li>
+          <li>Abraham Gerig Rivero — 21/01/2006</li>
+          <li>Justiniano Fehr — 07/10/1980</li>
+          <li>Aníbal Gerig Muttach — 21/01/2006</li>
+          <li>Pedro Muttach Gerig — 07/10/1980</li>
+          <li>Gabriel Gerig Muttach — 21/01/2006</li>
+        </ul>
+
+        <div class="update-zone">
+          <div class="update-zone-label">Pendiente de actualización</div>
+          <p>
+            Nuevos Zunftmeisters nombrados desde el 21 de enero de 2006 en adelante.
+            Actualizar también el estado (†) de los miembros fallecidos desde la publicación.
+          </p>
+          <div class="update-field">[ Nuevos miembros por añadir ]</div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           4. OBERJOKILI
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="oberjokili">
+        <div class="personaje-foto">
+          <img src="imagenes/Oberjokili_SantiagoReel.png" alt="Oberjokili"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">El honor más grande</div>
+        <h2>Oberjokili</h2>
+        <div class="personaje-subtitulo">Jokili principal</div>
+
+        <p>
+          Es el espíritu del carnaval. Sale de la fuente y se encarga de dirigir la comparsa durante
+          todas las fiestas. Es el honor más grande que puede recibir un arlequín. Debe saltar más
+          alto que el resto para sobresalir.
+        </p>
+        <p>
+          Lleva un Zepter: un cetro de madera que tiene tallada la cara del Jokili, y una medalla
+          de madera que lo identifican. Es el único arlequín que no utiliza máscara sino un maquillaje
+          especial. Para ser Oberjokili es necesario haber cargado el estandarte y el Stadttier.
+        </p>
+
+        <div class="data-strip">
+          <span>Sin máscara — maquillaje especial</span>
+          <span>Cetro de madera (Zepter)</span>
+          <span>Medalla de madera</span>
+          <span>Dirige la comparsa</span>
+          <span>Requiere: estandarte + Stadttier previos</span>
+        </div>
+
+        <div class="miembros-titulo">Histórico de Oberjokilis por año</div>
+        <div class="oberjokili-grid">
+          <div class="oberjokili-item"><div class="oberjokili-anio">1978</div><div class="oberjokili-nombre">Pablo Dürr Misle</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1979</div><div class="oberjokili-nombre">Pablo Dürr Misle</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1980</div><div class="oberjokili-nombre">Pedro Carlos Wödl</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1981</div><div class="oberjokili-nombre">Ignacio Muttach Gerig</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1982</div><div class="oberjokili-nombre">Eleazar Gutt Gerig<div class="oberjokili-nota">Alemania</div></div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1983</div><div class="oberjokili-nombre">Justiniano Fehr Gerig</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1984</div><div class="oberjokili-nombre">Justiniano Fehr Gerig</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1985</div><div class="oberjokili-nombre">Pablo Muttach Gerig</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1986</div><div class="oberjokili-nombre">Norelys Gerig Armas</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1987</div><div class="oberjokili-nombre">Norelys Gerig Armas</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1988</div><div class="oberjokili-nombre">Elio Misle</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1994</div><div class="oberjokili-nombre">Aníbal Gerig</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1997</div><div class="oberjokili-nombre">Eduardo Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">1998</div><div class="oberjokili-nombre">Eduardo Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2005</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2006</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2007</div><div class="oberjokili-nombre">Marcel Olivo Kanzler<div class="oberjokili-nota">Colonia Tovar</div></div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2007</div><div class="oberjokili-nombre">Jaime A. Van Waeyenberghe<div class="oberjokili-nota">Alemania</div></div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2008</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2009</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2010</div><div class="oberjokili-nombre">Daniela Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2011</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2012</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2013</div><div class="oberjokili-nombre">Ricardo Alvarez</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2014</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2015</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2016</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2017</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2018</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2019</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2020</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2021</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2022</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2023</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2024</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2025</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          
+
+        </div>
+
+        <p style="margin-top:.8rem; font-style:italic; font-size:.92rem; color:rgba(245,237,224,.5);">
+          Hubo años en que por contrariedades de diversa índole —tragedias o problemas políticos—
+          no se celebró el Carnaval formalmente y no se escogió Oberjokili. En 2007 se hicieron
+          dos nombramientos porque uno de los seleccionados acompañó al grupo que estuvo en Alemania
+          y el otro se quedó en la Colonia Tovar.
+        </p>
+
+        <div class="titular-wrap">
+          <div class="titular-foto">
+            <!-- Reemplazar src con la foto del Oberjokili actual -->
+            <img src="imagenes/Escudo_Jokili.png" alt="Oberjokili actual" class="titular-foto-placeholder">
+          </div>
+          <div class="titular-info">
+            <div class="titular-label">Oberjokili actual</div>
+            <div class="titular-nombre">Santiago Gerig Gerber</div>
+            <div class="titular-desde">2026</div>
+          </div>
+        </div>
+
+        
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           5. STADTTIER
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="stadttier">
+        <div class="personaje-foto">
+          <!-- <img src="imagenes/personaje_stadttier.jpg" alt="Stadttier"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">La mascota</div>
+        <h2>Stadttier</h2>
+        <div class="personaje-subtitulo">Animal de la ciudad</div>
+
+        <p>
+          Es la mascota de la organización. Encabeza los desfiles junto a los Zunftmeisters, el
+          Oberjokili y el estandarte. Es un toro con una bata larga color rojo. Se considera uno
+          de los trabajos más duros porque implica cargar esa estructura pesada durante todas las
+          festividades.
+        </p>
+        <p>
+          Le otorga grandes méritos al jokili que lo hace. Es una figura relativamente reciente:
+          sale por primera vez en el desfile conmemorativo de los 150 años de la fundación de la
+          Colonia Tovar en 1993.
+        </p>
+
+        <div class="data-strip">
+          <span>Figura de toro</span>
+          <span>Bata larga roja</span>
+          <span>Debut: 1993</span>
+          <span>Encabeza los desfiles</span>
+          <span>Trabajo de gran mérito</span>
+        </div>
+
+        <div class="update-zone">
+          <div class="update-zone-label">Pendiente de actualización</div>
+          <p>Añadir historial de miembros que han portado el Stadttier desde 1993, si se dispone del registro.</p>
+          <div class="update-field">[ Historial de portadores por año ]</div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           5b. LA CIGÜEÑA
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="ciguena">
+        <div class="personaje-foto">
+          <!-- <img src="imagenes/personaje_ciguena.jpg" alt="La Cigüeña"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">Símbolo de continuidad — Figura especial</div>
+        <h2>La Cigüeña</h2>
+        <div class="personaje-subtitulo">Mensajera de la tradición</div>
+
+        <p>
+          Representa la fertilidad del Jokili Verein: todo hijo o hija de un arlequín nace
+          ya como Jokili, asegurando que la tradición se renueve de generación en generación.
+        </p>
+        <p>
+          Cada año, el rol recae sobre el padre cuyo hijo nació más cerca de las fechas de
+          carnaval. 
+        </p>
+
+        <div class="data-strip">
+          <span>Figura de fertilidad</span>
+          <span>Hijo de Jokili es Jokili</span>
+          <span>Lo porta el padre más activo</span>
+          <span>Preservación generacional</span>
+          <span>Figura de nueva creación</span>
+        </div>
+
+        <div class="titular-wrap">
+          <div class="titular-foto">
+            <!-- Reemplazar src con la foto del portador actual -->
+            <svg class="titular-foto-placeholder" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="4" stroke="rgba(245,237,224,.6)" stroke-width="1.5"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="rgba(245,237,224,.6)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="titular-info">
+            <div class="titular-label">Portador actual</div>
+            <div class="titular-nombre">[ Por designar ]</div>
+            <div class="titular-desde">Figura en proceso de establecimiento oficial</div>
+          </div>
+        </div>
+
+        <div class="update-zone">
+          <div class="update-zone-label">Pendiente de actualización</div>
+          <p>
+            Definir y añadir: imagen o ilustración oficial de La Cigüeña, descripción del
+            vestuario o atributos visuales de la figura, primer año en que fue portada
+            oficialmente, y nombre del portador designado para el carnaval en curso.
+          </p>
+          <div class="update-field">[ Imagen de la figura ] &nbsp; [ Año de debut ] &nbsp; [ Portador actual ]</div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           6. CARGA BANDERA
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="carga-bandera">
+        <div class="personaje-foto">
+          <!-- <img src="imagenes/personaje_carga_bandera.jpg" alt="Carga Bandera"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">Rol especial en desfile</div>
+        <h2>Carga Bandera</h2>
+
+        <p>
+          Es el arlequín que porta la bandera del Jokili Verein durante toda la festividad.
+          En eventos internacionales porta el Pabellón Nacional.
+        </p>
+
+        <div class="data-strip">
+          <span>Bandera del Jokili Verein</span>
+          <span>Pabellón Nacional en eventos internacionales</span>
+        </div>
+
+        <div class="update-zone">
+          <div class="update-zone-label">Pendiente de actualización</div>
+          <p>Añadir historial o miembro actual designado para este cargo.</p>
+          <div class="update-field">[ Titular actual y/o historial ]</div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           7. CARGA ESTANDARTE
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="carga-estandarte">
+        <div class="personaje-foto">
+          <!-- <img src="imagenes/personaje_carga_estandarte.jpg" alt="Carga Estandarte"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">Rol especial en desfile</div>
+        <h2>Carga Estandarte</h2>
+
+        <p>
+          Es el arlequín encargado de llevar el estandarte que identifica a la comparsa durante
+          toda la festividad. Haber portado el estandarte es uno de los requisitos para acceder
+          al cargo de Oberjokili.
+        </p>
+
+        <div class="data-strip">
+          <span>Estandarte de la comparsa</span>
+          <span>Requisito previo para Oberjokili</span>
+        </div>
+
+        <div class="update-zone">
+          <div class="update-zone-label">Pendiente de actualización</div>
+          <p>Añadir historial o miembro actual designado para este cargo.</p>
+          <div class="update-field">[ Titular actual y/o historial ]</div>
+        </div>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <!-- ═══════════════════════════════════════════════════
+           8. ARLEQUINES
+      ═══════════════════════════════════════════════════ -->
+      <article class="personaje-card" id="arlequines">
+        <div class="personaje-foto">
+          <img src="imagenes/Jokili_10Reel.png" alt="Arlequines"> -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+        </div>
+        <div class="personaje-contenido">
+        <div class="personaje-eyebrow">La comparsa</div>
+        <h2>Arlequines</h2>
+
+        <p>
+          Son todos los miembros de la agrupación que visten de Jokili. Se clasifican en cuatro
+          categorías según su trayectoria dentro de la organización:
+        </p>
+
+        <ul class="miembros-lista">
+          <li>
+            <strong>Aprendices sin bautizar</strong> — Miembros nuevos que aún no han recibido
+            el bautizo. Son los únicos que no tienen voto en las asambleas.
+          </li>
+          <li>
+            <strong>Activos sin bautizar</strong> — Miembros con participación activa, pendientes
+            aún del rito de bautizo oficial.
+          </li>
+          <li>
+            <strong>Activos bautizados</strong> — Miembros bautizados con plena participación y
+            derecho a voto en asambleas.
+          </li>
+          <li>
+            <strong>Oficiales bautizados</strong> — Miembros con mayor trayectoria y
+            responsabilidades dentro de la organización.
+          </li>
+        </ul>
+
+        <div class="banda-colores">
+          <span class="bc-am"></span><span class="bc-az"></span><span class="bc-ro"></span>
+        </div>
+        </div><!-- /.personaje-contenido -->
+      </article>
+
+      <div class="nota-pie">
+        <p>
+          La información histórica de esta página proviene del libro oficial del Jokili Verein de
+          la Colonia Tovar, publicado aproximadamente en 2007–2008. Las zonas marcadas como
+          «Pendiente de actualización» señalan campos que deben completarse con datos posteriores
+          a esa fecha.
+        </p>
+      </div>
+
+    </div><!-- /.personajes-wrap -->
+
+    <div class="footer">
+      Powered by
+      <a href="https://am-itsolutions.de" target="_blank" rel="noopener">AM Solutions</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

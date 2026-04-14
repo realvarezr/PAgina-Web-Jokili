@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Eventos – Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <style>
+    body {
+      display: block;
+      text-align: left;
+      background-position: bottom center, bottom center, center 75%, center;
+      background-size:     auto 120px, auto 280px, 25% auto, contain;
+    }
+
+
+    /* ── CONTENIDO ── */
+    .eventos-wrap {
+      width: min(98%, 1600px);
+      margin: 0 auto;
+      padding: 4rem clamp(1rem, 2vw, 3rem) 18rem;
+    }
+
+    /* BANNER CARNAVAL */
+    .carnaval-banner {
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-bottom: 3.5rem;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.35);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      animation: fadeUp .8s .1s var(--ease) both;
+    }
+
+    .carnaval-label {
+      font-size: .68rem;
+      letter-spacing: .45em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .85;
+      margin-bottom: .8rem;
+    }
+
+    .carnaval-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .08em;
+      margin-bottom: .5rem;
+    }
+
+    .carnaval-titulo span {
+      color: var(--amarillo);
+    }
+
+    .carnaval-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(245,237,224,.75);
+      max-width: 560px;
+      margin: .8rem auto 0;
+      line-height: 1.7;
+    }
+
+    .banda-colores {
+      display: flex;
+      height: 3px;
+      margin-top: 2rem;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .banda-colores span { flex: 1; }
+    .banda-colores .bc-am { background: var(--amarillo); }
+    .banda-colores .bc-az { background: #1a3a8f; }
+    .banda-colores .bc-ro { background: var(--rojo); }
+
+    /* GRID EVENTOS */
+    .eventos-seccion-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.5);
+      margin-bottom: 1.5rem;
+      padding-left: .2rem;
+      animation: fadeUp .8s .2s var(--ease) both;
+    }
+
+    .eventos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .evento-card {
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.25);
+      border-radius: 14px;
+      padding: 1.8rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,.3);
+      transition: transform .35s var(--ease),
+                  border-color .35s,
+                  box-shadow .35s;
+      animation: fadeUp .8s var(--ease) both;
+    }
+
+    .evento-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(245,197,24,.55);
+      box-shadow: 0 20px 50px rgba(0,0,0,.45),
+                  0 0 20px rgba(245,197,24,.08);
+    }
+
+    .evento-fecha {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      background: rgba(245,197,24,.1);
+      border: 1px solid rgba(245,197,24,.25);
+      border-radius: 4px;
+      padding: .3rem .8rem;
+      margin-bottom: 1rem;
+    }
+
+    .evento-nombre {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+
+    .evento-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,237,224,.68);
+      line-height: 1.6;
+      margin-bottom: 1.1rem;
+    }
+
+    .evento-lugar {
+      font-size: .62rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.38);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .evento-lugar::before {
+      content: '◆';
+      font-size: .45rem;
+      color: var(--amarillo);
+      opacity: .6;
+    }
+
+    /* PRÓXIMAMENTE */
+    .proximamente {
+      text-align: center;
+      padding: 3rem 2rem;
+      border: 1px dashed rgba(201,151,43,.2);
+      border-radius: 14px;
+      animation: fadeUp .8s .5s var(--ease) both;
+    }
+
+    .proximamente p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(245,237,224,.45);
+      letter-spacing: .05em;
+    }
+
+    /* ── HERO PÓSTER (nuevo layout centrado) ── */
+    .poster-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeUp .8s .1s var(--ease) both;
+    }
+
+    .poster-hero-intro {
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+
+    .poster-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .poster-etiqueta {
+      font-size: .62rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .8;
+      margin-bottom: .8rem;
+      text-align: center;
+    }
+
+    .poster-frame {
+      position: relative;
+      width: min(576px, 88vw);
+      aspect-ratio: 2 / 3;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(201,151,43,.6);
+      box-shadow: 0 40px 100px rgba(0,0,0,.7),
+                  0 0 0 1px rgba(255,255,255,.06),
+                  0 0 60px rgba(201,151,43,.15),
+                  0 0 120px rgba(201,151,43,.07);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+    }
+
+    /* PROGRAMA (grid debajo del póster) */
+    .programa-section {
+      width: 100%;
+    }
+
+    .poster-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    /* Lupa al pasar el mouse */
+    .poster-frame {
+      cursor: zoom-in;
+    }
+
+    .poster-frame:hover .poster-img {
+      transform: scale(1.04);
+    }
+
+    /* ── LIGHTBOX ── */
+    .poster-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .88);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      animation: lbFadeIn .25s ease;
+    }
+
+    .poster-lightbox.active { display: flex; }
+
+    @keyframes lbFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .poster-lightbox-img {
+      max-width: min(90vw, 500px);
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.7),
+                  0 0 0 1px rgba(201,151,43,.3);
+      animation: lbZoomIn .3s cubic-bezier(.22,.68,0,1.2);
+    }
+
+    @keyframes lbZoomIn {
+      from { transform: scale(.85); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .poster-lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.22);
+      color: #fff;
+      font-size: 1.1rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+
+    .poster-lightbox-close:hover {
+      background: rgba(255,255,255,.22);
+    }
+
+    /* Placeholder visible cuando no hay imagen */
+    .poster-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .8rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    /* se oculta cuando la imagen carga correctamente */
+    .poster-img.loaded + .poster-placeholder { display: none; }
+
+    .poster-placeholder-icon {
+      font-size: 2.8rem;
+      opacity: .4;
+    }
+
+    .poster-placeholder-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: .95rem;
+      letter-spacing: .15em;
+      color: rgba(245,237,224,.55);
+    }
+
+    .poster-placeholder-hint {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .82rem;
+      font-style: italic;
+      color: rgba(245,237,224,.28);
+      line-height: 1.5;
+      border-top: 1px dashed rgba(201,151,43,.18);
+      padding-top: .8rem;
+      margin-top: .2rem;
+    }
+
+    /* franja inferior de colores sobre el póster */
+    .poster-frame::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--rojo), var(--amarillo), #1a3a8f);
+      z-index: 2;
+    }
+
+    /* GRID PROGRAMA */
+    .programa-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+      animation: fadeUp .8s .2s var(--ease) both;
+    }
+
+    @media (max-width: 720px) {
+      .programa-col { grid-template-columns: 1fr; }
+      .eventos-wrap { padding: 2rem 1.2rem 4rem; }
+    }
+
+    @media (max-width: 640px) {
+      .eventos-grid { grid-template-columns: 1fr; }
+      .eventos-wrap { padding: 1.5rem 1rem 3rem; }
+      .carnaval-banner { padding: 2.2rem 1.2rem; border-radius: 12px; }
+      .carnaval-desc { font-size: 1rem; }
+      .carnaval-label { letter-spacing: .25em; font-size: .62rem; }
+      .evento-card { padding: 1.4rem; }
+      .evento-nombre { font-size: .95rem; letter-spacing: .06em; }
+      .evento-desc { font-size: .95rem; }
+      .evento-lugar { letter-spacing: .15em; font-size: .58rem; }
+    }
+
+    @media (max-width: 480px) {
+      .eventos-wrap { padding: 1rem .9rem 2.5rem; }
+      .carnaval-banner { padding: 1.8rem 1rem; }
+      .carnaval-titulo { letter-spacing: .03em; font-size: clamp(1.6rem, 8vw, 2.5rem); }
+      .evento-card { padding: 1.1rem; border-radius: 10px; }
+      .evento-fecha { font-size: .58rem; letter-spacing: .18em; }
+      .proximamente p { font-size: .95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- ══ BANNER FOTOGRÁFICO ══
+         Reemplazar con imagen en: imagenes/banner_eventos.jpg
+         Resolución recomendada: 1920×1080 px o superior
+    ══════════════════════════════════════════════════════ -->
+    <section class="page-banner" style="background-image: url('imagenes/Jokili_2.png')"
+             id="pageBanner">
+
+      
+
+      <div class="page-banner-content">
+        <div class="page-banner-subtitulo">Colonia Tovar</div>
+        <h1 class="page-banner-titulo">Eventos</h1>
+        <div class="page-banner-divider">
+          <div class="page-banner-divider-dots">
+            <div class="dot dot-amarillo"></div>
+            <div class="dot dot-azul"></div>
+            <div class="dot dot-rojo"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-banner-bands">
+        <span class="pb-am"></span>
+        <span class="pb-az"></span>
+        <span class="pb-ro"></span>
+      </div>
+
+    </section>
+
+    <!-- CONTENIDO -->
+    <div class="eventos-wrap">
+
+      <!-- ═══════════════════════════════════════
+           PÓSTER HERO + PROGRAMA
+      ═══════════════════════════════════════ -->
+      <div class="poster-hero">
+
+        <!-- INTRO CENTRADO -->
+        <div class="poster-hero-intro">
+          <div class="carnaval-label">Tovarer Narrenzunft 1976 · 50 Aniversario</div>
+          <h2 class="carnaval-titulo">Carnaval <span>2026</span></h2>
+          <p class="carnaval-desc">
+            Seis jornadas de ritual, desfile y tradición alemana en el corazón de Venezuela.
+            Una edición especial que celebra los <em>50 años</em> del Tovarer Jokili.
+          </p>
+          <div class="banda-colores" style="margin-top:1.4rem">
+            <span class="bc-am"></span>
+            <span class="bc-az"></span>
+            <span class="bc-ro"></span>
+          </div>
+        </div>
+
+        <!-- PÓSTER OFICIAL DEL AÑO (elemento principal) -->
+        <div class="poster-col">
+          <div class="poster-etiqueta">Póster Oficial · 2026</div>
+
+          <div class="poster-frame" onclick="document.getElementById('posterLightbox').classList.add('active')">
+            <!--
+              ┌─────────────────────────────────────────┐
+              │  PÓSTER ANUAL                           │
+              │  Reemplazar cada año con:               │
+              │  imagenes/poster_carnaval_XXXX.jpg      │
+              │  (se recomienda formato vertical 2:3)   │
+              └─────────────────────────────────────────┘
+            -->
+            <img
+              src="imagenes/Poster_26.jpg"
+              alt="Póster Carnaval 2026 – Jokili Verein"
+              class="poster-img"
+              onload="this.classList.add('loaded')"
+            >
+
+            <!-- Visible solo si la imagen no está cargada -->
+            <div class="poster-placeholder">
+              <span class="poster-placeholder-icon">🎭</span>
+              <span class="poster-placeholder-titulo">Póster Carnaval 2026</span>
+              <span class="poster-placeholder-hint">
+                Colocar imagen en:<br>
+                <em>imagenes/poster_carnaval_2026.jpg</em>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.poster-hero -->
+
+      <!-- PROGRAMA DE ACTIVIDADES -->
+      <div class="programa-section">
+
+        <div class="eventos-seccion-titulo">Programa oficial</div>
+
+        <div class="programa-col">
+
+          <div class="evento-card">
+            <div class="evento-fecha">Jueves · 12 Feb 2026</div>
+            <div class="evento-nombre">Desfile de Batas Blancas — Hemdklunkerumzug</div>
+            <p class="evento-desc">
+              5:00 p.m. Misa de Acción de Gracias por el 50 Aniversario del Tovarer Jokili,
+              acompañados de familiares, amigos y miembros de la comunidad en la
+              <em>Iglesia San Martín de Tours</em>.<br>
+              6:00 p.m. Concentración en el estacionamiento del C.C. Vista al Valle;
+              recorrido por la calle principal hasta despertar el espíritu 2026 en la
+              <em>Jokili Brunnen</em>. Requisito: vestido de blanco y objetos ruidosos.
+              Al culminar el acto, celebración en nuestra Sede.
+            </p>
+            <div class="evento-lugar">Iglesia San Martín de Tours · C.C. Vista al Valle · Jokili Brunnen</div>
+          </div>
+
+          <div class="evento-card">
+            <div class="evento-fecha">Viernes · 13 Feb 2026</div>
+            <div class="evento-nombre">Fasnet-Friitig — Dankmesse</div>
+            <p class="evento-desc">
+              2:00 p.m. Visita de la comparsa del Jokili a la población de
+              <em>El Jarillo</em> para celebrar junto a los hermanos <em>Schell-mi</em>,
+              la Eucharistía en Acción de Gracias por el 50 Aniversario del Tovarer Jokili,
+              acompañándolos también en su primer desfile de Carnaval.
+            </p>
+            <div class="evento-lugar">El Jarillo</div>
+          </div>
+
+          <div class="evento-card">
+            <div class="evento-fecha">Sábado · 14 Feb 2026</div>
+            <div class="evento-nombre">Fasnet-Samschdig — Sábado de Carnaval</div>
+            <p class="evento-desc">
+              12:00 p.m. Tradicional <em>Jokiliumzug</em>, recorriendo las principales
+              calles del pueblo hasta la <em>Jokili Brunnen</em>.<br>
+              3:00 p.m. La comparsa del Jokili visita varios establecimientos de la Colonia Tovar.<br>
+              7:00 p.m. Celebración en diferentes establecimientos de la Colonia Tovar.
+            </p>
+            <div class="evento-lugar">Calles principales · Jokili Brunnen · Colonia Tovar</div>
+          </div>
+
+          <div class="evento-card">
+            <div class="evento-fecha">Domingo · 15 Feb 2026</div>
+            <div class="evento-nombre">Fasnet-Sunnsdig — Domingo de Carnaval</div>
+            <p class="evento-desc">
+              12:00 p.m. Tradicional <em>Jokiliumzug</em>, recorriendo las principales
+              calles del pueblo hasta la <em>Jokili Brunnen</em>.<br>
+              3:00 p.m. El Jokili visita varios establecimientos de la Colonia Tovar.<br>
+              8:00 p.m. Celebración en el Hotel Selva Negra.
+            </p>
+            <div class="evento-lugar">Jokili Brunnen · Hotel Selva Negra · Colonia Tovar</div>
+          </div>
+
+          <div class="evento-card">
+            <div class="evento-fecha">Lunes · 16 Feb 2026</div>
+            <div class="evento-nombre">Fasnet-Mändig — Lunes de Carnaval</div>
+            <p class="evento-desc">
+              12:00 p.m. Tradicional <em>Jokiliumzug</em>, recorriendo las principales
+              calles del pueblo hasta la <em>Jokili Brunnen</em>.<br>
+              3:00 p.m. El Jokili visita varios establecimientos de la Colonia Tovar.<br>
+              7:00 p.m. Celebración en el Hotel Bergland.
+            </p>
+            <div class="evento-lugar">Jokili Brunnen · Hotel Bergland · Colonia Tovar</div>
+          </div>
+
+          <div class="evento-card">
+            <div class="evento-fecha">Martes · 17 Feb 2026</div>
+            <div class="evento-nombre">Fasnet-Zischdig — Trauerumzug — Despedida del Carnaval</div>
+            <p class="evento-desc">
+              11:00 a.m. Los Jokilis se reúnen para las últimas actividades despidiendo el Carnaval 2026.<br>
+              7:00 p.m. Concentración en el C.C. Vista al Valle, sector Los Pinos; recorrido hasta
+              la <em>Jokili Brunnen</em> donde se regresará el espíritu del carnaval a la tierra.<br>
+              9:00 p.m. Celebración de despedida en el Hotel Selva Negra.<br>
+              <em>Requisito: vestir de negro y estar dispuesto a llorar.</em>
+            </p>
+            <div class="evento-lugar">C.C. Vista al Valle · Jokili Brunnen · Hotel Selva Negra</div>
+          </div>
+
+        </div><!-- /.programa-col -->
+
+      </div><!-- /.programa-section -->
+
+    </div><!-- /.eventos-wrap -->
+
+    <!-- ── LIGHTBOX PÓSTER ── -->
+    <div id="posterLightbox" class="poster-lightbox"
+         onclick="this.classList.remove('active')">
+      <img src="imagenes/Poster_26.jpg"
+           alt="Póster Carnaval 2026 – Jokili Verein"
+           class="poster-lightbox-img"
+           onclick="event.stopPropagation()">
+      <button class="poster-lightbox-close"
+              onclick="document.getElementById('posterLightbox').classList.remove('active')"
+              aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="footer">
+      Powered by
+      <a href="https://am-itsolutions.de" target="_blank" rel="noopener">AM Solutions</a>
+    </div>
+
+  </main>
+
+
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('posterLightbox').classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

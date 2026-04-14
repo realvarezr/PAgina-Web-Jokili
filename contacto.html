@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Contacto – Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <style>
+    body {
+      display: block;
+      text-align: left;
+      background-position: bottom center, bottom center, center 75%, center;
+      background-size:     auto 120px, auto 280px, 20% auto, contain;
+    }
+
+
+    /* ── CONTENIDO ── */
+    .contacto-wrap {
+      width: min(98%, 1500px);
+      margin: 0 auto;
+      padding: 4rem clamp(1rem, 2vw, 3rem) 18rem;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* INFO PANEL */
+    .contacto-info {
+      animation: fadeUp .8s .1s var(--ease) both;
+    }
+
+    .info-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.45);
+      margin-bottom: 1.8rem;
+    }
+
+    .info-item {
+      margin-bottom: 1.8rem;
+    }
+
+    .info-label {
+      font-size: .62rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .8;
+      margin-bottom: .4rem;
+    }
+
+    .info-valor {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(245,237,224,.82);
+      line-height: 1.6;
+    }
+
+    .info-valor a {
+      color: rgba(245,237,224,.82);
+      text-decoration: none;
+      transition: color .3s;
+    }
+    .info-valor a:hover { color: var(--dorado-claro); }
+
+    /* REDES SOCIALES */
+    .contacto-redes {
+      display: flex;
+      gap: .8rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contacto-red {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1rem;
+      border: 1px solid rgba(201,151,43,.25);
+      border-radius: 6px;
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.65);
+      text-decoration: none;
+      transition: color .3s, border-color .3s, background .3s;
+    }
+    .contacto-red:hover {
+      color: #fff;
+      border-color: rgba(245,197,24,.55);
+      background: rgba(245,197,24,.08);
+    }
+    .contacto-red svg { flex-shrink: 0; }
+
+    /* FORMULARIO */
+    .contacto-form-wrap {
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.3);
+      border-radius: 18px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      animation: fadeUp .8s .2s var(--ease) both;
+    }
+
+    .form-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      color: #fff;
+      margin-bottom: .4rem;
+    }
+
+    .form-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .95rem;
+      font-style: italic;
+      color: rgba(245,237,224,.5);
+      margin-bottom: 2rem;
+    }
+
+    .form-grupo {
+      margin-bottom: 1.3rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: .62rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.5);
+      margin-bottom: .45rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: .8rem 1rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(201,151,43,.2);
+      border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: rgba(245,237,224,.9);
+      outline: none;
+      transition: border-color .3s, background .3s, box-shadow .3s;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(245,237,224,.25);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: rgba(245,197,24,.5);
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 0 0 3px rgba(245,197,24,.06);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    .form-btn {
+      display: inline-block;
+      width: 100%;
+      padding: .9rem 2rem;
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--azul-oscuro);
+      background: var(--amarillo);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: .4rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .3s;
+    }
+
+    .form-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .4s var(--ease);
+    }
+
+    .form-btn:hover::before { transform: scaleX(1); }
+    .form-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245,197,24,.25);
+    }
+
+    .form-btn span { position: relative; z-index: 1; }
+
+    /* AVISO ENVIADO */
+    .form-aviso {
+      display: none;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      background: rgba(245,197,24,.1);
+      border: 1px solid rgba(245,197,24,.3);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--dorado-claro);
+    }
+
+    @media (max-width: 760px) {
+      .contacto-wrap {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.2rem 4rem;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .contacto-wrap { padding: 1.5rem 1rem 3rem; }
+      .contacto-form-wrap { padding: 1.4rem 1rem; border-radius: 12px; }
+      .contacto-redes { gap: .4rem; }
+      .contacto-red { padding: .4rem .6rem; font-size: .55rem; letter-spacing: .12em; }
+      .info-titulo { letter-spacing: .22em; }
+      .info-label { letter-spacing: .2em; }
+      .info-valor { font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .contacto-wrap { gap: 1.2rem; padding: 1rem .9rem 2.5rem; }
+      .info-titulo { margin-bottom: 1rem; font-size: .64rem; }
+      .form-btn { padding: .85rem 1rem; font-size: .65rem; letter-spacing: .2em; }
+      .form-titulo { font-size: .9rem; }
+      .form-subtitulo { font-size: .88rem; }
+      .contacto-red svg { width: 14px; height: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- ══ BANNER FOTOGRÁFICO ══
+         Reemplazar con imagen en: imagenes/banner_contacto.jpg
+         Resolución recomendada: 1920×1080 px o superior
+    ══════════════════════════════════════════════════════ -->
+    <!-- Para cambiar la foto: reemplaza el nombre del archivo en background-image -->
+    <section class="page-banner" style="background-image: url('imagenes/Jokili_2.png')"
+             id="pageBanner">
+
+     
+
+      <div class="page-banner-content">
+        <div class="page-banner-subtitulo">Jokili Verein</div>
+        <h1 class="page-banner-titulo">Contacto</h1>
+        <div class="page-banner-divider">
+          <div class="page-banner-divider-dots">
+            <div class="dot dot-amarillo"></div>
+            <div class="dot dot-azul"></div>
+            <div class="dot dot-rojo"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-banner-bands">
+        <span class="pb-am"></span>
+        <span class="pb-az"></span>
+        <span class="pb-ro"></span>
+      </div>
+
+    </section>
+
+    <!-- CONTENIDO -->
+    <div class="contacto-wrap">
+
+      <!-- INFO -->
+      <div class="contacto-info">
+        <div class="info-titulo">Información</div>
+
+        <div class="info-item">
+          <div class="info-label">Ubicación</div>
+          <div class="info-valor">
+            Colonia Tovar<br>
+            Estado Aragua, Venezuela
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">Correo</div>
+          <div class="info-valor">
+            <a href="mailto:contacto@tovarerjokili.com">tovarerjokili@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">WEB</div>
+          <div class="info-valor">
+            <a href="https://tovarerjokili.com" target="_blank" rel="noopener">www.tovarerjokili.com</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">Fundado</div>
+          <div class="info-valor">1976 · Colonia Tovar</div>
+        </div>
+
+        <!-- Redes -->
+        <div class="contacto-redes">
+          <a href="https://instagram.com/tovarerjokili" target="_blank" rel="noopener" class="contacto-red" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="https://x.com/tovarerjokili" target="_blank" rel="noopener" class="contacto-red" aria-label="X">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.903-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X / Twitter
+          </a>
+          <a href="https://tiktok.com/@tovarerjokili" target="_blank" rel="noopener" class="contacto-red" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+            TikTok
+          </a>
+        </div>
+      </div>
+
+      <!-- FORMULARIO -->
+      <div class="contacto-form-wrap">
+        <div class="form-titulo">Escríbenos</div>
+        <div class="form-subtitulo">Responderemos a la brevedad posible.</div>
+
+        <form id="contactoForm" novalidate>
+
+          <div class="form-grupo">
+            <label class="form-label" for="nombre">Nombre</label>
+            <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="email">Correo electrónico</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="asunto">Asunto</label>
+            <input class="form-input" type="text" id="asunto" name="asunto" placeholder="¿En qué podemos ayudarte?">
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="mensaje">Mensaje</label>
+            <textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          </div>
+
+          <button class="form-btn" type="submit">
+            <span>Enviar mensaje</span>
+          </button>
+
+          <div class="form-aviso" id="formAviso">
+            ¡Mensaje enviado! Nos pondremos en contacto pronto.
+          </div>
+
+        </form>
+      </div>
+
+    </div><!-- /.contacto-wrap -->
+
+    <div class="footer">
+      Powered by
+      <a href="https://am-itsolutions.de" target="_blank" rel="noopener">AM Solutions</a>
+    </div>
+
+  </main>
+
+  <script>
+    // Formulario — simulación de envío (sin backend)
+    document.getElementById('contactoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const aviso = document.getElementById('formAviso');
+      aviso.style.display = 'block';
+      this.reset();
+      setTimeout(() => { aviso.style.display = 'none'; }, 5000);
+    });
+  </script>
+
+</body>
+</html>
