@@ -6,7 +6,15 @@
 
 html { font-size: clamp(16px, 2.2vw, 20px); } /* escala de 16px (móvil) a 20px (desktop) */
 
+/* ══════════════════════════════════════════════════════
+   DESIGN TOKENS — EDITA SOLO AQUÍ
+   ─────────────────────────────────────────────────────
+   Para cambiar el tamaño del logo → --logo-base-w
+   Para cambiar el header          → --header-h / --header-scrolled-h
+   El resto se calcula solo. No hay que tocar nada más.
+══════════════════════════════════════════════════════ */
 :root {
+  /* Colores */
   --dorado:       #c9972b;
   --dorado-claro: #e8c96b;
   --crema:        #f5ede0;
@@ -14,8 +22,47 @@ html { font-size: clamp(16px, 2.2vw, 20px); } /* escala de 16px (móvil) a 20px 
   --azul-oscuro:  #0a0f3c;
   --amarillo:     #f5c518;
   --rojo:         #cc0001;
-  --header-h:     144px;
   --ease:         cubic-bezier(.4,0,.2,1);
+
+  /* Header */
+  --header-h:                   130px;  /* ← alto normal en PC                          */
+  --header-h-mobile:             80px;  /* ← alto normal en móvil/tablet                */
+  --header-scrolled-h-desktop:   95px;  /* ← alto scrolled en PC                        */
+  --header-scrolled-h-mobile:    65px;  /* ← alto scrolled en tablet y móvil            */
+  --header-logo-top:             14px;  /* ← distancia del logo desde arriba            */
+  --header-nav-bottom:            8px;  /* ← espacio entre el menú y la línea inferior  */
+
+  /* Logo */
+  --logo-base-w: 95px;  /* ← tamaño del logo. Tablet y móvil se calculan solos */
+
+  /* Derivados — NO TOCAR */
+  --logo-w:             var(--logo-base-w);
+  --logo-scroll-factor: 0.64;
+  --logo-scrolled-w:    calc(var(--logo-w) * var(--logo-scroll-factor));
+  --header-scrolled-h:  var(--header-scrolled-h-mobile);
+}
+
+/* ── Responsive — NO EDITAR ── */
+
+@media (min-width: 961px) {
+  :root {
+    --header-scrolled-h:  var(--header-scrolled-h-desktop);
+    --logo-scroll-factor: 0.638;
+  }
+}
+
+@media (max-width: 1050px) {
+  :root {
+    --logo-w: calc(var(--logo-base-w) * 0.78);   /* tablet  = 78% del base */
+  }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --header-h:           var(--header-h-mobile);
+    --logo-w:             calc(var(--logo-base-w) * 0.61);  /* móvil = 61% del base */
+    --logo-scroll-factor: 0.60;
+  }
 }
 
 
@@ -116,7 +163,7 @@ body {
 }
 
 .site-header.scrolled {
-  height: 70px;
+  height: var(--header-scrolled-h);
   background: rgba(10, 11, 168, 0.92);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
@@ -150,16 +197,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: .5rem 2.5rem 1.2rem;
-  gap: .3rem;
+  justify-content: flex-start;
+  padding: var(--header-logo-top) 2.5rem 0;
 }
 
-/* fila de navegación */
+/* fila de navegación — siempre pegada al fondo del header */
 .header-nav {
   display: flex;
   align-items: center;
   gap: 0;
+  margin-top: auto;                        /* empuja el nav al fondo */
+  padding-bottom: var(--header-nav-bottom); /* pequeño respiro sobre la línea */
 }
 
 .nav-center-divider {
@@ -258,7 +306,7 @@ body {
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
   border: 1px solid rgba(201,151,43,.28);
-  border-top: 2px solid rgba(201,151,43,.65);
+  border-top: 0.5px solid rgba(201,151,43,.65);
   border-radius: 0 0 8px 8px;
   padding: .5rem 0 .6rem;
   box-shadow:
@@ -372,8 +420,8 @@ body {
 }
 
 .logo-placeholder {
-  width: 127px;
-  height: 107px;
+  width: var(--logo-w);
+  height: auto;
   border-radius: 0;
   overflow: visible;
   background: transparent;
@@ -386,7 +434,7 @@ body {
 
 .logo-placeholder img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   display: block;
   filter: none;
@@ -404,8 +452,7 @@ body {
 
 /* logo encoge al hacer scroll */
 .scrolled .logo-placeholder {
-  width: 47px;
-  height: 38px;
+  width: var(--logo-scrolled-w);
 }
 
 /* ── HAMBURGUESA ───────────────────────────────────── */
@@ -471,12 +518,6 @@ body {
 
 /* ── RESPONSIVE HEADER ─────────────────────────────── */
 
-/* scrolled en desktop */
-@media (min-width: 961px) {
-  .site-header.scrolled        { height: 110px; }
-  .scrolled .logo-placeholder  { width: 81px; height: 63px; }
-}
-
 /* compresión gradual del nav (960px–1200px) */
 @media (max-width: 1200px) {
   .nav-left,
@@ -493,13 +534,10 @@ body {
     letter-spacing: .14em;
   }
   .nav-center-divider { margin: 0 .9rem; }
-  .logo-placeholder { width: 99px; height: 81px; }
 }
 
 /* breakpoint principal: menú hamburguesa */
 @media (max-width: 960px) {
-  :root { --header-h: 80px; }
-
   .header-inner {
     flex-direction: row;
     justify-content: center;
@@ -517,16 +555,6 @@ body {
   }
 
   .menu-toggle { display: flex; }
-
-  .logo-placeholder {
-    width: 109px;
-    height: 86px;
-  }
-
-  .scrolled .logo-placeholder {
-    width: 47px;
-    height: 38px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -813,7 +841,7 @@ body {
 ══════════════════════════════════════════════════════ */
 .secciones {
   width: 100%;
-  padding: 4rem 0 16rem;
+  padding: 4rem 0 2rem;
 }
 
 .secciones-grid {
@@ -1178,7 +1206,7 @@ body {
 .site-footer {
   position: relative;
   width: 100%;
-  margin-top: 5rem;
+  margin-top: 2.5rem;
   color: rgba(245, 237, 224, 0.86);
   background:
     linear-gradient(180deg,
@@ -1211,7 +1239,7 @@ body {
   background-image: var(--footer-watermark, url("../imagenes/Ilustracion_Jokili_1.png"));
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: min(30vw, 368px) auto;
+  background-size: min(27vw, 331px) auto;
   opacity: 0.085;
   filter: grayscale(1) contrast(1.05);
   pointer-events: none;
@@ -1411,7 +1439,7 @@ body {
 /* FHD – 1920 × 1080 */
 @media (min-width: 1920px) {
   .site-footer::after {
-    background-size: 368px auto;
+    background-size: 331px auto;
     background-position: center center;
   }
 }
@@ -1419,7 +1447,7 @@ body {
 /* QHD – 2560 × 1440 (2K) */
 @media (min-width: 2560px) {
   .site-footer::after {
-    background-size: 420px auto;
+    background-size: 378px auto;
     background-position: center center;
   }
 }
@@ -1427,7 +1455,7 @@ body {
 /* 4K – 3840 × 2160 */
 @media (min-width: 3840px) {
   .site-footer::after {
-    background-size: 500px auto;
+    background-size: 450px auto;
     background-position: center center;
   }
 }
@@ -1442,7 +1470,7 @@ body {
 
   .site-footer::after {
     background-position: center bottom;
-    background-size: min(72vw, 360px) auto;
+    background-size: min(65vw, 324px) auto;
     opacity: 0.065;
   }
 
@@ -1483,7 +1511,7 @@ body {
 /* Móvil pequeño (≤ 430px) */
 @media (max-width: 430px) {
   .site-footer::after {
-    background-size: min(80vw, 300px) auto;
+    background-size: min(72vw, 270px) auto;
     opacity: 0.05;
   }
 }
