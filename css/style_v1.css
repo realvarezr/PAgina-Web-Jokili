@@ -825,14 +825,16 @@ body {
 
 /* ── RESPONSIVE HERO ───────────────────────────────── */
 @media (max-width: 768px) {
-  .hero-content { padding: 1rem 1.2rem 6.5rem; }
+  .hero-content { padding: .4rem 1.2rem 6rem; margin-top: calc(var(--header-h) - 56px); }
   .hero-title   { font-size: clamp(1.6rem, 8vw, 3rem); letter-spacing: .05em; }
   .hero-title span { font-size: clamp(1.2rem, 5vw, 2rem); letter-spacing: .05em; }
   .hero-year    { font-size: .62rem; letter-spacing: .2em; }
-  .hero-slogan  { font-size: clamp(1rem, 4vw, 1.6rem); letter-spacing: .04em; }
-  .hero-origin  { font-size: .72rem; letter-spacing: .15em; }
+  .hero-divider { margin: 1.1rem auto 1rem; }
+  .hero-slogan  { font-size: clamp(1rem, 4vw, 1.6rem); letter-spacing: .04em; margin-bottom: .35rem; }
+  .hero-origin  { font-size: .72rem; letter-spacing: .15em; margin-bottom: .85rem; }
   .hero-btn     { padding: .85rem 2.2rem; font-size: .72rem; }
   .hero-escudo  { width: clamp(160px, 55vw, 280px); }
+  .hero-redes   { gap: .9rem; }
 }
 
 
@@ -861,7 +863,7 @@ body {
   border-radius: 14px;
   overflow: hidden;
   text-decoration: none;
-  border: 1px solid rgba(201,151,43,.3);
+  border: 1px solid #c9972b4d;
   box-shadow: 0 8px 32px rgba(0,0,0,.35);
   transition: transform .35s var(--ease),
               border-color .35s,
@@ -890,8 +892,9 @@ body {
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(10,15,60,.05) 60%,
-    rgba(10,15,60,.7)  100%
+    rgba(10, 15, 61, 0.122) 50%,
+    rgba(10, 15, 61, 0.42) 72%,
+    rgba(10, 15, 61, 0.7)  100%
   );
 }
 
