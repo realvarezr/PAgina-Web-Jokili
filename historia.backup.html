@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Historia – Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <script src="js/footer.js" defer></script>
+  <style>
+    body {
+      display: block;
+      text-align: left;
+      background-size: auto 120px, auto 280px, 25% auto, contain;
+      background-position: bottom center, bottom center, center 60%, center;
+    }
+
+    .historia-wrap {
+      width: min(98%, 1500px);
+      margin: 0 auto;
+      padding: 4rem clamp(1rem, 2vw, 3rem) 18rem;
+    }
+
+    .historia-intro {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 4.5rem;
+      position: relative;
+    }
+
+    .historia-intro::before {
+      content: '\201C';
+      position: absolute;
+      top: -1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      line-height: 1;
+      color: var(--amarillo);
+      opacity: .18;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .historia-intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(245,237,224,.9);
+      line-height: 1.9;
+      position: relative;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(201,151,43,.5) 10%,
+        rgba(201,151,43,.5) 90%,
+        transparent
+      );
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateX(-18px);
+      transition: opacity .6s var(--ease), transform .6s var(--ease);
+      transition-delay: var(--tl-delay, 0ms);
+    }
+
+    .timeline-item.tl-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-item { opacity: 1; transform: none; transition: none; }
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: .35rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--amarillo);
+      box-shadow: 0 0 12px rgba(245,197,24,.5);
+      transform: translateX(-4px);
+    }
+
+    .timeline-anio {
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .85;
+      margin-bottom: .4rem;
+    }
+
+    .timeline-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      color: #fff;
+      margin-bottom: .6rem;
+    }
+
+    .timeline-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(245,237,224,.78);
+      line-height: 1.75;
+    }
+
+    .historia-origen {
+      margin-bottom: 4rem;
+      padding: 2.5rem 2rem;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,151,43,.3);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      text-align: center;
+    }
+
+    .origen-lugar {
+      font-size: .68rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .8;
+      margin-bottom: 1rem;
+    }
+
+    .origen-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      letter-spacing: .08em;
+    }
+
+    .origen-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,237,224,.8);
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .banda-colores {
+      display: flex;
+      height: 3px;
+      margin-top: 2rem;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .banda-colores span { flex: 1; }
+    .banda-colores .bc-am { background: var(--amarillo); }
+    .banda-colores .bc-az { background: #1a3a8f; }
+    .banda-colores .bc-ro { background: var(--rojo); }
+
+    /* Lista de fundadores 2006 */
+    .fundadores-lista {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: .55rem .8rem;
+      margin-top: 1rem;
+      padding: 1rem 1.2rem;
+      background: rgba(0,0,0,.18);
+      border-left: 2px solid rgba(201,151,43,.35);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .fundadores-lista li {
+      display: flex;
+      flex-direction: column;
+      gap: .1rem;
+    }
+
+    .fundador-cargo {
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .75;
+    }
+
+    .fundador-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(245,237,224,.85);
+    }
+
+    /* Hitos clave — punto pulsante */
+    .timeline-item--hito::before {
+      width: 12px;
+      height: 12px;
+      box-shadow: 0 0 0 0 rgba(245,197,24,.5);
+      animation: tlPulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes tlPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(245,197,24,.5); }
+      60%  { box-shadow: 0 0 0 9px rgba(245,197,24,0); }
+      100% { box-shadow: 0 0 0 0 rgba(245,197,24,0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-item--hito::before { animation: none; }
+    }
+
+    /* Item "Hoy" — cierre especial */
+    .timeline-item--hoy {
+      padding: 1.5rem 1.8rem;
+      background: rgba(201,151,43,.07);
+      border: 1px solid rgba(201,151,43,.28);
+      border-radius: 12px;
+      margin-left: -1.5rem;
+      padding-left: 3rem;
+    }
+
+    .timeline-item--hoy::before {
+      width: 13px;
+      height: 13px;
+      left: -2.5rem;
+      top: 2rem;
+      background: var(--dorado-claro);
+      box-shadow: 0 0 18px rgba(232,201,107,.7);
+    }
+
+    .timeline-item--hoy .timeline-anio {
+      color: var(--dorado-claro);
+      font-size: .75rem;
+    }
+
+    .timeline-item--hoy .timeline-titulo {
+      font-size: 1.2rem;
+      color: var(--dorado-claro);
+    }
+
+    @media (max-width: 480px) {
+      .timeline-item--hoy { margin-left: 0; padding-left: 1.4rem; }
+      .timeline-item--hoy::before { left: -1.8rem; }
+    }
+
+    .tl-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0 0 3rem;
+    }
+
+    .tl-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,151,43,.45));
+    }
+
+    .tl-divider-line:last-child {
+      background: linear-gradient(to left, transparent, rgba(201,151,43,.45));
+    }
+
+    .tl-divider-dots {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .historia-wrap { padding: 2rem 1.2rem 4rem; }
+      .timeline { padding-left: 1.8rem; }
+      .historia-intro p { font-size: clamp(1rem, 3.5vw, 1.3rem); }
+    }
+
+    @media (max-width: 560px) {
+      .historia-wrap { padding: 1.5rem 1rem 3rem; }
+      .historia-intro { margin-bottom: 2.5rem; }
+      .historia-origen { padding: 1.4rem 1rem; border-radius: 12px; }
+      .timeline-item { margin-bottom: 1.8rem; }
+      .timeline-anio { letter-spacing: .2em; font-size: .65rem; }
+      .timeline-titulo { font-size: 1rem; letter-spacing: .06em; }
+      .timeline-texto { font-size: 1rem; }
+      .origen-titulo { letter-spacing: .04em; }
+      .origen-lugar { letter-spacing: .22em; font-size: .62rem; }
+    }
+
+    @media (max-width: 480px) {
+      .historia-wrap { padding: 1rem .9rem 2.5rem; }
+      .timeline { padding-left: 1.2rem; }
+      .historia-intro { margin-bottom: 2rem; }
+      .historia-origen { padding: 1.1rem .85rem; }
+      .timeline-item::before { left: -1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <section class="page-banner" style="background-image: url('imagenes/Jokili_5.png')" id="pageBanner">
+      <div class="page-banner-content">
+        <div class="page-banner-subtitulo">Jokili Verein - desde 1976</div>
+        <h1 class="page-banner-titulo">Historia</h1>
+        <div class="page-banner-divider">
+          <div class="page-banner-divider-dots">
+            <div class="dot dot-amarillo"></div>
+            <div class="dot dot-azul"></div>
+            <div class="dot dot-rojo"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page-banner-bands">
+        <span class="pb-am"></span>
+        <span class="pb-az"></span>
+        <span class="pb-ro"></span>
+      </div>
+    </section>
+
+    <div class="historia-wrap">
+
+      <div class="historia-intro">
+        <p>
+          "El Jokili Verein es la comparsa carnavalesca de la Colonia Tovar,
+          guardiana de una tradición que une dos mundos: <strong>el Kaiserstuhl alemán
+          y las montañas venezolanas."</strong>
+        </p>
+      </div>
+
+      <div class="historia-origen">
+        <div class="origen-lugar">De Endingen a la Colonia Tovar</div>
+        <h2 class="origen-titulo">El origen del Jokili</h2>
+        <p class="origen-texto">
+          La tradición del Jokili llega a la Colonia Tovar gracias a la iniciativa
+          de <em>Pablo Dürr Misle</em>, nativo de esta población aragüeña. Su abuelo
+          Martín Misle le había hablado desde niño sobre una figura que hacía el
+          carnaval en el pueblo de origen y le enseñaba sus canciones. Ese recuerdo
+          sembraría la semilla de lo que hoy es el <em>Jokili Verein</em>.
+        </p>
+        <div class="banda-colores">
+          <span class="bc-am"></span>
+          <span class="bc-az"></span>
+          <span class="bc-ro"></span>
+        </div>
+      </div>
+
+      <div class="tl-divider" aria-hidden="true">
+        <div class="tl-divider-line"></div>
+        <div class="tl-divider-dots">
+          <div class="dot dot-amarillo"></div>
+          <div class="dot dot-azul"></div>
+          <div class="dot dot-rojo"></div>
+        </div>
+        <div class="tl-divider-line"></div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item timeline-item--hito" style="--tl-delay:0ms">
+          <div class="timeline-anio">1843</div>
+          <div class="timeline-titulo">La fundación de la Colonia Tovar</div>
+          <p class="timeline-texto">
+            Más de 400 emigrantes del suroeste de Alemania arriban a las montañas
+            del estado Aragua, Venezuela. Fundan la Colonia Tovar y preservan su
+            lengua, su arquitectura y sus festividades tal como las conocían en
+            el Kaiserstuhl, entre ellas el espíritu del carnaval y la figura del Jokili.
+          </p>
+        </div>
+
+        <div class="timeline-item" style="--tl-delay:60ms">
+          <div class="timeline-anio">1973</div>
+          <div class="timeline-titulo">El reencuentro con Endingen</div>
+          <p class="timeline-texto">
+            Pablo Dürr Misle viaja a Endingen am Kaiserstuhl para participar en
+            la conmemoración de los mil cien años de fundación de esa localidad.
+            Allí conoce de cerca la agrupación del <em>Endinger Narrenzunft</em>
+            y se despierta en él un profundo interés por rescatar esa tradición
+            para la Colonia Tovar.
+          </p>
+        </div>
+
+        <div class="timeline-item" style="--tl-delay:120ms">
+          <div class="timeline-anio">1974</div>
+          <div class="timeline-titulo">La primera máscara llega a Venezuela</div>
+          <p class="timeline-texto">
+            La familia Vollherbst, cuyos miembros formaban parte del
+            <em>Endinger Narrenzunft</em>, visita la Colonia Tovar y obsequia a
+            Pablo Dürr una máscara en reconocimiento a su interés. Sin buscarlo,
+            este regalo se convierte en el punto de partida de todo lo que vendría:
+            la primera máscara del Jokili de la Colonia Tovar.
+          </p>
+        </div>
+
+        <div class="timeline-item" style="--tl-delay:180ms">
+          <div class="timeline-anio">Noviembre 1976</div>
+          <div class="timeline-titulo">Nace la idea del Jokili Verein</div>
+          <p class="timeline-texto">
+            Un grupo de amigos de Dürr, que se reunía semanalmente a jugar cartas,
+            decide donar un fondo de 922 bolívares para iniciar los trámites de una
+            nueva agrupación carnavalesca. Los siete fundadores fueron:
+            Pablo Dürr, Paúl Wödl, Pedro Wödl, Elio Gutt, Ewald Schauber,
+            Willy Seywald y Uwe Rämisch.
+          </p>
+        </div>
+
+        <div class="timeline-item" style="--tl-delay:240ms">
+          <div class="timeline-anio">5 de enero de 1977</div>
+          <div class="timeline-titulo">Se formaliza la Asociación</div>
+          <p class="timeline-texto">
+            Se formaliza la <strong style="color:var(--dorado-claro);font-weight:400">Asociación de los Arlequines de la Colonia Tovar</strong>,
+            un club Jokili fundado "con la misma orientación y espíritu del famoso
+            Jokili Verein de Endingen, en su querido Kaiserstuhl Alemania",
+            tal como consta en el acta número uno de su libro de fundación.
+            La primera junta directiva quedó presidida por <em>Paul Wödl</em>,
+            con Pablo Dürr Misle como vicepresidente y Pedro Wödl como secretario.
+          </p>
+        </div>
+
+        <div class="timeline-item timeline-item--hito" style="--tl-delay:300ms">
+          <div class="timeline-anio">Carnaval 1977</div>
+          <div class="timeline-titulo">El primer desfile — Los arlequines salen a las calles</div>
+          <p class="timeline-texto">
+            En el desfile de batas blancas, el Jokili de la Colonia Tovar despierta
+            por primera vez. Siete fundadores, vestidos con bragas de fieltro rojo
+            y sus máscaras, recorren las calles del pueblo. Al finalizar las fiestas,
+            el pueblo de Tovar es invitado al Hotel Tres Pinos para la ceremonia
+            del entierro del carnaval, dirigida por el primer Maestro de Ceremonias:
+            <em>Wolfgang Gutmann</em>, personaje que impuso un estilo.
+          </p>
+        </div>
+
+        <div class="timeline-item" style="--tl-delay:360ms">
+          <div class="timeline-anio">19 de diciembre de 1980</div>
+          <div class="timeline-titulo">Una asociación legalmente constituida</div>
+          <p class="timeline-texto">
+            La asociación es registrada formalmente en la Oficina Subalterna de
+            Registro del Distrito Ricaurte, en La Victoria, estado Aragua, bajo
+            el nombre <em>"Asociación de los Arlequines de la Colonia Tovar
+            1976 e.V. Jokili Club"</em>. Sus estatutos establecen que se rige por
+            los de la <em>Asociación de Arlequines de Endingen 1782 e.V.</em>,
+            de cuya fuente se nutre la hermandad.
+          </p>
+        </div>
+
+        <div class="timeline-item" style="--tl-delay:420ms">
+          <div class="timeline-anio">21 de mayo de 2006</div>
+          <div class="timeline-titulo">La nueva generación toma las riendas</div>
+          <p class="timeline-texto">
+            Tras un breve período de descenso en las actividades, una nueva generación
+            —en su mayoría hijos de los primeros miembros— asume la conducción del
+            <em>Jokili Verein</em>. La junta directiva es oficializada en el Hotel Freiburg,
+            ante autoridades municipales, grupos musicales y el público general. En esa ocasión
+            la asociación adoptó su nombre definitivo:
+            <strong style="color:var(--dorado-claro);font-weight:400">Asociación de Arlequines
+            de la Colonia Tovar 1976 e.V Jokili Verein</strong>.
+          </p>
+          <ul class="fundadores-lista">
+            <li><span class="fundador-cargo">Oberzunftmeister</span><span class="fundador-nombre">Ralf Andrés Muttach Fehr</span></li>
+            <li><span class="fundador-cargo">Zeremonienmeister</span><span class="fundador-nombre">Julio Carrillo Misle</span></li>
+            <li><span class="fundador-cargo">Jokili Meister</span><span class="fundador-nombre">Argenis Gerig Smith</span></li>
+            <li><span class="fundador-cargo">Tesorera</span><span class="fundador-nombre">Nancy Gerber</span></li>
+            <li><span class="fundador-cargo">Maestro de Protocolo</span><span class="fundador-nombre">Eduardo Gerig Muttach</span></li>
+            <li><span class="fundador-cargo">Secretaria</span><span class="fundador-nombre">Maribel Gerig Muttach</span></li>
+            <li><span class="fundador-cargo">Maestro de Eventos</span><span class="fundador-nombre">Aníbal Gerig Muttach</span></li>
+            <li><span class="fundador-cargo">Maestro de Condecoraciones</span><span class="fundador-nombre">Abraham Gerig Rivero</span></li>
+            <li><span class="fundador-cargo">Cronista</span><span class="fundador-nombre">Erika I. Maldonado Suhr</span></li>
+          </ul>
+        </div>
+
+        <div class="timeline-item timeline-item--hoy" style="--tl-delay:480ms">
+          <div class="timeline-anio">Hoy</div>
+          <div class="timeline-titulo">Narri Narro – Tovarer Jokili sind wieder do!</div>
+          <p class="timeline-texto">
+            Cada año, al llegar el carnaval, el grito de guerra resuena por las
+            calles empedradas de la Colonia Tovar:
+            <em style="color:rgba(245,237,224,.9)">"NARRI NARRO Tovarer Jokili sind  do! - rES"</em>
+            La comparsa desfila con su traje tricolor — amarillo, azul y rojo —
+            honrando a sus fundadores y manteniendo viva una tradición que une
+            el Kaiserstuhl alemán con las montañas de Venezuela.
+          </p>
+        </div>
+
+      </div><!-- /.timeline -->
+
+    </div><!-- /.historia-wrap -->
+
+  </main>
+
+
+
+<script>
+  /* Scroll reveal para el timeline */
+  const tlItems = document.querySelectorAll('.timeline-item');
+  const tlObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('tl-visible');
+        tlObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  tlItems.forEach(item => tlObserver.observe(item));
+</script>
+</body>
+</html>

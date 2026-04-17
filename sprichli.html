@@ -108,10 +108,26 @@
       margin-bottom: 2rem;
     }
 
+    .dichos-imagen {
+      grid-column: 1 / -1;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(201,151,43,.22);
+      box-shadow: 0 14px 40px rgba(0,0,0,.3);
+    }
+
+    .dichos-imagen img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
     .dichos-grid {
       display: grid;
       gap: 1.6rem;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       align-items: stretch;
     }
 
@@ -300,12 +316,6 @@
       text-align: center;
     }
 
-    @media (max-width: 1100px) {
-      .dichos-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
     /* Colapsar las columnas INTERNAS de cada card antes de que se apilen */
     @media (max-width: 800px) {
       .dicho-card,
@@ -330,13 +340,8 @@
         grid-template-columns: 1fr;
       }
       .dicho-card,
-      .dicho-card.full,
-      .dicho-foto-placeholder {
+      .dicho-card.full {
         grid-column: 1 / -1;
-      }
-      /* Evitar que el placeholder ocupe 2 filas en layout de 1 columna */
-      .dicho-foto-placeholder {
-        grid-row: span 1;
       }
     }
 
@@ -539,17 +544,11 @@
           </div>
         </div>
 
-        <div class="dicho-foto-placeholder">
-          <svg class="dicho-foto-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.35)" stroke-width="1.2"/>
-            <circle cx="8.5" cy="8.5" r="1.8" stroke="rgba(245,237,224,.35)" stroke-width="1.2"/>
-            <path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.35)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="dicho-foto-label">Fotografía<br>del Jokili Sprichli</span>
-          <img src="imagenes/Jokili_16_1Reel.png" alt="Jokili Sprichli"> -->
+        <div class="dichos-imagen">
+          <img src="imagenes/Jokili_16_1Reel.png" alt="Jokili Sprichli" loading="lazy">
         </div>
 
-        <div class="dicho-card">
+        <div class="dicho-card full">
           <div class="dicho-col alemannisch">
             <div class="dicho-lang">Alemannisch</div>
             <p>

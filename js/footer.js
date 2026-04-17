@@ -8,7 +8,7 @@
 
   const page = window.location.pathname.split('/').pop() || 'index.html';
   const isIndex = page === 'index.html' || page === '';
-  const homeHref = isIndex ? '#inicio' : 'index.html';
+  const homeHref = isIndex ? '/' : './';
 
   const html = `
   <footer class="site-footer" aria-labelledby="footer-title">
@@ -42,11 +42,11 @@
           <div class="footer-title footer-label">Explora</div>
           <ul class="footer-links">
             <li><a href="${homeHref}">Inicio</a></li>
-            <li><a href="historia.html">Historia</a></li>
-            <li><a href="personajes.html">Personajes</a></li>
-            <li><a href="traje.html">Nuestro traje</a></li>
-            <li><a href="eventos.html">Eventos y carnaval</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="historia">Historia</a></li>
+            <li><a href="personajes">Personajes</a></li>
+            <li><a href="traje">Nuestro traje</a></li>
+            <li><a href="eventos">Eventos y carnaval</a></li>
+            <li><a href="contacto">Contacto</a></li>
           </ul>
         </nav>
 

@@ -349,6 +349,9 @@
 
         <form id="contactoForm" novalidate>
 
+          <!-- Honeypot anti-spam (oculto) -->
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+
           <div class="form-grupo">
             <label class="form-label" for="nombre">Nombre</label>
             <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
@@ -369,13 +372,11 @@
             <textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
           </div>
 
-          <button class="form-btn" type="submit">
-            <span>Enviar mensaje</span>
+          <button class="form-btn" type="submit" id="formBtn">
+            <span id="formBtnTexto">Enviar mensaje</span>
           </button>
 
-          <div class="form-aviso" id="formAviso">
-            ¡Mensaje enviado! Nos pondremos en contacto pronto.
-          </div>
+          <div class="form-aviso" id="formAviso"></div>
 
         </form>
       </div>
@@ -385,13 +386,48 @@
   </main>
 
   <script>
-    // Formulario — simulación de envío (sin backend)
-    document.getElementById('contactoForm').addEventListener('submit', function(e) {
+    document.getElementById('contactoForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const aviso = document.getElementById('formAviso');
-      aviso.style.display = 'block';
-      this.reset();
-      setTimeout(() => { aviso.style.display = 'none'; }, 5000);
+
+      const btn    = document.getElementById('formBtn');
+      const texto  = document.getElementById('formBtnTexto');
+      const aviso  = document.getElementById('formAviso');
+
+      // Estado: enviando
+      btn.disabled = true;
+      texto.textContent = 'Enviando…';
+      aviso.style.display = 'none';
+      aviso.style.borderColor = '';
+      aviso.style.color = '';
+
+      try {
+        const datos = new FormData(this);
+        const res   = await fetch('enviar-contacto.php', { method: 'POST', body: datos });
+        const texto = await res.text();
+
+        let json;
+        try { json = JSON.parse(texto); }
+        catch (_) { throw new Error('Respuesta inesperada del servidor. Intenta de nuevo o escríbenos a contacto@tovarerjokili.com'); }
+
+        if (json.ok) {
+          aviso.textContent    = '¡Mensaje enviado! Nos pondremos en contacto pronto.';
+          aviso.style.display  = 'block';
+          aviso.style.borderColor = '';
+          aviso.style.color       = '';
+          this.reset();
+          setTimeout(() => { aviso.style.display = 'none'; }, 6000);
+        } else {
+          throw new Error(json.error || 'Error al enviar');
+        }
+      } catch (err) {
+        aviso.textContent       = err.message || 'No se pudo enviar. Por favor intenta de nuevo.';
+        aviso.style.borderColor = 'rgba(204,0,1,.4)';
+        aviso.style.color       = '#ff6b6b';
+        aviso.style.display     = 'block';
+      } finally {
+        btn.disabled      = false;
+        texto.textContent = 'Enviar mensaje';
+      }
     });
   </script>
 

@@ -8,7 +8,7 @@
   // ── Detectar página actual ──────────────────────────────
   const page = window.location.pathname.split('/').pop() || 'index.html';
   const isIndex = (page === 'index.html' || page === '');
-  const homeHref = isIndex ? '#inicio' : 'index.html';
+  const homeHref = isIndex ? '/' : './';
 
   // Subpáginas del dropdown "El Jokili" (sin Historia)
   const jokiliPages = ['personajes.html','traje.html','sprichli.html','eventos.html','rituales.html'];
@@ -34,7 +34,7 @@
         <ul class="nav-left">
           <li><a href="${homeHref}"${active('index.html')}>Inicio</a></li>
           <li><span class="nav-divider">◆</span></li>
-          <li><a href="historia.html"${active('historia.html')}>Historia</a></li>
+          <li><a href="historia"${active('historia.html')}>Historia</a></li>
         </ul>
         <span class="nav-divider nav-center-divider">◆</span>
         <ul class="nav-right">
@@ -46,16 +46,16 @@
               </svg>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="personajes.html"${active('personajes.html')} role="menuitem">Personajes</a></li>
-              <li><a href="traje.html"${active('traje.html')} role="menuitem">Traje</a></li>
-              <li><a href="sprichli.html"${active('sprichli.html')} role="menuitem">El Sprichli</a></li>
-              <li><a href="rituales.html"${active('rituales.html')} role="menuitem">Rituales</a></li>
+              <li><a href="personajes"${active('personajes.html')} role="menuitem">Personajes</a></li>
+              <li><a href="traje"${active('traje.html')} role="menuitem">Traje</a></li>
+              <li><a href="sprichli"${active('sprichli.html')} role="menuitem">El Sprichli</a></li>
+              <li><a href="rituales"${active('rituales.html')} role="menuitem">Rituales</a></li>
               <li class="dropdown-divider"></li>
-              <li><a href="eventos.html"${active('eventos.html')} class="drop-highlight" role="menuitem">Eventos&nbsp;/&nbsp;Carnaval</a></li>
+              <li><a href="eventos"${active('eventos.html')} class="drop-highlight" role="menuitem">Eventos&nbsp;/&nbsp;Carnaval</a></li>
             </ul>
           </li>
           <li><span class="nav-divider">◆</span></li>
-          <li><a href="contacto.html"${active('contacto.html')}>Contacto</a></li>
+          <li><a href="contacto"${active('contacto.html')}>Contacto</a></li>
         </ul>
       </div>
 
@@ -70,18 +70,18 @@
 
   <nav class="mobile-nav" id="mobileNav">
     <a href="${homeHref}">Inicio</a>
-    <a href="historia.html">Historia</a>
+    <a href="historia">Historia</a>
     <button class="mobile-section-toggle" id="mobileJokiliToggle" aria-expanded="false">
       El Jokili <span class="mobile-toggle-arrow">▾</span>
     </button>
     <div class="mobile-submenu" id="mobileJokiliSub">
-      <a href="personajes.html" class="mobile-sub">Personajes</a>
-      <a href="traje.html" class="mobile-sub">Traje</a>
-      <a href="sprichli.html" class="mobile-sub">El Sprichli</a>
-      <a href="rituales.html" class="mobile-sub">Rituales</a>
-      <a href="eventos.html" class="mobile-sub">Eventos / Carnaval</a>
+      <a href="personajes" class="mobile-sub">Personajes</a>
+      <a href="traje" class="mobile-sub">Traje</a>
+      <a href="sprichli" class="mobile-sub">El Sprichli</a>
+      <a href="rituales" class="mobile-sub">Rituales</a>
+      <a href="eventos" class="mobile-sub">Eventos / Carnaval</a>
     </div>
-    <a href="contacto.html">Contacto</a>
+    <a href="contacto">Contacto</a>
   </nav>`;
 
   document.body.insertAdjacentHTML('afterbegin', html);

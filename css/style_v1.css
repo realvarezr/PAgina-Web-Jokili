@@ -940,8 +940,8 @@ body {
 }
 
 .card-icon img {
-  width: 84px;
-  height: 84px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   display: block;
 }
@@ -998,6 +998,57 @@ body {
 
 .seccion-card:hover::after {
   transform: scaleY(1);
+}
+
+/* ── LAYOUT ALTERNADO (foto derecha en tarjetas pares) ─ */
+.seccion-card:nth-child(even) {
+  grid-template-columns: 35% 65%;
+}
+
+.seccion-card:nth-child(even) .card-foto { order: 2; }
+.seccion-card:nth-child(even) .card-info {
+  order: 1;
+  border-left: none;
+  border-right: 1px solid rgba(201,151,43,.18);
+}
+
+/* franja tricolor: izquierda en tarjetas pares */
+.seccion-card:nth-child(even)::after {
+  right: auto;
+  left: 0;
+}
+
+/* en móvil el layout siempre es columna — no se alterna */
+@media (max-width: 700px) {
+  .seccion-card:nth-child(even) { grid-template-columns: 1fr; }
+  .seccion-card:nth-child(even) .card-foto { order: 1; }
+  .seccion-card:nth-child(even) .card-info {
+    order: 2;
+    border-right: none;
+    border-top: 1px solid rgba(201,151,43,.18);
+  }
+}
+
+/* ── SCROLL REVEAL ─────────────────────────────────── */
+.seccion-card {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity .55s var(--ease),
+    transform .55s var(--ease),
+    border-color .35s,
+    box-shadow .35s;
+  transition-delay: var(--card-delay, 0ms);
+}
+
+.seccion-card.card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* cuando el usuario prefiere movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .seccion-card { opacity: 1; transform: none; transition: border-color .35s, box-shadow .35s; }
 }
 
 /* ── RESPONSIVE SECCIONES ──────────────────────────── */

@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# ── /index.html → / ────────────────────────────────────────
+RewriteCond %{THE_REQUEST} /index\.html
+RewriteRule ^index\.html$ / [R=301,L]
+
+# ── Quitar extensión .html de todas las páginas ─────────────
+RewriteCond %{THE_REQUEST} \.html
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# ── Servir el archivo .html internamente sin extensión ───────
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)$ $1.html [L]
