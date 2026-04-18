@@ -6,17 +6,23 @@
 (function () {
 
   // ── Detectar página actual ──────────────────────────────
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-  const isIndex = (page === 'index.html' || page === '');
-  const homeHref = isIndex ? '/' : './';
+  const pageRaw = window.location.pathname.split('/').pop() || 'index.html';
+  const normalize = (value) => {
+    if (!value || value === '/') return 'index';
+    return value.replace(/\.html$/i, '');
+  };
+  const page = normalize(pageRaw);
+  const isIndex = (page === 'index');
+  const route = (slug) => slug === 'index' ? 'index.html' : `${slug}.html`;
+  const homeHref = isIndex ? './' : 'index.html';
 
   // Subpáginas del dropdown "El Jokili" (sin Historia)
-  const jokiliPages = ['personajes.html','traje.html','sprichli.html','eventos.html','rituales.html'];
+  const jokiliPages = ['personajes','traje','sprichli','eventos','rituales'];
   const jokiliActive = jokiliPages.includes(page);
 
   // Marca el link activo en dorado
   function active(target) {
-    return page === target ? ' style="color:var(--dorado-claro)"' : '';
+    return page === normalize(target) ? ' style="color:var(--dorado-claro)"' : '';
   }
 
   // ── HTML del header ─────────────────────────────────────
@@ -34,7 +40,7 @@
         <ul class="nav-left">
           <li><a href="${homeHref}"${active('index.html')}>Inicio</a></li>
           <li><span class="nav-divider">◆</span></li>
-          <li><a href="historia"${active('historia.html')}>Historia</a></li>
+          <li><a href="${route('historia')}"${active('historia.html')}>Historia</a></li>
         </ul>
         <span class="nav-divider nav-center-divider">◆</span>
         <ul class="nav-right">
@@ -46,16 +52,18 @@
               </svg>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="personajes"${active('personajes.html')} role="menuitem">Personajes</a></li>
-              <li><a href="traje"${active('traje.html')} role="menuitem">Traje</a></li>
-              <li><a href="sprichli"${active('sprichli.html')} role="menuitem">El Sprichli</a></li>
-              <li><a href="rituales"${active('rituales.html')} role="menuitem">Rituales</a></li>
+              <li><a href="${route('personajes')}"${active('personajes.html')} role="menuitem">Personajes</a></li>
+              <li><a href="${route('traje')}"${active('traje.html')} role="menuitem">Traje</a></li>
+              <li><a href="${route('sprichli')}"${active('sprichli.html')} role="menuitem">El Sprichli</a></li>
+              <li><a href="${route('rituales')}"${active('rituales.html')} role="menuitem">Rituales</a></li>
               <li class="dropdown-divider"></li>
-              <li><a href="eventos"${active('eventos.html')} class="drop-highlight" role="menuitem">Eventos&nbsp;/&nbsp;Carnaval</a></li>
+              <li><a href="${route('eventos')}"${active('eventos.html')} class="drop-highlight" role="menuitem">Eventos&nbsp;/&nbsp;Carnaval</a></li>
             </ul>
           </li>
           <li><span class="nav-divider">◆</span></li>
-          <li><a href="contacto"${active('contacto.html')}>Contacto</a></li>
+          <li><a href="${route('galeria')}"${active('galeria.html')}>Galeria</a></li>
+          <li><span class="nav-divider">◆</span></li>
+          <li><a href="${route('contacto')}"${active('contacto.html')}>Contacto</a></li>
         </ul>
       </div>
 
@@ -70,18 +78,19 @@
 
   <nav class="mobile-nav" id="mobileNav">
     <a href="${homeHref}">Inicio</a>
-    <a href="historia">Historia</a>
+    <a href="${route('historia')}">Historia</a>
     <button class="mobile-section-toggle" id="mobileJokiliToggle" aria-expanded="false">
       El Jokili <span class="mobile-toggle-arrow">▾</span>
     </button>
     <div class="mobile-submenu" id="mobileJokiliSub">
-      <a href="personajes" class="mobile-sub">Personajes</a>
-      <a href="traje" class="mobile-sub">Traje</a>
-      <a href="sprichli" class="mobile-sub">El Sprichli</a>
-      <a href="rituales" class="mobile-sub">Rituales</a>
-      <a href="eventos" class="mobile-sub">Eventos / Carnaval</a>
+      <a href="${route('personajes')}" class="mobile-sub">Personajes</a>
+      <a href="${route('traje')}" class="mobile-sub">Traje</a>
+      <a href="${route('sprichli')}" class="mobile-sub">El Sprichli</a>
+      <a href="${route('rituales')}" class="mobile-sub">Rituales</a>
+      <a href="${route('eventos')}" class="mobile-sub">Eventos / Carnaval</a>
     </div>
-    <a href="contacto">Contacto</a>
+    <a href="${route('galeria')}">Galeria</a>
+    <a href="${route('contacto')}">Contacto</a>
   </nav>`;
 
   document.body.insertAdjacentHTML('afterbegin', html);
@@ -106,18 +115,15 @@
       dropBtn.setAttribute('aria-expanded', 'false');
     }
 
-    // Hover (desktop)
     dropItem.addEventListener('mouseenter', openDrop);
     dropItem.addEventListener('mouseleave', closeDrop);
 
-    // Click / touch
     dropBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = dropMenu.classList.contains('open');
       isOpen ? closeDrop() : openDrop();
     });
 
-    // Cerrar al hacer clic fuera
     document.addEventListener('click', closeDrop);
     dropMenu.addEventListener('click', (e) => e.stopPropagation());
   }
@@ -128,7 +134,7 @@
   }, { passive: true });
 
   // ── Responsive hamburguesa ───────────────────────────────
-  const mq = window.matchMedia('(max-width: 768px)');
+  const mq = window.matchMedia('(max-width: 960px)');
   function handleMQ(e) {
     mobileWrap.style.display = e.matches ? 'flex' : 'none';
   }
@@ -151,7 +157,6 @@
   const jokiliToggle = document.getElementById('mobileJokiliToggle');
   const jokiliSub    = document.getElementById('mobileJokiliSub');
   if (jokiliToggle && jokiliSub) {
-    // Si la página actual es una subpágina del dropdown, abrirlo por defecto
     if (jokiliPages.includes(page)) {
       jokiliSub.classList.add('open');
       jokiliToggle.setAttribute('aria-expanded', 'true');

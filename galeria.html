@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f3c">
+  <link rel="icon" type="image/png" href="imagenes/Escudo_Jokili.png">
+  <title>Galería – Jokili Verein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_v1.css">
+  <script src="js/header.js" defer></script>
+  <script src="js/footer.js" defer></script>
+  <style>
+    body {
+      display: block;
+      text-align: left;
+      background-size: auto 120px, auto 280px, 30% auto, contain;
+      background-position: bottom center, bottom center, center 65%, center;
+    }
+
+    /* ── BANNER ─────────────────────────────────────────── */
+    .galeria-banner {
+      position: relative;
+      width: 100%;
+      height: 58vh;
+      min-height: 320px;
+      overflow: hidden;
+      background-color: var(--azul-oscuro);
+      background-image: url('imagenes/Jokili_Desfile.png');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    .galeria-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,15,60,.25) 0%,
+        rgba(10,15,60,.12) 30%,
+        rgba(10,15,60,.6)  70%,
+        rgba(10,15,60,.95) 100%
+      );
+    }
+
+    .galeria-banner-content {
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.5rem 2.8rem;
+    }
+
+    .banner-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .65rem;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      opacity: .88;
+      margin-bottom: .8rem;
+      animation: fadeUp .8s .1s var(--ease) both;
+    }
+
+    .banner-eyebrow::before,
+    .banner-eyebrow::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--amarillo);
+      opacity: .5;
+    }
+
+    .banner-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 2px 40px rgba(0,0,0,.7), 0 0 60px rgba(245,197,24,.12);
+      animation: fadeUp .8s .22s var(--ease) both;
+    }
+
+    .banner-bands {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3;
+      display: flex;
+      height: 3px;
+    }
+    .banner-bands span { flex: 1; }
+    .banner-bands .bb-am { background: var(--amarillo); opacity: .8; }
+    .banner-bands .bb-az { background: #1a3a8f;         opacity: .8; }
+    .banner-bands .bb-ro { background: var(--rojo);     opacity: .8; }
+
+    /* ── NAV SECCIONES (sticky) ─────────────────────────── */
+    .sec-nav-wrap {
+      position: sticky;
+      top: var(--header-h);
+      z-index: 900;
+      background: rgba(8,12,50,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201,151,43,.22);
+      box-shadow: 0 4px 24px rgba(0,0,0,.35);
+    }
+
+    @media (max-width: 960px) {
+      .sec-nav-wrap { top: var(--header-h-mobile); }
+    }
+
+    .sec-nav {
+      display: flex;
+      justify-content: center;
+      width: min(98%, 1200px);
+      margin: 0 auto;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .sec-nav::-webkit-scrollbar { display: none; }
+
+    .sec-nav-btn {
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.6);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: .95rem 1.4rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color .25s var(--ease), border-color .25s var(--ease);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .sec-nav-btn:hover { color: rgba(245,237,224,.9); }
+
+    .sec-nav-btn.active {
+      color: var(--amarillo);
+      border-bottom-color: var(--amarillo);
+    }
+
+    .sec-nav-count {
+      font-size: .55rem;
+      letter-spacing: .08em;
+      background: rgba(201,151,43,.18);
+      color: rgba(245,197,24,.75);
+      border-radius: 999px;
+      padding: .1rem .42rem;
+    }
+
+    /* ── CONTENIDO ──────────────────────────────────────── */
+    .galeria-wrap {
+      width: min(98%, 1600px);
+      margin: 0 auto;
+      padding: 3.5rem clamp(1rem, 2vw, 3rem) 16rem;
+    }
+
+    /* ── SECCIÓN ────────────────────────────────────────── */
+    .galeria-sec {
+      margin-bottom: 5rem;
+      scroll-margin-top: calc(var(--header-h) + 56px);
+    }
+
+    @media (max-width: 960px) {
+      .galeria-sec { scroll-margin-top: calc(var(--header-h-mobile) + 52px); }
+    }
+
+    .sec-header {
+      display: flex;
+      align-items: baseline;
+      gap: .9rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: .75rem;
+      border-bottom: 1px solid rgba(201,151,43,.28);
+    }
+
+    .sec-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.95rem, 2.2vw, 1.35rem);
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0;
+    }
+
+    .sec-titulo span { color: var(--amarillo); }
+
+    .sec-subtitulo {
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.35);
+      font-family: 'Cinzel', serif;
+    }
+
+    .sec-linea {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(201,151,43,.3), transparent);
+    }
+
+    /* ── GRID ───────────────────────────────────────────── */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 700px)  { .galeria-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1100px) { .galeria-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 480px)  { .galeria-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ── CARD ───────────────────────────────────────────── */
+    .foto-card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(0,0,0,.3);
+      border: 1px solid rgba(201,151,43,.18);
+      box-shadow: 0 8px 28px rgba(0,0,0,.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .42s var(--ease), transform .42s var(--ease),
+                  border-color .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .foto-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .foto-card:hover {
+      border-color: rgba(245,197,24,.5);
+      box-shadow: 0 18px 42px rgba(0,0,0,.48), 0 0 20px rgba(245,197,24,.08);
+    }
+
+    .foto-card-btn {
+      display: block;
+      width: 100%;
+      padding: 0;
+      background: none;
+      border: 0;
+      cursor: zoom-in;
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .foto-card-btn img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s var(--ease);
+    }
+
+    @media (max-width: 700px) {
+      .foto-card-btn img { height: 160px; }
+    }
+
+    .foto-card:hover .foto-card-btn img { transform: scale(1.05); }
+
+    .foto-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,15,60,.72) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .3s var(--ease);
+      display: flex;
+      align-items: flex-end;
+      padding: .7rem .9rem;
+    }
+
+    .foto-card:hover .foto-overlay { opacity: 1; }
+
+    .foto-overlay-zoom {
+      font-size: .58rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.85);
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    .foto-info {
+      padding: .82rem .95rem .92rem;
+      border-top: 1px solid rgba(201,151,43,.14);
+      background: rgba(6,10,38,.55);
+    }
+
+    .foto-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: .25rem;
+    }
+
+    .foto-meta {
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.4);
+    }
+
+    /* ── LIGHTBOX ───────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(4,6,28,.94);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lb-frame {
+      position: relative;
+      width: min(1100px, 95vw);
+      max-height: 94vh;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      border: 1px solid rgba(201,151,43,.4);
+      background: rgba(8,12,46,.5);
+      box-shadow: 0 40px 100px rgba(0,0,0,.6);
+      overflow: hidden;
+      animation: lbIn .28s var(--ease) both;
+    }
+
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(.96); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .lb-img-wrap {
+      flex: 1;
+      overflow: hidden;
+      background: rgba(0,0,0,.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-img-wrap img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lb-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .75rem 1.1rem;
+      border-top: 1px solid rgba(201,151,43,.18);
+      background: rgba(8,12,46,.7);
+      flex-shrink: 0;
+    }
+
+    .lb-info { display: flex; flex-direction: column; gap: .15rem; }
+
+    .lb-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .lb-meta {
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.4);
+    }
+
+    .lb-controls { display: flex; align-items: center; gap: .5rem; }
+
+    .lb-counter {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .18em;
+      color: rgba(245,237,224,.42);
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .lb-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,151,43,.35);
+      background: rgba(0,0,0,.35);
+      color: rgba(245,237,224,.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+
+    .lb-btn:hover {
+      background: rgba(245,197,24,.18);
+      border-color: rgba(245,197,24,.65);
+      color: #fff;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: .7rem; right: .7rem;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,151,43,.3);
+      background: rgba(0,0,0,.5);
+      color: rgba(245,237,224,.75);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+      z-index: 1;
+    }
+
+    .lb-close:hover {
+      background: rgba(204,0,1,.45);
+      border-color: rgba(204,0,1,.5);
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .galeria-banner { height: 44vh; min-height: 240px; }
+      .banner-titulo  { font-size: clamp(1.8rem, 8vw, 3rem); }
+      .sec-subtitulo  { display: none; }
+      .lb-bar { flex-direction: column; align-items: flex-start; gap: .5rem; }
+      .sec-nav-btn { padding: .8rem .9rem; font-size: .58rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNER -->
+  <div class="galeria-banner" role="img" aria-label="Galería Jokili">
+    <div class="galeria-banner-content">
+      <p class="banner-eyebrow">Memoria Viva del Carnaval</p>
+      <h1 class="banner-titulo">Galería Jokili</h1>
+    </div>
+    <div class="banner-bands" aria-hidden="true">
+      <span class="bb-am"></span><span class="bb-az"></span><span class="bb-ro"></span>
+    </div>
+  </div>
+
+  <!-- NAV SECCIONES -->
+  <div class="sec-nav-wrap" id="secNavWrap">
+    <nav class="sec-nav" aria-label="Secciones de la galería">
+      <button class="sec-nav-btn active" data-target="sec-historia">
+        Fotos Viejas <span class="sec-nav-count" id="cnt-historia">0</span>
+      </button>
+      <button class="sec-nav-btn" data-target="sec-desfile">
+        Desfile <span class="sec-nav-count" id="cnt-desfile">0</span>
+      </button>
+      <button class="sec-nav-btn" data-target="sec-personajes">
+        Personajes <span class="sec-nav-count" id="cnt-personajes">0</span>
+      </button>
+      <button class="sec-nav-btn" data-target="sec-rituales">
+        Rituales <span class="sec-nav-count" id="cnt-rituales">0</span>
+      </button>
+    </nav>
+  </div>
+
+  <main>
+    <div class="galeria-wrap">
+
+      <section class="galeria-sec" id="sec-historia" aria-labelledby="tit-historia">
+        <header class="sec-header">
+          <h2 class="sec-titulo" id="tit-historia">Fotos <span>Viejas</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-historia"></span>
+          <span class="sec-linea" aria-hidden="true"></span>
+        </header>
+        <div class="galeria-grid" id="grid-historia"></div>
+      </section>
+
+      <section class="galeria-sec" id="sec-desfile" aria-labelledby="tit-desfile">
+        <header class="sec-header">
+          <h2 class="sec-titulo" id="tit-desfile">El <span>Desfile</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-desfile"></span>
+          <span class="sec-linea" aria-hidden="true"></span>
+        </header>
+        <div class="galeria-grid" id="grid-desfile"></div>
+      </section>
+
+      <section class="galeria-sec" id="sec-personajes" aria-labelledby="tit-personajes">
+        <header class="sec-header">
+          <h2 class="sec-titulo" id="tit-personajes">Los <span>Personajes</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-personajes"></span>
+          <span class="sec-linea" aria-hidden="true"></span>
+        </header>
+        <div class="galeria-grid" id="grid-personajes"></div>
+      </section>
+
+      <section class="galeria-sec" id="sec-rituales" aria-labelledby="tit-rituales">
+        <header class="sec-header">
+          <h2 class="sec-titulo" id="tit-rituales">Los <span>Rituales</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-rituales"></span>
+          <span class="sec-linea" aria-hidden="true"></span>
+        </header>
+        <div class="galeria-grid" id="grid-rituales"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista de imagen">
+    <div class="lb-frame" id="lbFrame">
+      <button class="lb-close" id="lbClose" aria-label="Cerrar">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+          <path d="M1 1L10 10M10 1L1 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="lb-img-wrap">
+        <img id="lbImg" src="" alt="">
+      </div>
+      <div class="lb-bar">
+        <div class="lb-info">
+          <p class="lb-titulo" id="lbTitulo"></p>
+          <p class="lb-meta"   id="lbMeta"></p>
+        </div>
+        <div class="lb-controls">
+          <button class="lb-btn" id="lbPrev" aria-label="Anterior">
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none">
+              <path d="M6.5 1.5L1.5 6.5L6.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="lb-counter" id="lbCounter">1 / 1</span>
+          <button class="lb-btn" id="lbNext" aria-label="Siguiente">
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none">
+              <path d="M1.5 1.5L6.5 6.5L1.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── DATOS ────────────────────────────────────────────── */
+    const fotos = {
+      historia: [
+        { src: 'imagenes/Historia_1Reel.png',  titulo: 'Raíces Jokili',       meta: 'Archivo histórico' },
+        { src: 'imagenes/Jokili_15Reel.png',   titulo: 'Archivo Vivo',        meta: 'Historia del carnaval' },
+        { src: 'imagenes/Jokili_1.jpg',        titulo: 'Memoria Carnavalera', meta: 'Colección histórica' },
+        { src: 'imagenes/Jokili_2.png',        titulo: 'Generaciones',        meta: 'Tradición familiar' },
+      ],
+      desfile: [
+        { src: 'imagenes/Jokili_Desfile.png',  titulo: 'Desfile Principal',   meta: 'Carnaval · Colonia Tovar' },
+        { src: 'imagenes/Jokili_10Reel.png',   titulo: 'Recorrido Jokili',    meta: 'Tradición y desfile' },
+        { src: 'imagenes/Jokili_16Reel.png',   titulo: 'Calle y Fiesta',      meta: 'Desfile popular' },
+        { src: 'imagenes/Despedida_3Reel.png', titulo: 'Despedida',           meta: 'Cierre de temporada' },
+      ],
+      personajes: [
+        { src: 'imagenes/Oberjokili_1Reel.png', titulo: 'Oberjokili',         meta: 'Personaje emblemático' },
+        { src: 'imagenes/Jokili_11Reel.png',    titulo: 'Traje y Personajes', meta: 'Comparsa Jokili' },
+        { src: 'imagenes/Jokili_16_1Reel.png',  titulo: 'Guardia Jokili',     meta: 'Personajes del año' },
+        { src: 'imagenes/ArgenisReel.png',       titulo: 'Jokili en Acción',   meta: 'Carnaval' },
+      ],
+      rituales: [
+        { src: 'imagenes/Misa_1Reel.png',       titulo: 'Misa Tradicional',   meta: 'Rituales del carnaval' },
+        { src: 'imagenes/Jokili_12Reel.png',    titulo: 'Encuentro Ritual',   meta: 'Ceremonia comunitaria' },
+        { src: 'imagenes/Jokili_5.png',         titulo: 'Tradición en Escena',meta: 'Rituales y cultura' },
+        { src: 'imagenes/Seccion_Rituales.png', titulo: 'Los Rituales',       meta: 'Ceremonias anuales' },
+      ]
+    };
+
+    /* ── RENDER ───────────────────────────────────────────── */
+    let lbPool = [];
+    let lbIdx  = 0;
+
+    function crearCard(foto, idx, pool) {
+      const art = document.createElement('article');
+      art.className = 'foto-card';
+      art.innerHTML = `
+        <button class="foto-card-btn" type="button" aria-label="Ver imagen: ${foto.titulo}">
+          <img src="${foto.src}" alt="${foto.titulo}" loading="lazy" decoding="async">
+          <div class="foto-overlay" aria-hidden="true">
+            <span class="foto-overlay-zoom">
+              <svg width="12" height="12" viewBox="0 0 13 13" fill="none">
+                <circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M9 9L12 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              Ver imagen
+            </span>
+          </div>
+        </button>
+        <div class="foto-info">
+          <p class="foto-titulo">${foto.titulo}</p>
+          <p class="foto-meta">${foto.meta}</p>
+        </div>`;
+
+      art.querySelector('.foto-card-btn').addEventListener('click', () => {
+        lbPool = pool;
+        lbIdx  = idx;
+        abrirLb();
+      });
+      return art;
+    }
+
+    function renderSecciones() {
+      Object.entries(fotos).forEach(([cat, pool]) => {
+        const grid = document.getElementById(`grid-${cat}`);
+        const cnt  = document.getElementById(`cnt-${cat}`);
+        const txt  = document.getElementById(`cnt-txt-${cat}`);
+        if (cnt) cnt.textContent = pool.length;
+        if (txt) txt.textContent = `${pool.length} foto${pool.length !== 1 ? 's' : ''}`;
+
+        pool.forEach((foto, idx) => {
+          const card = crearCard(foto, idx, pool);
+          grid.appendChild(card);
+          requestAnimationFrame(() => {
+            setTimeout(() => card.classList.add('visible'), 55 * idx);
+          });
+        });
+      });
+    }
+
+    /* ── LIGHTBOX ─────────────────────────────────────────── */
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lbImg');
+    const lbTit   = document.getElementById('lbTitulo');
+    const lbMeta  = document.getElementById('lbMeta');
+    const lbCount = document.getElementById('lbCounter');
+
+    function abrirLb() {
+      const f = lbPool[lbIdx];
+      lbImg.src          = f.src;
+      lbImg.alt          = f.titulo;
+      lbTit.textContent  = f.titulo;
+      lbMeta.textContent = f.meta;
+      lbCount.textContent = `${lbIdx + 1} / ${lbPool.length}`;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarLb() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function moverLb(dir) {
+      lbIdx = (lbIdx + dir + lbPool.length) % lbPool.length;
+      abrirLb();
+    }
+
+    document.getElementById('lbClose').addEventListener('click', cerrarLb);
+    document.getElementById('lbPrev').addEventListener('click', () => moverLb(-1));
+    document.getElementById('lbNext').addEventListener('click', () => moverLb(1));
+    lb.addEventListener('click', e => { if (e.target === lb) cerrarLb(); });
+    document.getElementById('lbFrame').addEventListener('click', e => e.stopPropagation());
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     cerrarLb();
+      if (e.key === 'ArrowLeft')  moverLb(-1);
+      if (e.key === 'ArrowRight') moverLb(1);
+    });
+
+    /* ── NAV + SCROLL SPY ─────────────────────────────────── */
+    const secBtns = document.querySelectorAll('.sec-nav-btn');
+    const secIds  = ['sec-historia','sec-desfile','sec-personajes','sec-rituales'];
+
+    secBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById(btn.dataset.target)?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    function scrollSpy() {
+      const navH    = document.getElementById('secNavWrap')?.offsetHeight || 48;
+      const headerH = window.innerWidth > 960 ? 130 : 80;
+      const offset  = headerH + navH + 20;
+      let active    = secIds[0];
+
+      secIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= offset) active = id;
+      });
+
+      secBtns.forEach(btn =>
+        btn.classList.toggle('active', btn.dataset.target === active)
+      );
+    }
+
+    window.addEventListener('scroll', scrollSpy, { passive: true });
+
+    /* ── INIT ─────────────────────────────────────────────── */
+    renderSecciones();
+    scrollSpy();
+  </script>
+</body>
+</html>
