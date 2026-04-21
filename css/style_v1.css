@@ -585,7 +585,7 @@ body {
   padding: 1rem 1.5rem 7rem;
   max-width: 1000px;
   width: 100%;
-  margin-top: calc(var(--header-h) - 40px);
+  margin-top: var(--header-h);
 }
 
 .hero-year {
@@ -611,7 +611,8 @@ body {
 }
 
 .hero-escudo {
-  width: clamp(168px, 26vw, 312px);
+  width: clamp(160px, 19vw, 260px);
+  max-width: 42vw;
   height: auto;
   animation: heroFadeUp .9s var(--ease) both;
 }
@@ -827,7 +828,7 @@ body {
 
 /* ── RESPONSIVE HERO ───────────────────────────────── */
 @media (max-width: 768px) {
-  .hero-content { padding: .4rem 1.2rem 6rem; margin-top: calc(var(--header-h) - 56px); }
+  .hero-content { padding: .4rem 1.2rem 6rem; margin-top: var(--header-h); }
   .hero-title   { font-size: clamp(1.6rem, 8vw, 3rem); letter-spacing: .05em; }
   .hero-title span { font-size: clamp(1.2rem, 5vw, 2rem); letter-spacing: .05em; }
   .hero-year    { font-size: .62rem; letter-spacing: .2em; }
@@ -835,7 +836,7 @@ body {
   .hero-slogan  { font-size: clamp(1rem, 4vw, 1.6rem); letter-spacing: .04em; margin-bottom: .35rem; }
   .hero-origin  { font-size: .72rem; letter-spacing: .15em; margin-bottom: .85rem; }
   .hero-btn     { padding: .85rem 2.2rem; font-size: .72rem; }
-  .hero-escudo  { width: clamp(160px, 55vw, 280px); }
+  .hero-escudo  { width: clamp(140px, 48vw, 220px); max-width: 52vw; }
   .hero-redes   { gap: .9rem; }
 }
 

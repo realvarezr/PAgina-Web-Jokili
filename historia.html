@@ -351,6 +351,17 @@
       position: relative;
       z-index: 1;
     }
+
+    /* Arco de la iglesia como fondo del footer en esta página */
+    .site-footer::after {
+      background-image:
+        url("imagenes/Arco_Iglesia_BenitzReel.png"),
+        var(--footer-watermark, url("imagenes/Ilustracion_Jokili_1.png"));
+      background-repeat: no-repeat, no-repeat;
+      background-position: bottom center, center center;
+      background-size: auto 80%, min(27vw, 331px) auto;
+      opacity: 0.18;
+    }
   </style>
 </head>
 <body>
