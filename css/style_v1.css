@@ -547,6 +547,8 @@ body {
 
   .header-nav { display: none; }
 
+  .header-top-row .lang-toggle-btn { display: none; }
+
   .mobile-toggle-wrap {
     position: absolute;
     right: 1.4rem;

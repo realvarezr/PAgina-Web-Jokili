@@ -5,6 +5,68 @@
  */
 (function () {
 
+  // ── Estilos del botón de idioma ─────────────────────────
+  const flagLink = document.createElement('link');
+  flagLink.rel  = 'stylesheet';
+  flagLink.href = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css';
+  document.head.appendChild(flagLink);
+
+  const langStyle = document.createElement('style');
+  langStyle.textContent = `
+    .header-top-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .header-top-row .lang-toggle-btn {
+      position: absolute;
+      right: 0;
+      transform: scale(1.15);
+      transform-origin: right center;
+    }
+    .lang-toggle-btn {
+      background: transparent;
+      border: 1px solid rgba(201,151,43,.35);
+      border-radius: 20px;
+      padding: .22rem .65rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: .28rem;
+      transition: border-color .2s;
+      line-height: 1;
+    }
+    .lang-toggle-btn:hover { border-color: rgba(201,151,43,.7); }
+    .lang-opt {
+      display: inline-block;
+      font-size: 1.1rem;
+      width: 1.333em;
+      height: 1em;
+      opacity: .45;
+      transition: opacity .2s;
+      vertical-align: middle;
+    }
+    .lang-opt.lang-active { opacity: 1; }
+    .lang-sep-char {
+      font-size: .52rem;
+      color: rgba(201,151,43,.3);
+    }
+    .mobile-lang-btn {
+      background: transparent;
+      border: 1px solid rgba(201,151,43,.3);
+      border-radius: 20px;
+      padding: .3rem .7rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      margin-right: .6rem;
+    }
+  `;
+  document.head.appendChild(langStyle);
+
   // ── Detectar página actual ──────────────────────────────
   const pageRaw = window.location.pathname.split('/').pop() || 'index.html';
   const normalize = (value) => {
@@ -30,11 +92,18 @@
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
 
-      <a href="${homeHref}" class="header-logo" aria-label="Tovarerjokili – Inicio">
-        <div class="logo-placeholder">
-          <img src="imagenes/Gorro.png" alt="Tovarerjokili Logo">
-        </div>
-      </a>
+      <div class="header-top-row">
+        <a href="${homeHref}" class="header-logo" aria-label="Tovarerjokili – Inicio">
+          <div class="logo-placeholder">
+            <img src="imagenes/Gorro.png" alt="Tovarerjokili Logo">
+          </div>
+        </a>
+        <button class="lang-toggle-btn" id="langToggle" aria-label="Cambiar idioma / Sprache wechseln">
+          <span class="lang-opt fi fi-es" data-lang="es"></span>
+          <span class="lang-sep-char">|</span>
+          <span class="lang-opt fi fi-de" data-lang="de"></span>
+        </button>
+      </div>
 
       <div class="header-nav">
         <ul class="nav-left">
@@ -68,6 +137,11 @@
       </div>
 
       <div class="mobile-toggle-wrap" style="display:none;">
+        <button class="mobile-lang-btn" id="mobileLangToggle" aria-label="Cambiar idioma">
+          <span class="lang-opt fi fi-es" data-lang="es"></span>
+          <span class="lang-sep-char">|</span>
+          <span class="lang-opt fi fi-de" data-lang="de"></span>
+        </button>
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
           <span></span><span></span><span></span>
         </button>
@@ -166,5 +240,28 @@
       jokiliToggle.setAttribute('aria-expanded', String(open));
     });
   }
+
+  // ── Toggle de idioma ─────────────────────────────────────
+  function applyLangUI(lang) {
+    document.querySelectorAll('.lang-opt').forEach(el => {
+      el.classList.toggle('lang-active', el.dataset.lang === lang);
+    });
+    if (typeof window.__setLang === 'function') window.__setLang(lang);
+  }
+
+  function handleLangClick() {
+    const current = localStorage.getItem('jokili-lang') || 'es';
+    const next    = current === 'es' ? 'de' : 'es';
+    localStorage.setItem('jokili-lang', next);
+    applyLangUI(next);
+  }
+
+  const langBtn       = document.getElementById('langToggle');
+  const mobileLangBtn = document.getElementById('mobileLangToggle');
+  if (langBtn)       langBtn.addEventListener('click', handleLangClick);
+  if (mobileLangBtn) mobileLangBtn.addEventListener('click', handleLangClick);
+
+  const savedLang = localStorage.getItem('jokili-lang') || 'es';
+  applyLangUI(savedLang);
 
 })();
