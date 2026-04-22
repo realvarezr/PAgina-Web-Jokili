@@ -4,7 +4,8 @@
       "WebFetch(domain:www.endinger-narrenzunft.de)",
       "Bash(python3 -c ':*)",
       "Bash(powershell -Command ':*)",
-      "Bash(grep -i \"link rel=\\\\\"stylesheet\\\\\"\" \"d:/Tovarer Joklili\"/*.html)"
+      "Bash(grep -i \"link rel=\\\\\"stylesheet\\\\\"\" \"d:/Tovarer Joklili\"/*.html)",
+      "WebSearch"
     ]
   }
 }

@@ -17,8 +17,8 @@
     de: {
       'banner-subtitulo': 'Alemannischer Dialekt',
       'intro-p':          'Karnevalssprüche, die mündlich von Generation zu Generation weitergegeben wurden – im alemannischen Dialekt, den die Kolonisten aus Süddeutschland in die Colonia Tovar mitbrachten. Ein lebendiges Erbe, das Endingen vergessen hat und Venezuela seit mehr als 130 Jahren bewahrt.',
-      'contexto-h2':      'Der Jokili Sprichli: Karnevalssprüche',
-      'contexto-p1':      'Der Jokili als formelle Organisation kam 1976 in die Colonia Tovar. Dennoch war dieser Karnevalsmann schon mit den Kolonisten nach Venezuela gekommen – dank des Jokili-Sprichli: Reime im alemannischen Dialekt, die die Abenteuer und Scherze des Harlekins erzählen. Sie wurden von den Kolonisten und ihren Nachkommen rezitiert und von Generation zu Generation weitergegeben.',
+      'contexto-h2':      'Der Jokili Sprichli: Fasnetsprüche',
+      'contexto-p1':      'Der Jokili als formelle Organisation kam 1976 in die Colonia Tovar. Dennoch war dieser Fasnetnarr schon mit den Kolonisten nach Venezuela gekommen – dank des Jokili-Sprichli: Reime im alemannischen Dialekt, die die Abenteuer und Scherze des Harlekins erzählen. Sie wurden von den Kolonisten und ihren Nachkommen rezitiert und von Generation zu Generation weitergegeben.',
       'contexto-p2':      '1974 bestätigte Franz Vollherbst während seines Besuchs in der Colonia Tovar, dass „der Jokili-Sprichli allen bekannt war und sich seit mehr als 130 Jahren erhalten hatte". Das Besondere daran ist, dass die meisten dieser Sprüche in Endingen nicht mehr verwendet werden, da sie vergessen oder durch neue Lieder ersetzt wurden. Der Sprichli verbindet uns mit unseren Wurzeln und ist Teil des mündlichen Erbes unserer Vorfahren.',
       'contexto-p3':      'Der Jokili-Sprichli war auch die Inspiration für die neue Generation der Harlekins, ihre Hymne zu komponieren: ein Lied auf Alemannisch, begleitet von traditionellen venezolanischen und deutschen Instrumenten, uraufgeführt anlässlich des 225-jährigen Jubiläums des Jokili von Endingen im Januar 2007.',
       'dichos-titulo':    'Die Sprüche',

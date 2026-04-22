@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/style_v1.css">
   <script src="js/header.js" defer></script>
   <script src="js/footer.js" defer></script>
+  <script src="js/i18n-eventos.js" defer></script>
   <style>
     body {
       display: block;
@@ -419,7 +420,7 @@
 
       <div class="page-banner-content">
         <div class="page-banner-subtitulo">Colonia Tovar</div>
-        <h1 class="page-banner-titulo">Eventos</h1>
+        <h1 class="page-banner-titulo" data-i18n="banner-titulo">Eventos</h1>
         <div class="page-banner-divider">
           <div class="page-banner-divider-dots">
             <div class="dot dot-amarillo"></div>
@@ -448,8 +449,8 @@
         <!-- INTRO CENTRADO -->
         <div class="poster-hero-intro">
           <div class="carnaval-label">Tovarer Narrenzunft 1976 · 50 Aniversario</div>
-          <h2 class="carnaval-titulo">Carnaval <span>2026</span></h2>
-          <p class="carnaval-desc">
+          <h2 class="carnaval-titulo" data-i18n="carnaval-titulo">Carnaval <span>2026</span></h2>
+          <p class="carnaval-desc" data-i18n="carnaval-desc">
             Seis jornadas de ritual, desfile y tradición alemana en el corazón de Venezuela.
             Una edición especial que celebra los <em>50 años</em> del Tovarer Jokili.
           </p>
@@ -462,7 +463,7 @@
 
         <!-- PÓSTER OFICIAL DEL AÑO (elemento principal) -->
         <div class="poster-col">
-          <div class="poster-etiqueta">Póster Oficial · 2026</div>
+          <div class="poster-etiqueta" data-i18n="poster-etiqueta">Póster Oficial · 2026</div>
 
           <div class="poster-frame" onclick="document.getElementById('posterLightbox').classList.add('active')">
             <!--
@@ -497,14 +498,14 @@
       <!-- PROGRAMA DE ACTIVIDADES -->
       <div class="programa-section">
 
-        <div class="eventos-seccion-titulo">Programa oficial</div>
+        <div class="eventos-seccion-titulo" data-i18n="programa-titulo">Programa oficial</div>
 
         <div class="programa-col">
 
           <div class="evento-card">
-            <div class="evento-fecha">Jueves · 12 Feb 2026</div>
-            <div class="evento-nombre">Desfile de Batas Blancas — Hemdklunkerumzug</div>
-            <p class="evento-desc">
+            <div class="evento-fecha" data-i18n="ev1-fecha">Jueves · 12 Feb 2026</div>
+            <div class="evento-nombre" data-i18n="ev1-nombre">Desfile de Batas Blancas — Hemdklunkerumzug</div>
+            <p class="evento-desc" data-i18n="ev1-desc">
               5:00 p.m. Misa de Acción de Gracias por el 50 Aniversario del Tovarer Jokili,
               acompañados de familiares, amigos y miembros de la comunidad en la
               <em>Iglesia San Martín de Tours</em>.<br>
@@ -517,9 +518,9 @@
           </div>
 
           <div class="evento-card">
-            <div class="evento-fecha">Viernes · 13 Feb 2026</div>
-            <div class="evento-nombre">Fasnet-Friitig — Dankmesse</div>
-            <p class="evento-desc">
+            <div class="evento-fecha" data-i18n="ev2-fecha">Viernes · 13 Feb 2026</div>
+            <div class="evento-nombre" data-i18n="ev2-nombre">Fasnet-Friitig — Dankmesse</div>
+            <p class="evento-desc" data-i18n="ev2-desc">
               2:00 p.m. Visita de la comparsa del Jokili a la población de
               <em>El Jarillo</em> para celebrar junto a los hermanos <em>Schell-mi</em>,
               la Eucharistía en Acción de Gracias por el 50 Aniversario del Tovarer Jokili,
@@ -529,9 +530,9 @@
           </div>
 
           <div class="evento-card">
-            <div class="evento-fecha">Sábado · 14 Feb 2026</div>
-            <div class="evento-nombre">Fasnet-Samschdig — Sábado de Carnaval</div>
-            <p class="evento-desc">
+            <div class="evento-fecha" data-i18n="ev3-fecha">Sábado · 14 Feb 2026</div>
+            <div class="evento-nombre" data-i18n="ev3-nombre">Fasnet-Samschdig — Sábado de Carnaval</div>
+            <p class="evento-desc" data-i18n="ev3-desc">
               12:00 p.m. Tradicional <em>Jokiliumzug</em>, recorriendo las principales
               calles del pueblo hasta la <em>Jokili Brunnen</em>.<br>
               3:00 p.m. La comparsa del Jokili visita varios establecimientos de la Colonia Tovar.<br>
@@ -541,9 +542,9 @@
           </div>
 
           <div class="evento-card">
-            <div class="evento-fecha">Domingo · 15 Feb 2026</div>
-            <div class="evento-nombre">Fasnet-Sunnsdig — Domingo de Carnaval</div>
-            <p class="evento-desc">
+            <div class="evento-fecha" data-i18n="ev4-fecha">Domingo · 15 Feb 2026</div>
+            <div class="evento-nombre" data-i18n="ev4-nombre">Fasnet-Sunnsdig — Domingo de Carnaval</div>
+            <p class="evento-desc" data-i18n="ev4-desc">
               12:00 p.m. Tradicional <em>Jokiliumzug</em>, recorriendo las principales
               calles del pueblo hasta la <em>Jokili Brunnen</em>.<br>
               3:00 p.m. El Jokili visita varios establecimientos de la Colonia Tovar.<br>
@@ -553,9 +554,9 @@
           </div>
 
           <div class="evento-card">
-            <div class="evento-fecha">Lunes · 16 Feb 2026</div>
-            <div class="evento-nombre">Fasnet-Mändig — Lunes de Carnaval</div>
-            <p class="evento-desc">
+            <div class="evento-fecha" data-i18n="ev5-fecha">Lunes · 16 Feb 2026</div>
+            <div class="evento-nombre" data-i18n="ev5-nombre">Fasnet-Mändig — Lunes de Carnaval</div>
+            <p class="evento-desc" data-i18n="ev5-desc">
               12:00 p.m. Tradicional <em>Jokiliumzug</em>, recorriendo las principales
               calles del pueblo hasta la <em>Jokili Brunnen</em>.<br>
               3:00 p.m. El Jokili visita varios establecimientos de la Colonia Tovar.<br>
@@ -565,9 +566,9 @@
           </div>
 
           <div class="evento-card">
-            <div class="evento-fecha">Martes · 17 Feb 2026</div>
-            <div class="evento-nombre">Fasnet-Zischdig — Trauerumzug — Despedida del Carnaval</div>
-            <p class="evento-desc">
+            <div class="evento-fecha" data-i18n="ev6-fecha">Martes · 17 Feb 2026</div>
+            <div class="evento-nombre" data-i18n="ev6-nombre">Fasnet-Zischdig — Trauerumzug — Despedida del Carnaval</div>
+            <p class="evento-desc" data-i18n="ev6-desc">
               11:00 a.m. Los Jokilis se reúnen para las últimas actividades despidiendo el Carnaval 2026.<br>
               7:00 p.m. Concentración en el C.C. Vista al Valle, sector Los Pinos; recorrido hasta
               la <em>Jokili Brunnen</em> donde se regresará el espíritu del carnaval a la tierra.<br>

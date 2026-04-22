@@ -64,6 +64,17 @@
       gap: .3rem;
       margin-right: .6rem;
     }
+    @media (max-width: 960px) {
+      .lang-toggle-btn {
+        padding: .2rem .59rem;
+      }
+      .lang-opt {
+        font-size: .99rem;
+      }
+      .lang-sep-char {
+        font-size: .47rem;
+      }
+    }
   `;
   document.head.appendChild(langStyle);
 

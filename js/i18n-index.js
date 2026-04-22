@@ -25,13 +25,13 @@
       'card-traje-title':       'Unser Häs',
       'card-traje-desc':        'Die Farben und die Bedeutung des Jokili-Häs',
       'card-rituales-title':    'Rituale und Traditionen',
-      'card-rituales-desc':     'Die Bräuche, die uns jeden Karneval ausmachen',
+      'card-rituales-desc':     'Die Bräuche, die uns jede Fasnet ausmachen',
       'card-sprichli-title':    'Jokili Sprichli',
-      'card-sprichli-desc':     'Die Karnevalssprüche im alemannischen Dialekt',
+      'card-sprichli-desc':     'Die Fasnetsprüche im alemannischen Dialekt',
       'card-personajes-title':  'Figuren',
-      'card-personajes-desc':   'Die emblematischen Figuren unserer Karnevalsgruppe',
+      'card-personajes-desc':   'Die emblematischen Figuren unserer Fasnetgruppe',
       'card-galeria-title':     'Galerie',
-      'card-galeria-desc':      'Fotos und Erinnerungen unserer Karnevals',
+      'card-galeria-desc':      'Fotos und Erinnerungen unserer Fasnet',
     }
   };
 

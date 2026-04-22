@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/style_v1.css">
   <script src="js/header.js" defer></script>
   <script src="js/footer.js" defer></script>
+  <script src="js/i18n-contacto.js" defer></script>
   <style>
     body {
       display: block;
@@ -273,7 +274,7 @@
 
       <div class="page-banner-content">
         <div class="page-banner-subtitulo">Jokili Verein</div>
-        <h1 class="page-banner-titulo">Contacto</h1>
+        <h1 class="page-banner-titulo" data-i18n="banner-titulo">Contacto</h1>
         <div class="page-banner-divider">
           <div class="page-banner-divider-dots">
             <div class="dot dot-amarillo"></div>
@@ -296,10 +297,10 @@
 
       <!-- INFO -->
       <div class="contacto-info">
-        <div class="info-titulo">Información</div>
+        <div class="info-titulo" data-i18n="info-titulo">Información</div>
 
         <div class="info-item">
-          <div class="info-label">Ubicación</div>
+          <div class="info-label" data-i18n="info-label-ubicacion">Ubicación</div>
           <div class="info-valor">
             Colonia Tovar<br>
             Estado Aragua, Venezuela
@@ -307,7 +308,7 @@
         </div>
 
         <div class="info-item">
-          <div class="info-label">Correo</div>
+          <div class="info-label" data-i18n="info-label-correo">Correo</div>
           <div class="info-valor">
             <a href="mailto:contacto@tovarerjokili.com">contacto@tovarerjokili.com</a>
           </div>
@@ -321,7 +322,7 @@
         </div>
 
         <div class="info-item">
-          <div class="info-label">Fundado</div>
+          <div class="info-label" data-i18n="info-label-fundado">Fundado</div>
           <div class="info-valor">1976 · Colonia Tovar</div>
         </div>
 
@@ -344,8 +345,8 @@
 
       <!-- FORMULARIO -->
       <div class="contacto-form-wrap">
-        <div class="form-titulo">Escríbenos</div>
-        <div class="form-subtitulo">Responderemos a la brevedad posible.</div>
+        <div class="form-titulo" data-i18n="form-titulo">Escríbenos</div>
+        <div class="form-subtitulo" data-i18n="form-subtitulo">Responderemos a la brevedad posible.</div>
 
         <form id="contactoForm" novalidate>
 
@@ -353,27 +354,27 @@
           <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
 
           <div class="form-grupo">
-            <label class="form-label" for="nombre">Nombre</label>
-            <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+            <label class="form-label" for="nombre" data-i18n="form-label-nombre">Nombre</label>
+            <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" data-i18n-ph="nombre-ph" required>
           </div>
 
           <div class="form-grupo">
-            <label class="form-label" for="email">Correo electrónico</label>
-            <input class="form-input" type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+            <label class="form-label" for="email" data-i18n="form-label-email">Correo electrónico</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="correo@ejemplo.com" data-i18n-ph="email-ph" required>
           </div>
 
           <div class="form-grupo">
-            <label class="form-label" for="asunto">Asunto</label>
-            <input class="form-input" type="text" id="asunto" name="asunto" placeholder="¿En qué podemos ayudarte?">
+            <label class="form-label" for="asunto" data-i18n="form-label-asunto">Asunto</label>
+            <input class="form-input" type="text" id="asunto" name="asunto" placeholder="¿En qué podemos ayudarte?" data-i18n-ph="asunto-ph">
           </div>
 
           <div class="form-grupo">
-            <label class="form-label" for="mensaje">Mensaje</label>
-            <textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            <label class="form-label" for="mensaje" data-i18n="form-label-mensaje">Mensaje</label>
+            <textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." data-i18n-ph="mensaje-ph" required></textarea>
           </div>
 
           <button class="form-btn" type="submit" id="formBtn">
-            <span id="formBtnTexto">Enviar mensaje</span>
+            <span id="formBtnTexto" data-i18n="form-btn-texto">Enviar mensaje</span>
           </button>
 
           <div class="form-aviso" id="formAviso"></div>

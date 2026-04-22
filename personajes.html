@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/style_v1.css">
   <script src="js/header.js" defer></script>
   <script src="js/footer.js" defer></script>
+  <script src="js/i18n-personajes.js" defer></script>
   <style>
     body {
       display: block;
@@ -567,7 +568,7 @@
     <section class="page-banner" style="background-image: url('imagenes/Jokili_5.png')" id="pageBanner">
       <div class="page-banner-content">
         
-        <h1 class="page-banner-titulo">Personajes dentro de la Organización</h1>
+        <h1 class="page-banner-titulo" data-i18n="banner-titulo">Personajes dentro de la Organización</h1>
         <div class="page-banner-divider">
           <div class="page-banner-divider-dots">
             <div class="dot dot-amarillo"></div>
@@ -586,7 +587,7 @@
     <div class="personajes-wrap">
 
       <div class="personajes-intro">
-        <p>
+        <p data-i18n="intro-p">
           Dentro de la organización existen diferentes figuras vinculadas a su estructura jerárquica,
           cada una con un significado específico, funciones, atribuciones, responsabilidades y beneficios.
           A través de ellas se pueden entender muchos aspectos de esta manifestación cultural que se ha
@@ -595,15 +596,15 @@
       </div>
 
       <nav class="quick-links" aria-label="Personajes emblemáticos">
-        <a href="#oberzunftmeister">Oberzunftmeister</a>
-        <a href="#zeremonienmeister">Zeremonienmeister</a>
-        <a href="#zunftmeisters">Zunftmeisters</a>
-        <a href="#oberjokili">Oberjokili</a>
-        <a href="#stadttier">Stadttier</a>
-        <a href="#ciguena">La Cigüeña</a>
-        <a href="#carga-bandera">Carga Bandera</a>
-        <a href="#carga-estandarte">Carga Estandarte</a>
-        <a href="#arlequines">Arlequines</a>
+        <a href="#oberzunftmeister" data-i18n="nav-oberzunftmeister">Oberzunftmeister</a>
+        <a href="#zeremonienmeister" data-i18n="nav-zeremonienmeister">Zeremonienmeister</a>
+        <a href="#zunftmeisters" data-i18n="nav-zunftmeisters">Zunftmeisters</a>
+        <a href="#oberjokili" data-i18n="nav-oberjokili">Oberjokili</a>
+        <a href="#stadttier" data-i18n="nav-stadttier">Stadttier</a>
+        <a href="#ciguena" data-i18n="nav-ciguena">La Cigüeña</a>
+        <a href="#carga-bandera" data-i18n="nav-carga-bandera">Carga Bandera</a>
+        <a href="#carga-estandarte" data-i18n="nav-carga-estandarte">Carga Estandarte</a>
+        <a href="#arlequines" data-i18n="nav-arlequines">Arlequines</a>
       </nav>
 
       <!-- ═══════════════════════════════════════════════════
@@ -613,20 +614,20 @@
         <div class="personaje-foto">
           <!-- <img src="imagenes/personaje_oberzunftmeister.jpg" alt="Oberzunftmeister"> -->
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <span class="personaje-foto-hint" data-i18n="foto-hint">Fotografía<br>del personaje</span>
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">Primer cargo — Escala jerárquica</div>
+        <div class="personaje-eyebrow" data-i18n="oberzunft-eyebrow">Primer cargo — Escala jerárquica</div>
         <h2>Oberzunftmeister</h2>
-        <div class="personaje-subtitulo">Maestro principal</div>
+        <div class="personaje-subtitulo" data-i18n="oberzunft-subtitulo">Maestro principal</div>
 
-        <p>
+        <p data-i18n="oberzunft-p1">
           Es el primer miembro en la escala jerárquica. Para optar por este cargo se debe tener una
           larga y reconocida trayectoria dentro de la organización, además de haber pasado por los
           cargos de Oberjokili, Stadttier y carga estandarte por lo menos alguna vez en su actividad
           como Jokili.
         </p>
-        <p>
+        <p data-i18n="oberzunft-p2">
           No viste como arlequín sino que posee un traje diferente compuesto por: un pantalón corto
           rojo amarrado justo debajo de las rodillas, medias amarillas, zapatos jokili, camisa blanca,
           chaleco rojo con botones y capa camisón vinotinto con solapas amarillas. Sombrero de tres
@@ -634,31 +635,30 @@
         </p>
 
         <div class="data-strip">
-          <span>Pantalón corto rojo</span>
-          <span>Medias amarillas</span>
-          <span>Chaleco rojo</span>
-          <span>Capa vinotinto</span>
-          <span>Sin máscara</span>
-          <span>Sombrero tres puntas</span>
+          <span data-i18n="oberzunft-tag1">Pantalón corto rojo</span>
+          <span data-i18n="oberzunft-tag2">Medias amarillas</span>
+          <span data-i18n="oberzunft-tag3">Chaleco rojo</span>
+          <span data-i18n="oberzunft-tag4">Capa vinotinto</span>
+          <span data-i18n="oberzunft-tag5">Sin máscara</span>
+          <span data-i18n="oberzunft-tag6">Sombrero tres puntas</span>
         </div>
 
-        <div class="miembros-titulo">Miembros que han ocupado este cargo desde la fundación</div>
+        <div class="miembros-titulo" data-i18n="oberzunft-miembros-titulo">Miembros que han ocupado este cargo desde la fundación</div>
         <ul class="miembros-lista">
-          <li><strong>Pablo Dürr Misle</strong> — 17 de febrero de 1977 al 21 de enero de 2006</li>
-          <li><strong>Ralf Andrés Muttach Fehr</strong> — Desde el 21 de enero de 2006 al ????</li>
-          <li><strong>Ronald Gutmann </strong> — Desde el ??? al ?????</li>
-          
+          <li data-i18n="oberzunft-miembro1"><strong>Pablo Dürr Misle</strong> — 17 de febrero de 1977 al 21 de enero de 2006</li>
+          <li data-i18n="oberzunft-miembro2"><strong>Ralf Andrés Muttach Fehr</strong> — Desde el 21 de enero de 2006 al 2015</li>
+          <li><strong>Ronald Gutmann</strong> — <span class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</span></li>
+          <li><strong>Rocky Dürr</strong> — <span class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</span></li>
         </ul>
 
         <div class="titular-wrap">
           <div class="titular-foto">
-            <!-- Reemplazar src con la foto del titular actual -->
             <img src="imagenes/ArgenisReel.png" alt="Foto del titular actual del cargo">
           </div>
           <div class="titular-info">
-            <div class="titular-label">Titular actual</div>
-            <div class="titular-nombre">Argenis Aurelio Gerig Smith</div>
-            <div class="titular-desde">Desde ????</div>
+            <div class="titular-label" data-i18n="oberzunft-titular-label">Titular actual</div>
+            <div class="titular-nombre" data-i18n="oberzunft-titular-nombre">Argenis Aurelio Gerig Smith</div>
+            <div class="titular-desde" data-i18n="oberzunft-titular-desde">Desde el 2020</div>
           </div>
         </div>
 
@@ -677,19 +677,19 @@
         <div class="personaje-foto">
           <!-- <img src="imagenes/personaje_zeremonienmeister.jpg" alt="Zeremonienmeister"> -->
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <span class="personaje-foto-hint" data-i18n="foto-hint">Fotografía<br>del personaje</span>
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">Segundo cargo — Escala jerárquica</div>
+        <div class="personaje-eyebrow" data-i18n="zeremonie-eyebrow">Segundo cargo — Escala jerárquica</div>
         <h2>Zeremonienmeister</h2>
-        <div class="personaje-subtitulo">Maestro de ceremonias</div>
+        <div class="personaje-subtitulo" data-i18n="zeremonie-subtitulo">Maestro de ceremonias</div>
 
-        <p>
+        <p data-i18n="zeremonie-p1">
           Suplente del maestro principal, segundo miembro en la escala jerárquica. Este cargo es
           propuesto por el anterior maestro de ceremonias. La reelección es válida sólo por abandono
           voluntario o muerte.
         </p>
-        <p>
+        <p data-i18n="zeremonie-p2">
           Es el encargado de animar y presidir cada una de las ceremonias, por lo cual sólo se escogen
           miembros con mucho carisma y desenvolvimiento. La vestimenta formal es similar a la del
           Oberzunftmeister, pero varía en ocasiones como el bautizo y el entierro, en que viste de
@@ -697,27 +697,25 @@
         </p>
 
         <div class="data-strip">
-          <span>Segundo en jerarquía</span>
-          <span>Propuesto por su predecesor</span>
-          <span>Capa negra en ceremonias especiales</span>
-          <span>Alto carisma requerido</span>
+          <span data-i18n="zeremonie-tag1">Segundo en jerarquía</span>
+          <span data-i18n="zeremonie-tag2">Propuesto por su predecesor</span>
+          <span data-i18n="zeremonie-tag3">Capa negra en ceremonias especiales</span>
+          <span data-i18n="zeremonie-tag4">Alto carisma requerido</span>
         </div>
 
-        <div class="miembros-titulo">Maestros de ceremonias hasta la fecha del libro</div>
+        <div class="miembros-titulo" data-i18n="zeremonie-miembros-titulo">Maestros de ceremonias hasta la fecha del libro</div>
         <ul class="miembros-lista">
-          <li><strong>Wolfgang Gutmann</strong> — Desde el 10 de octubre de 1977 hasta el 21 de enero de 2006</li>
-          
+          <li data-i18n="zeremonie-miembro1"><strong>Wolfgang Gutmann</strong> — Desde el 10 de octubre de 1977 hasta el 21 de enero de 2006</li>
         </ul>
 
         <div class="titular-wrap">
           <div class="titular-foto">
-            <!-- Reemplazar src con la foto del titular actual -->
-            <img src="imagenes/Escudo_Jokili.png" alt="Julio Carrillo Misle">
+            <img src="imagenes/JulioCarrillo.png" alt="Julio Carrillo Misle">
           </div>
           <div class="titular-info">
-            <div class="titular-label">Titular actual</div>
-            <div class="titular-nombre">Julio Carrillo Misle</div>
-            <div class="titular-desde">Desde el 21 de enero de 2006</div>
+            <div class="titular-label" data-i18n="zeremonie-titular-label">Titular actual</div>
+            <div class="titular-nombre" data-i18n="zeremonie-titular-nombre">Julio Carrillo Misle</div>
+            <div class="titular-desde" data-i18n="zeremonie-titular-desde">Desde el 21 de enero de 2006</div>
           </div>
         </div>
 
@@ -736,20 +734,20 @@
         <div class="personaje-foto">
         <!--<img src="imagenes/ZunftmeisterReel.png" alt="Zunftmeisters"> -->
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <span class="personaje-foto-hint" data-i18n="foto-hint">Fotografía<br>del personaje</span>
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">Miembros honorarios</div>
+        <div class="personaje-eyebrow" data-i18n="zunft-eyebrow">Miembros honorarios</div>
         <h2>Zunftmeisters</h2>
-        <div class="personaje-subtitulo">Maestros de la asociación</div>
+        <div class="personaje-subtitulo" data-i18n="zunft-subtitulo">Maestros de la asociación</div>
 
-        <p>
+        <p data-i18n="zunft-p1">
           Es la denominación para aquellos miembros honorarios —fundadores, autoridades, etc.— que
           han tenido trayectoria dentro de la organización o la comunidad. Visten igual al
           Oberzunftmeister. Tienen voz y voto en las asambleas.
         </p>
 
-        <div class="miembros-titulo">Miembros registrados al momento de la publicación del libro</div>
+        <div class="miembros-titulo" data-i18n="zunft-miembros-titulo">Miembros registrados al momento de la publicación del libro</div>
         <ul class="zunft-grid">
           <li>Paul Wödl — 15/03/1978 †</li>
           <li>Ignacio Muttach Gerig — 02/03/1984</li>
@@ -791,33 +789,33 @@
         <div class="personaje-foto">
           <!--<img src="imagenes/Oberjokili_SantiagoReel.png" alt="Oberjokili"> -->
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <span class="personaje-foto-hint" data-i18n="foto-hint">Fotografía<br>del personaje</span>
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">El honor más grande</div>
+        <div class="personaje-eyebrow" data-i18n="oberjokili-eyebrow">El honor más grande</div>
         <h2>Oberjokili</h2>
-        <div class="personaje-subtitulo">Jokili principal</div>
+        <div class="personaje-subtitulo" data-i18n="oberjokili-subtitulo">Jokili principal</div>
 
-        <p>
+        <p data-i18n="oberjokili-p1">
           Es el espíritu del carnaval. Sale de la fuente y se encarga de dirigir la comparsa durante
           todas las fiestas. Es el honor más grande que puede recibir un arlequín. Debe saltar más
           alto que el resto para sobresalir.
         </p>
-        <p>
+        <p data-i18n="oberjokili-p2">
           Lleva un Zepter: un cetro de madera que tiene tallada la cara del Jokili, y una medalla
           de madera que lo identifican. Es el único arlequín que no utiliza máscara sino un maquillaje
           especial. Para ser Oberjokili es necesario haber cargado el estandarte y el Stadttier.
         </p>
 
         <div class="data-strip">
-          <span>Sin máscara — maquillaje especial</span>
-          <span>Cetro de madera (Zepter)</span>
-          <span>Medalla de madera</span>
-          <span>Dirige la comparsa</span>
-          <span>Requiere: estandarte + Stadttier previos</span>
+          <span data-i18n="oberjokili-tag1">Sin máscara — maquillaje especial</span>
+          <span data-i18n="oberjokili-tag2">Cetro de madera (Zepter)</span>
+          <span data-i18n="oberjokili-tag3">Medalla de madera</span>
+          <span data-i18n="oberjokili-tag4">Dirige la comparsa</span>
+          <span data-i18n="oberjokili-tag5">Requiere: estandarte + Stadttier previos</span>
         </div>
 
-        <div class="miembros-titulo">Histórico de Oberjokilis por año</div>
+        <div class="miembros-titulo" data-i18n="oberjokili-historico">Histórico de Oberjokilis por año</div>
         <div class="oberjokili-grid">
           <div class="oberjokili-item"><div class="oberjokili-anio">1978</div><div class="oberjokili-nombre">Pablo Dürr Misle</div></div>
           <div class="oberjokili-item"><div class="oberjokili-anio">1979</div><div class="oberjokili-nombre">Pablo Dürr Misle</div></div>
@@ -840,26 +838,26 @@
           <div class="oberjokili-item"><div class="oberjokili-anio">2008</div><div class="oberjokili-nombre">Erik Maldonado Suhr</div></div>
           <div class="oberjokili-item"><div class="oberjokili-anio">2009</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
           <div class="oberjokili-item"><div class="oberjokili-anio">2010</div><div class="oberjokili-nombre">Daniela Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2011</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2012</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2011</div><div class="oberjokili-nombre">Andres Peruchito</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2012</div><div class="oberjokili-nombre">Luis Oropeza</div></div>
           <div class="oberjokili-item"><div class="oberjokili-anio">2013</div><div class="oberjokili-nombre">Ricardo Alvarez</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2014</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2015</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2016</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2017</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2018</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2019</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2020</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2021</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2022</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2023</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2024</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
-          <div class="oberjokili-item"><div class="oberjokili-anio">2025</div><div class="oberjokili-nombre">Aníbal Gerig Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2014</div><div class="oberjokili-nombre">Julio Bergman (Julito)</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2015</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2016</div><div class="oberjokili-nombre">Sr. Pedro Muttach</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2017</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2018</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2019</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2020</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2021</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2022</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2023</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2024</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
+          <div class="oberjokili-item"><div class="oberjokili-anio">2025</div><div class="oberjokili-nota" data-i18n="oberjokili-en-actualizacion">Datos en actualización</div></div>
           
 
         </div>
 
-        <p style="margin-top:.8rem; font-style:italic; font-size:.92rem; color:rgba(245,237,224,.5);">
+        <p style="margin-top:.8rem; font-style:italic; font-size:.92rem; color:rgba(245,237,224,.5);" data-i18n="oberjokili-nota-anios">
           Hubo años en que por contrariedades de diversa índole —tragedias o problemas políticos—
           no se celebró el Carnaval formalmente y no se escogió Oberjokili. En 2007 se hicieron
           dos nombramientos porque uno de los seleccionados acompañó al grupo que estuvo en Alemania
@@ -868,13 +866,12 @@
 
         <div class="titular-wrap">
           <div class="titular-foto">
-            <!-- Reemplazar src con la foto del Oberjokili actual -->
             <img src="imagenes/Escudo_Jokili.png" alt="Oberjokili actual" class="titular-foto-placeholder">
           </div>
           <div class="titular-info">
-            <div class="titular-label">Oberjokili actual</div>
-            <div class="titular-nombre">Santiago Gerig Gerber</div>
-            <div class="titular-desde">2026</div>
+            <div class="titular-label" data-i18n="oberjokili-titular-label">Oberjokili actual</div>
+            <div class="titular-nombre" data-i18n="oberjokili-titular-nombre">Santiago Gerig Gerber</div>
+            <div class="titular-desde" data-i18n="oberjokili-titular-desde">2026</div>
           </div>
         </div>
 
@@ -891,39 +888,37 @@
       ═══════════════════════════════════════════════════ -->
       <article class="personaje-card" id="stadttier">
         <div class="personaje-foto">
-          <!-- <img src="imagenes/personaje_stadttier.jpg" alt="Stadttier"> -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <img src="imagenes/Stattier.jpg" alt="Stadttier">
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">La mascota</div>
+        <div class="personaje-eyebrow" data-i18n="stadttier-eyebrow">La mascota</div>
         <h2>Stadttier</h2>
-        <div class="personaje-subtitulo">Animal de la ciudad</div>
+        <div class="personaje-subtitulo" data-i18n="stadttier-subtitulo">Animal de la ciudad</div>
 
-        <p>
+        <p data-i18n="stadttier-p1">
           Es la mascota de la organización. Encabeza los desfiles junto a los Zunftmeisters, el
           Oberjokili y el estandarte. Es un toro con una bata larga color rojo. Se considera uno
           de los trabajos más duros porque implica cargar esa estructura pesada durante todas las
           festividades.
         </p>
-        <p>
+        <p data-i18n="stadttier-p2">
           Le otorga grandes méritos al jokili que lo hace. Es una figura relativamente reciente:
           sale por primera vez en el desfile conmemorativo de los 150 años de la fundación de la
           Colonia Tovar en 1993.
         </p>
 
         <div class="data-strip">
-          <span>Figura de toro</span>
-          <span>Bata larga roja</span>
-          <span>Debut: 1993</span>
-          <span>Encabeza los desfiles</span>
-          <span>Trabajo de gran mérito</span>
+          <span data-i18n="stadttier-tag1">Figura de toro</span>
+          <span data-i18n="stadttier-tag2">Bata larga roja</span>
+          <span data-i18n="stadttier-tag3">Debut: 1993</span>
+          <span data-i18n="stadttier-tag4">Encabeza los desfiles</span>
+          <span data-i18n="stadttier-tag5">Trabajo de gran mérito</span>
         </div>
 
         <div class="update-zone">
-          <div class="update-zone-label">Pendiente de actualización</div>
-          <p>Añadir historial de miembros que han portado el Stadttier desde 1993, si se dispone del registro.</p>
-          <div class="update-field">[ Historial de portadores por año ]</div>
+          <div class="update-zone-label" data-i18n="stadttier-update-label">Pendiente de actualización</div>
+          <p data-i18n="stadttier-update-p">Añadir historial de miembros que han portado el Stadttier desde 1993, si se dispone del registro.</p>
+          <div class="update-field" data-i18n="stadttier-update-field">[ Historial de portadores por año ]</div>
         </div>
 
         <div class="banda-colores">
@@ -937,30 +932,28 @@
       ═══════════════════════════════════════════════════ -->
       <article class="personaje-card" id="ciguena">
         <div class="personaje-foto">
-          <!-- <img src="imagenes/personaje_ciguena.jpg" alt="La Cigüeña"> -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <img src="imagenes/Ciiguena.png" alt="La Cigüeña">
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">Símbolo de continuidad — Figura especial</div>
+        <div class="personaje-eyebrow" data-i18n="ciguena-eyebrow">Símbolo de continuidad — Figura especial</div>
         <h2>La Cigüeña</h2>
-        <div class="personaje-subtitulo">Mensajera de la tradición</div>
+        <div class="personaje-subtitulo" data-i18n="ciguena-subtitulo">Mensajera de la tradición</div>
 
-        <p>
+        <p data-i18n="ciguena-p1">
           Representa la fertilidad del Jokili Verein: todo hijo o hija de un arlequín nace
           ya como Jokili, asegurando que la tradición se renueve de generación en generación.
         </p>
-        <p>
+        <p data-i18n="ciguena-p2">
           Cada año, el rol recae sobre el padre cuyo hijo nació más cerca de las fechas de
-          carnaval. 
+          carnaval.
         </p>
 
         <div class="data-strip">
-          <span>Figura de fertilidad</span>
-          <span>Hijo de Jokili es Jokili</span>
-          <span>Lo porta el padre más activo</span>
-          <span>Preservación generacional</span>
-          <span>Figura de nueva creación</span>
+          <span data-i18n="ciguena-tag1">Figura de fertilidad</span>
+          <span data-i18n="ciguena-tag2">Hijo de Jokili es Jokili</span>
+          <span data-i18n="ciguena-tag3">Lo porta el padre más activo</span>
+          <span data-i18n="ciguena-tag4">Preservación generacional</span>
+          <span data-i18n="ciguena-tag5">Figura de nueva creación</span>
         </div>
 
         
@@ -976,28 +969,26 @@
       ═══════════════════════════════════════════════════ -->
       <article class="personaje-card" id="carga-bandera">
         <div class="personaje-foto">
-          <!-- <img src="imagenes/personaje_carga_bandera.jpg" alt="Carga Bandera"> -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <img src="imagenes/Estandartes.jpg" alt="Carga Bandera">
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">Rol especial en desfile</div>
+        <div class="personaje-eyebrow" data-i18n="bandera-eyebrow">Rol especial en desfile</div>
         <h2>Carga Bandera</h2>
 
-        <p>
+        <p data-i18n="bandera-p1">
           Es el arlequín que porta la bandera del Jokili Verein durante toda la festividad.
           En eventos internacionales porta el Pabellón Nacional.
         </p>
 
         <div class="data-strip">
-          <span>Bandera del Jokili Verein</span>
-          <span>Pabellón Nacional en eventos internacionales</span>
+          <span data-i18n="bandera-tag1">Bandera del Jokili Verein</span>
+          <span data-i18n="bandera-tag2">Pabellón Nacional en eventos internacionales</span>
         </div>
 
         <div class="update-zone">
-          <div class="update-zone-label">Pendiente de actualización</div>
-          <p>Añadir historial o miembro actual designado para este cargo.</p>
-          <div class="update-field">[ Titular actual y/o historial ]</div>
+          <div class="update-zone-label" data-i18n="bandera-update-label">Pendiente de actualización</div>
+          <p data-i18n="bandera-update-p">Añadir historial o miembro actual designado para este cargo.</p>
+          <div class="update-field" data-i18n="bandera-update-field">[ Titular actual y/o historial ]</div>
         </div>
 
         <div class="banda-colores">
@@ -1013,27 +1004,27 @@
         <div class="personaje-foto">
           <!-- <img src="imagenes/personaje_carga_estandarte.jpg" alt="Carga Estandarte"> -->
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <span class="personaje-foto-hint" data-i18n="foto-hint">Fotografía<br>del personaje</span>
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">Rol especial en desfile</div>
+        <div class="personaje-eyebrow" data-i18n="estandarte-eyebrow">Rol especial en desfile</div>
         <h2>Carga Estandarte</h2>
 
-        <p>
+        <p data-i18n="estandarte-p1">
           Es el arlequín encargado de llevar el estandarte que identifica a la comparsa durante
           toda la festividad. Haber portado el estandarte es uno de los requisitos para acceder
           al cargo de Oberjokili.
         </p>
 
         <div class="data-strip">
-          <span>Estandarte de la comparsa</span>
-          <span>Requisito previo para Oberjokili</span>
+          <span data-i18n="estandarte-tag1">Estandarte de la comparsa</span>
+          <span data-i18n="estandarte-tag2">Requisito previo para Oberjokili</span>
         </div>
 
         <div class="update-zone">
-          <div class="update-zone-label">Pendiente de actualización</div>
-          <p>Añadir historial o miembro actual designado para este cargo.</p>
-          <div class="update-field">[ Titular actual y/o historial ]</div>
+          <div class="update-zone-label" data-i18n="estandarte-update-label">Pendiente de actualización</div>
+          <p data-i18n="estandarte-update-p">Añadir historial o miembro actual designado para este cargo.</p>
+          <div class="update-field" data-i18n="estandarte-update-field">[ Titular actual y/o historial ]</div>
         </div>
 
         <div class="banda-colores">
@@ -1047,33 +1038,31 @@
       ═══════════════════════════════════════════════════ -->
       <article class="personaje-card" id="arlequines">
         <div class="personaje-foto">
-          <img src="imagenes/Jokili_10Reel.png" alt="Arlequines"> -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:.18"><rect x="3" y="3" width="18" height="18" rx="2" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><circle cx="8.5" cy="8.5" r="1.5" stroke="rgba(245,237,224,.9)" stroke-width="1.3"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="rgba(245,237,224,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="personaje-foto-hint">Fotografía<br>del personaje</span>
+          <img src="imagenes/Jokili_10Reel.png" alt="Arlequines">
         </div>
         <div class="personaje-contenido">
-        <div class="personaje-eyebrow">La comparsa</div>
+        <div class="personaje-eyebrow" data-i18n="arlequines-eyebrow">La comparsa</div>
         <h2>Arlequines</h2>
 
-        <p>
+        <p data-i18n="arlequines-p1">
           Son todos los miembros de la agrupación que visten de Jokili. Se clasifican en cuatro
           categorías según su trayectoria dentro de la organización:
         </p>
 
         <ul class="miembros-lista">
-          <li>
+          <li data-i18n="arlequines-cat1">
             <strong>Aprendices sin bautizar</strong> — Miembros nuevos que aún no han recibido
             el bautizo. Son los únicos que no tienen voto en las asambleas.
           </li>
-          <li>
+          <li data-i18n="arlequines-cat2">
             <strong>Activos sin bautizar</strong> — Miembros con participación activa, pendientes
             aún del rito de bautizo oficial.
           </li>
-          <li>
+          <li data-i18n="arlequines-cat3">
             <strong>Activos bautizados</strong> — Miembros bautizados con plena participación y
             derecho a voto en asambleas.
           </li>
-          <li>
+          <li data-i18n="arlequines-cat4">
             <strong>Oficiales bautizados</strong> — Miembros con mayor trayectoria y
             responsabilidades dentro de la organización.
           </li>

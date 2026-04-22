@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/style_v1.css">
   <script src="js/header.js" defer></script>
   <script src="js/footer.js" defer></script>
+  <script src="js/i18n-rituales.js" defer></script>
   <style>
     body {
       display: block;
@@ -113,20 +114,15 @@
       margin-bottom: 1.6rem;
     }
 
-    /* Layout: texto + foto en dos columnas */
+    /* Layout: texto arriba, foto abajo */
     .ritual-body {
-      display: grid;
-      grid-template-columns: 1fr clamp(220px, 30%, 320px);
-      gap: 2rem;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
     }
 
     .ritual-body.foto-izq {
-      grid-template-columns: clamp(220px, 30%, 320px) 1fr;
-    }
-
-    .ritual-body.foto-izq .ritual-foto {
-      order: -1;
+      flex-direction: column;
     }
 
     .ritual-texto p {
@@ -195,7 +191,7 @@
 
     .ritual-foto-frame {
       width: 100%;
-      aspect-ratio: 3/4;
+      aspect-ratio: 16/9;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid rgba(201,151,43,.3);
@@ -216,7 +212,7 @@
     }
 
     .ritual-foto-frame.cuadrada {
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/9;
     }
 
     .foto-placeholder-icon {
@@ -296,13 +292,6 @@
 
     /* Responsive */
     @media (max-width: 860px) {
-      .ritual-body,
-      .ritual-body.foto-izq {
-        grid-template-columns: 1fr;
-      }
-      .ritual-body.foto-izq .ritual-foto { order: 0; }
-      .ritual-foto-frame { aspect-ratio: 16/9; }
-      .ritual-foto-frame.cuadrada { aspect-ratio: 16/9; }
       .ritual-subtitulo { font-size: 1rem; }
     }
 
@@ -333,9 +322,9 @@
 
   <main>
 
-    <section class="page-banner" style="background-image: url('imagenes/Jokili_2.png')" id="pageBanner">
+    <section class="page-banner" style="background-image: url('imagenes/Jokili_12Reel.png')" id="pageBanner">
       <div class="page-banner-content">
-        <h1 class="page-banner-titulo">Rituales con un Toque Venezolano</h1>
+        <h1 class="page-banner-titulo" data-i18n="banner-titulo">Rituales con un Toque Venezolano</h1>
         <div class="page-banner-divider">
           <div class="page-banner-divider-dots">
             <div class="dot dot-amarillo"></div>
@@ -354,7 +343,7 @@
     <div class="rituales-wrap">
 
       <div class="rituales-intro">
-        <p>
+        <p data-i18n="intro-p">
           Alrededor del Jokili se desarrollan una serie de rituales que en conjunto son llamados
           juegos de carnaval. Estas ceremonias simbolizan el despertar, la vida y la muerte del
           espíritu del carnaval. Cada uno con características propias y llenos de jocosidad,
@@ -364,11 +353,11 @@
       </div>
 
       <nav class="quick-links" aria-label="Rituales">
-        <a href="#bautizo">El Bautizo</a>
-        <a href="#batas-blancas">Las Batas Blancas</a>
-        <a href="#misa">La Misa</a>
-        <a href="#dias-carnaval">Días de Carnaval</a>
-        <a href="#entierro">El Entierro del Jokili</a>
+        <a href="#bautizo" data-i18n="nav-bautizo">El Bautizo</a>
+        <a href="#batas-blancas" data-i18n="nav-batas">Las Batas Blancas</a>
+        <a href="#misa" data-i18n="nav-misa">La Misa</a>
+        <a href="#dias-carnaval" data-i18n="nav-dias">Días de Carnaval</a>
+        <a href="#entierro" data-i18n="nav-entierro">La Despedida del Narr</a>
       </nav>
 
       <!-- ═══════════════════════════════════════════════════
@@ -376,19 +365,19 @@
       ═══════════════════════════════════════════════════ -->
       <article class="ritual-card" id="bautizo">
         <div class="ritual-eyebrow">11/11 a las 11:11</div>
-        <h2>El Bautizo</h2>
+        <h2 data-i18n="bautizo-h2">El Bautizo</h2>
         <div class="ritual-subtitulo">Taufen</div>
 
         <div class="ritual-body">
           <div class="ritual-texto">
-            <p>
+            <p data-i18n="bautizo-p1">
               Las actividades de esta agrupación dan inicio, formalmente, el día 11 del mes 11
               a las 11 y 11 de la noche. En esta fecha se declara el Carnaval en Alemania, y en
               la Colonia Tovar este día coincide con la celebración del aniversario del patrono
               del pueblo, San Martín de Tours. Esa noche se da la bienvenida a los nuevos
               miembros bautizándolos.
             </p>
-            <p>
+            <p data-i18n="bautizo-p2">
               En el ritual participan el maestro de ceremonias, los monaguillos, los jokilis y
               todo el que quiere curiosear. Durante el acto los nuevos miembros, que deben ser
               mayores de edad, son mojados con agua helada mientras recitan dichos Jokili o
@@ -405,7 +394,7 @@
             </div>
 
             <div class="ritual-testimonio">
-              <p>
+              <p data-i18n="bautizo-testimonio">
                 "El chapuzón no se acaba hasta que no repites bien lo que te dijo el
                 Zeremonienmaister (maestro de ceremonias), y con ese frío. Pero vale la pena
                 porque la gente de aquí y de afuera lo disfruta mucho, nosotros le ponemos
@@ -416,9 +405,9 @@
 
             <div class="ritual-tags">
               <span>11 / 11 · 11:11 pm</span>
-              <span>Agua helada</span>
+              <span data-i18n="bautizo-tag-agua">Agua helada</span>
               <span>Alemannisch</span>
-              <span>Nuevos miembros</span>
+              <span data-i18n="bautizo-tag-miembros">Nuevos miembros</span>
             </div>
           </div>
 
@@ -432,7 +421,7 @@
               </svg>
               <div class="foto-placeholder-label">Añadir foto del bautizo</div>
             </div>
-            <div class="ritual-foto-caption">Ceremonia de bautizo</div>
+            <div class="ritual-foto-caption" data-i18n="bautizo-caption">Ceremonia de bautizo</div>
           </div>
         </div>
 
@@ -445,19 +434,19 @@
            2. LAS BATAS BLANCAS (HEMDGLUNKERUMZUG)
       ═══════════════════════════════════════════════════ -->
       <article class="ritual-card" id="batas-blancas">
-        <div class="ritual-eyebrow">Jueves antes de Carnaval</div>
-        <h2>Las Batas Blancas</h2>
+        <div class="ritual-eyebrow" data-i18n="batas-eyebrow">Jueves antes de Carnaval</div>
+        <h2 data-i18n="batas-h2">Las Batas Blancas</h2>
         <div class="ritual-subtitulo">Hemdglunkerumzug</div>
 
         <div class="ritual-body foto-izq">
           <div class="ritual-texto">
-            <p>
+            <p data-i18n="batas-p1">
               El Jokili despierta el jueves antes de Carnaval en la llamada noche de las batas
               blancas. Los miembros del grupo, y quienes quieren acompañarlos, vestidos de
               blanco y tocando pitos e instrumentos ruidosos, recorren las calles del pueblo
               para lograr que el arlequín abandone su profundo sueño.
             </p>
-            <p>
+            <p data-i18n="batas-p2">
               Acto seguido, los asistentes y el maestro de ceremonias rodean la fuente
               pidiéndole que salga. Todos gritan: <em>Jokili Kumm</em> —que significa
               «Jokili ven»— y sin mucho esfuerzo, en medio de un ambiente de alegría,
@@ -466,17 +455,17 @@
             </p>
 
             <div class="ritual-tags">
-              <span>Vestimenta blanca</span>
-              <span>Desfile nocturno</span>
-              <span>La fuente</span>
+              <span data-i18n="batas-tag-vestimenta">Vestimenta blanca</span>
+              <span data-i18n="batas-tag-desfile">Desfile nocturno</span>
+              <span data-i18n="batas-tag-fuente">La fuente</span>
               <span>Jokili Kumm</span>
-              <span>Emerge el Oberjokili</span>
+              <span data-i18n="batas-tag-oberjokili">Emerge el Oberjokili</span>
             </div>
           </div>
 
           <div class="ritual-foto">
             <div class="ritual-foto-frame">
-              <!-- Reemplazar con: <img src="ruta/foto.jpg" alt="Desfile nocturno en batas blancas"> -->
+              <img src="imagenes/Batasblancas.png" alt="Desfile nocturno en batas blancas">
               <svg class="foto-placeholder-icon" viewBox="0 0 24 24" fill="none">
                 <rect x="3" y="5" width="18" height="14" rx="2" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
                 <circle cx="12" cy="11" r="3" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
@@ -484,7 +473,7 @@
               </svg>
               <div class="foto-placeholder-label">Añadir foto de las batas blancas</div>
             </div>
-            <div class="ritual-foto-caption">Desfile nocturno en batas blancas</div>
+            <div class="ritual-foto-caption" data-i18n="batas-caption">Desfile nocturno en batas blancas</div>
           </div>
         </div>
 
@@ -497,43 +486,43 @@
            3. LA MISA — VIERNES DE CARNAVAL
       ═══════════════════════════════════════════════════ -->
       <article class="ritual-card" id="misa">
-        <div class="ritual-eyebrow">Viernes de Carnaval — Iglesia San Martín</div>
-        <h2>La Misa</h2>
-        <div class="ritual-subtitulo">Solemne celebración en la Iglesia Católica San Martín de Tours</div>
+        <div class="ritual-eyebrow" data-i18n="misa-eyebrow">Viernes de Carnaval — Iglesia San Martín</div>
+        <h2 data-i18n="misa-h2">La Misa</h2>
+        <div class="ritual-subtitulo" data-i18n="misa-subtitulo">Solemne celebración en la Iglesia Católica San Martín de Tours</div>
 
         <div class="ritual-body">
           <div class="ritual-texto">
-            <p>
+            <p data-i18n="misa-p1">
               El viernes de Carnaval, antes de que comiencen los días de desfile y jolgorio,
               la organización se reúne en la Iglesia Católica San Martín de Tours de la
               Colonia Tovar para una misa solemne. Este momento recuerda que el Carnaval es,
               ante todo, una fiesta de raíz católica: una celebración de la vida que precede
               al recogimiento de la Cuaresma.
             </p>
-            <p>
+            <p data-i18n="misa-p2">
               Durante la ceremonia se elevan palabras de gratitud por todo lo bueno que
               aconteció a lo largo del año: los logros de la comunidad, los nuevos miembros
               que se sumaron a la organización, y las alegrías compartidas bajo el espíritu
               del Jokili. Es un instante de pausa y reflexión en medio de la festividad.
             </p>
-            <p>
+            <p data-i18n="misa-p3">
               La misa incluye también un sentido honorario a los jokilis que ya no están
               entre nosotros. Sus nombres resuenan en el interior de la iglesia como
               recordatorio de que quienes forjaron esta tradición siguen presentes en cada
               cascabel, en cada sprichli y en cada salto de arlequín.
             </p>
-            <p>
+            <p data-i18n="misa-p4">
               Este ritual reafirma que El Jokili no es únicamente una actividad carnestolenda:
               es familia, es cultura, es identidad. Una herencia que se cuida y se transmite
               de generación en generación en la Colonia Tovar.
             </p>
 
             <div class="ritual-tags">
-              <span>Viernes de Carnaval</span>
-              <span>Iglesia San Martín de Tours</span>
-              <span>Acción de gracias</span>
-              <span>Honorario a los fallecidos</span>
-              <span>Familia y cultura</span>
+              <span data-i18n="misa-tag-viernes">Viernes de Carnaval</span>
+              <span data-i18n="misa-tag-iglesia">Iglesia San Martín de Tours</span>
+              <span data-i18n="misa-tag-accion">Acción de gracias</span>
+              <span data-i18n="misa-tag-honorario">Honorario a los fallecidos</span>
+              <span data-i18n="misa-tag-familia">Familia y cultura</span>
             </div>
           </div>
 
@@ -544,7 +533,7 @@
                 
               
             </div>
-            <div class="ritual-foto-caption">Misa solemne en la Iglesia San Martín de Tours</div>
+            <div class="ritual-foto-caption" data-i18n="misa-caption">Misa solemne en la Iglesia San Martín de Tours</div>
           </div>
         </div>
 
@@ -557,20 +546,20 @@
            4. DÍAS DE CARNAVAL (FASNETSTAGE)
       ═══════════════════════════════════════════════════ -->
       <article class="ritual-card" id="dias-carnaval">
-        <div class="ritual-eyebrow">Sábado a lunes de Carnaval</div>
-        <h2>Días de Carnaval</h2>
+        <div class="ritual-eyebrow" data-i18n="dias-eyebrow">Sábado a lunes de Carnaval</div>
+        <h2 data-i18n="dias-h2">Días de Carnaval</h2>
         <div class="ritual-subtitulo">Fasnetstage</div>
 
         <div class="ritual-body">
           <div class="ritual-texto">
-            <p>
+            <p data-i18n="dias-p1">
               Desde el sábado al lunes de la temporada carnestolenda, los miembros que integran
               El Jokili visitan los diferentes hoteles y restaurantes de la Colonia Tovar.
               También recorren las calles con sus pintorescas carrozas en forma de zapato y
               sombrero jokili, mientras danzan al ritmo de la música alemana y juegan golpeando
               a los turistas con una vejiga de cerdo seca amarrada a un bastón.
             </p>
-            <p>
+            <p data-i18n="dias-p2">
               Es por ello que durante todos estos días puede escucharse como, al compás de los
               cascabeles de sus trajes, entonan dichos de Carnaval que tienen más de 200 años
               de antigüedad. Cantos que son parte de la tradición oral, ya que eran conocidos
@@ -579,11 +568,11 @@
             </p>
 
             <div class="ritual-tags">
-              <span>Sábado a lunes</span>
-              <span>Carrozas alegóricas</span>
-              <span>Vejiga de cerdo</span>
-              <span>Cantos + 200 años</span>
-              <span>Cascabeles</span>
+              <span data-i18n="dias-tag-sabado">Sábado a lunes</span>
+              <span data-i18n="dias-tag-carrozas">Carrozas alegóricas</span>
+              <span data-i18n="dias-tag-vejiga">Vejiga de cerdo</span>
+              <span data-i18n="dias-tag-cantos">Cantos + 200 años</span>
+              <span data-i18n="dias-tag-cascabeles">Cascabeles</span>
             </div>
           </div>
 
@@ -597,7 +586,7 @@
               </svg>
               <div class="foto-placeholder-label">Añadir foto del desfile</div>
             </div>
-            <div class="ritual-foto-caption">Desfile de Carnaval</div>
+            <div class="ritual-foto-caption" data-i18n="dias-caption">Desfile de Carnaval</div>
           </div>
         </div>
 
@@ -607,63 +596,75 @@
       </article>
 
       <!-- ═══════════════════════════════════════════════════
-           4. EL ENTIERRO DEL JOKILI (TRAUERUMZUG)
+           5. LA DESPEDIDA DEL NARR (TRAUERUMZUG · FASNETVERBRENNUNG)
       ═══════════════════════════════════════════════════ -->
       <article class="ritual-card" id="entierro">
-        <div class="ritual-eyebrow">Martes de Carnaval</div>
-        <h2>El Entierro del Jokili</h2>
-        <div class="ritual-subtitulo">Trauerumzug</div>
+        <div class="ritual-eyebrow" data-i18n="entierro-eyebrow">Fastnachtsdienstag — Martes de Carnaval</div>
+        <h2 data-i18n="entierro-h2">La Despedida del Espíritu de Carnaval</h2>
+        <div class="ritual-subtitulo">Trauerumzug · Fasnetverbrennung</div>
 
         <div class="ritual-body foto-izq">
           <div class="ritual-texto">
-            <p>
-              Todo llega a su final el martes de Carnaval. Se deja de un lado el rojo que
-              simboliza la alegría de las fiestas para mostrar el luto que anuncia la muerte
-              del espíritu del carnaval. Esa noche los habitantes del pueblo y miembros del
-              grupo se visten del color de la tristeza para, entre sollozos y lágrimas, realizar
-              la ceremonia de entierro en la que se regresa al Jokili a la fuente para que
-              descanse, pero sólo hasta el próximo año.
+            <p data-i18n="entierro-p1">
+              En el sur de Alemania, el espíritu del carnaval recibe el nombre de <em>Narr</em>
+              —el bufón o arlequín—, y la temporada que él gobierna se conoce como la
+              <em>fünfte Jahreszeit</em>: la quinta estación del año. Todo llega a su fin el
+              martes de carnaval (<em>Fastnachtsdienstag</em>), cuando la alegría de los días
+              de jolgorio cede paso al luto que anuncia la muerte del Narr y la llegada de la
+              Cuaresma (<em>Fastenzeit</em>).
             </p>
-            <p>
-              Para el desfile de despedida los miembros se reúnen a las cinco de la tarde.
-              Predomina el color negro con el cuello blanco del traje jokili y los zapatos rojos.
-              Algunos utilizan pelucas, barbas, bigotes, sombreros de diferentes formas y
-              maquillaje. Hacen presencia unas cuantas viudas que lloran su pérdida detrás de
-              un velo negro, además de varios sepultureros con sus cuervos o herramientas al
-              hombro.
+            <p data-i18n="entierro-p2">
+              En la tradición schwäbisch-alemannische, la despedida del Narr se materializa
+              en el <em>Trauerumzug</em> —desfile fúnebre— y en la <em>Fasnetverbrennung</em>:
+              la quema ritual de una figura de paja que representa al espíritu del carnaval.
+              Con las llamas, se consume simbólicamente todo lo vivido en la quinta estación,
+              dejando paso al recogimiento del <em>Aschermittwoch</em> (Miércoles de Ceniza).
+              En algunos grupos este momento se completa con la <em>Geldbeutelwäsche</em>
+              —el lavado de bolsillos vacíos—, un gesto jocoso de luto que cierra la temporada.
             </p>
-            <p>
-              Desde el año 2005, El Jokili de la Colonia Tovar introdujo la figura del
-              <em>Jokili Negro</em>: cuatro arlequines en traje gris, negro y blanco acompañan
-              al maestro de ceremonias y a los monaguillos mientras pasan en una carroza con
-              música fúnebre.
+            <p data-i18n="entierro-p3">
+              El Jokili de la Colonia Tovar honra esta tradición a su manera. Los miembros
+              se reúnen a las cinco de la tarde vistiendo de negro —luto por el Narr que se
+              marcha— con el cuello blanco del <em>Häs</em> y los zapatos rojos. Pelucas,
+              barbas postizas, sombreros de distintas formas y maquillaje completan la
+              estampa. Hacen presencia unas cuantas viudas que lloran tras un velo negro
+              y varios sepultureros con sus cuervos o herramientas al hombro.
             </p>
-            <p>
-              Al culminar el desfile y la ceremonia de despedida, se dejan de un lado los
-              formalismos para dar inicio a una fiesta en la que se puede bailar, comer y
-              beber en honor al Jokili que regresará el siguiente Carnaval.
+            <p data-i18n="entierro-p4">
+              Desde el año 2005, la agrupación incorporó la figura del <em>Jokili Negro</em>:
+              cuatro arlequines en traje gris, negro y blanco acompañan al
+              <em>Zeremonienmaister</em> y a los monaguillos mientras desfilan en una carroza
+              con música fúnebre. El Narr —encarnado en el Oberjokili— es devuelto a la fuente
+              para que descanse hasta el próximo año, con la certeza de que volverá a despertar
+              el 11 de noviembre a las 11:11.
+            </p>
+            <p data-i18n="entierro-p5">
+              Al culminar la ceremonia, los formalismos se disuelven y da inicio la fiesta de
+              despedida: baile, comida y brindis en honor al Narr que ya duerme, pero que
+              —como reza la costumbre— regresará.
             </p>
 
             <div class="ritual-tags">
-              <span>Martes de Carnaval</span>
-              <span>Vestimenta negra</span>
-              <span>Jokili Negro — desde 2005</span>
-              <span>Regreso a la fuente</span>
-              <span>Sepultureros</span>
+              <span data-i18n="entierro-tag-martes">Fastnachtsdienstag</span>
+              <span data-i18n="entierro-tag-narr">El Narr — fünfte Jahreszeit</span>
+              <span data-i18n="entierro-tag-negro">Trauerumzug · luto</span>
+              <span data-i18n="entierro-tag-jnegro">Jokili Negro — desde 2005</span>
+              <span data-i18n="entierro-tag-fuente">Fasnetverbrennung · fuente</span>
+              <span data-i18n="entierro-tag-sep">Geldbeutelwäsche</span>
             </div>
           </div>
 
           <div class="ritual-foto">
             <div class="ritual-foto-frame">
-              <!-- Reemplazar con: <img src="ruta/foto.jpg" alt="El entierro del Jokili"> -->
+              <img src="imagenes/Despedida_4.png" alt="La despedida del Narr — Trauerumzug"> -->
               <svg class="foto-placeholder-icon" viewBox="0 0 24 24" fill="none">
                 <rect x="3" y="5" width="18" height="14" rx="2" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
                 <circle cx="12" cy="11" r="3" stroke="rgba(245,237,224,.5)" stroke-width="1.5"/>
                 <path d="M3 17l4-4 3 3 3-3 4 4" stroke="rgba(245,237,224,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <div class="foto-placeholder-label">Añadir foto del entierro</div>
+              <div class="foto-placeholder-label">Añadir foto del Trauerumzug</div>
             </div>
-            <div class="ritual-foto-caption">El entierro del Jokili — Trauerumzug</div>
+            <div class="ritual-foto-caption" data-i18n="entierro-caption">La despedida del Narr — Trauerumzug · Fasnetverbrennung</div>
           </div>
         </div>
 
@@ -673,7 +674,7 @@
       </article>
 
       <div class="nota-pie">
-        <p>
+        <p data-i18n="nota-pie">
           Si bien es cierto que el Jokili de la Colonia Tovar conserva en esencia las normas y rituales
           de la asociación original, al presenciar cualquiera de las ceremonias se hace evidente el
           toque criollo. Diferencias que son el resultado de la exitosa mezcla entre la disciplina

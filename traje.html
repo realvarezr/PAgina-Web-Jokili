@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/style_v1.css">
   <script src="js/header.js" defer></script>
   <script src="js/footer.js" defer></script>
+  <script src="js/i18n-traje.js" defer></script>
   <style>
     body {
       display: block;
@@ -412,6 +413,37 @@
   }
 }
 
+    .foto-placeholder {
+      margin-top: 1.4rem;
+      border-radius: 10px;
+      border: 1px dashed rgba(201,151,43,.3);
+      background: rgba(0,0,0,.12);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: .7rem;
+      color: rgba(245,237,224,.25);
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .foto-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .component-card.wide .foto-placeholder {
+      aspect-ratio: 16/9;
+    }
+
 
   </style>
 </head>
@@ -423,8 +455,8 @@
       <div class="page-banner-content">
         </div>
       <div class="page-banner-content">
-        <div class="page-banner-subtitulo">Tradicion, simbolo y artesania</div>
-        <h1 class="page-banner-titulo">Nuestro Traje</h1>
+        <div class="page-banner-subtitulo" data-i18n="banner-subtitulo">Tradicion, simbolo y artesania</div>
+        <h1 class="page-banner-titulo" data-i18n="banner-titulo">Nuestro Traje</h1>
         <div class="page-banner-divider">
           <div class="page-banner-divider-dots">
             <div class="dot dot-amarillo"></div>
@@ -443,7 +475,7 @@
     <div class="traje-wrap">
 
       <div class="traje-intro" id="intro">
-        <p>
+        <p data-i18n="intro-p">
           El traje tradicional del Jokili de la Colonia Tovar conserva el espiritu del arlequin
           del Kaiserstuhl, pero adquiere una identidad propia en Venezuela: un lenguaje visual
           tricolor, una mascara de fuerte personalidad y una confeccion artesanal que sigue
@@ -456,48 +488,52 @@
 
         <a class="hs" href="#traje-gorro" style="left:36%;top:14%;" aria-label="Gorro">
           <div class="hs-dot"></div>
-          <div class="hs-tip">Gorro de tres puntas</div>
+          <div class="hs-tip" data-i18n="hs-tip-gorro">Gorro de tres puntas</div>
         </a>
         <a class="hs" href="#baston" style="left:68%;top:20%;" aria-label="Baston">
           <div class="hs-dot"></div>
-          <div class="hs-tip">Baston con vejiga</div>
+          <div class="hs-tip" data-i18n="hs-tip-baston">Baston con vejiga</div>
         </a>
         <a class="hs" href="#mascara" style="left:37%;top:24%;" aria-label="Mascara">
           <div class="hs-dot"></div>
-          <div class="hs-tip">Mascara de madera</div>
+          <div class="hs-tip" data-i18n="hs-tip-mascara">Mascara de madera</div>
         </a>
         <a class="hs" href="#cuello" style="left:38%;top:34%;" aria-label="Cuello">
           <div class="hs-dot"></div>
-          <div class="hs-tip">Cuello blanco</div>
+          <div class="hs-tip" data-i18n="hs-tip-cuello">Cuello blanco</div>
         </a>
         <a class="hs" href="#flecos" style="left:44%;top:58%;" aria-label="Flecos">
           <div class="hs-dot"></div>
-          <div class="hs-tip">Flecos tricolor</div>
+          <div class="hs-tip" data-i18n="hs-tip-flecos">Flecos tricolor</div>
         </a>
-        <p style="text-align:center; margin-top:1.2rem; font-family:'Cormorant Garamond',serif; font-size:.9rem; font-style:italic; color:rgba(245,237,224,.5); letter-spacing:.04em;">
-          Pasa el cursor sobre los puntos para explorar cada elemento
+        <p style="text-align:center; margin-top:1.2rem; font-family:'Cormorant Garamond',serif; font-size:.9rem; font-style:italic; color:rgba(245,237,224,.5); letter-spacing:.04em;" data-i18n="map-hint">
+          Toca los puntos para explorar cada elemento
         </p>
       </div>
 
       <nav class="quick-links" aria-label="Secciones del traje">
-        <a href="#vision-general">Vision general</a>
-        <a href="#mascara">Mascara</a>
-        <a href="#cuello">Cuello</a>
-        <a href="#traje-gorro">Traje y gorro</a>
-        <a href="#flecos">Flecos</a>
-        <a href="#baston">Baston</a>
+        <a href="#vision-general" data-i18n="nav-vision">Vision general</a>
+        <a href="#mascara" data-i18n="nav-mascara">Mascara</a>
+        <a href="#cuello" data-i18n="nav-cuello">Cuello</a>
+        <a href="#traje-gorro" data-i18n="nav-traje-gorro">Traje y gorro</a>
+        <a href="#flecos" data-i18n="nav-flecos">Flecos</a>
+        <a href="#baston" data-i18n="nav-baston">Baston</a>
       </nav>
 
       <section class="destacado" id="vision-general">
         
-        <h2>Traje Folklorico Tradicional</h2>
-        <p>
+        <h2 data-i18n="vision-h2">Traje Folklorico Tradicional</h2>
+        <p data-i18n="vision-p">
           El atuendo del Jokili de Tovar presenta una variacion frente al traje del arlequin
           aleman. Sobre la base roja aparecen tres juegos de flecos superpuestos en amarillo,
           azul y rojo, rematados con sesgo blanco. A esto se suman la mascara tallada en madera
           oscura, el cuello blanco, el gorro de tres puntas, los guantes y el baston con vejiga,
           formando un conjunto que hoy simboliza orgullo, memoria y continuidad cultural.
         </p>
+        <div class="foto-placeholder">
+          <img src="imagenes/Imagenes_seccion_trajes/Seccion_traje_1.jpg" alt="Jokili en desfile">
+          <span>Autor por confirmar</span>
+        </div>
         <div class="banda-colores">
           <span class="bc-am"></span>
           <span class="bc-az"></span>
@@ -509,133 +545,153 @@
 
         <article class="component-card" id="mascara">
           <div class="component-copy">
-            <div class="component-label">Elemento esencial</div>
-            <h2 class="component-title">La Mascara</h2>
-            <p>
+            <div class="component-label" data-i18n="mascara-label">Elemento esencial</div>
+            <h2 class="component-title" data-i18n="mascara-title">La Mascara</h2>
+            <p data-i18n="mascara-p1">
               La mascara del Jokili es una de las piezas mas representativas del personaje.
               Desde 1974 mantiene una forma reconocible: facciones marcadas, nariz pronunciada
               y una sonrisa amplia que le da presencia escenica y un caracter inconfundible.
             </p>
-            <p>
+            <p data-i18n="mascara-p2">
               Su elaboracion combina reproduccion tecnica y acabado manual. A partir de un molde,
               el artesano trabaja la madera para reforzar cejas, nariz, lineas de expresion y
               sonrisa, de modo que cada mascara conserve rasgos comunes pero tambien detalles unicos.
             </p>
-            <p>
+            <p data-i18n="mascara-p3">
               Segun el material del libro, estas mascaras se realizan en maderas como pino,
               cipres o cedro dulce, pasan por lijado, barnizado y pintura, y su produccion se
               reserva para miembros de la organizacion.
             </p>
             <div class="data-strip">
-              <span>Madera tallada</span>
-              <span>Forma estable desde 1974</span>
-              <span>Mas de 150 fabricadas</span>
+              <span data-i18n="mascara-tag1">Madera tallada</span>
+              <span data-i18n="mascara-tag2">Forma estable desde 1974</span>
+              <span data-i18n="mascara-tag3">Mas de 150 fabricadas</span>
+            </div>
+            <div class="foto-placeholder">
+              <img src="imagenes/Imagenes_seccion_trajes/Mascara.jpg" alt="Mascara del Jokili">
+              <span>Autor por confirmar</span>
             </div>
           </div>
         </article>
 
         <article class="component-card" id="cuello">
           <div class="component-copy">
-            <div class="component-label">Confeccion textil</div>
-            <h2 class="component-title">El Cuello</h2>
-            <p>
+            <div class="component-label" data-i18n="cuello-label">Confeccion textil</div>
+            <h2 class="component-title" data-i18n="cuello-title">El Cuello</h2>
+            <p data-i18n="cuello-p1">
               El cuello blanco del Jokili ha sido una pieza de aprendizaje colectivo. Los primeros
               modelos se hicieron de manera experimental y con el tiempo su elaboracion se perfecciono
               gracias al intercambio con Endingen y a la experiencia de costureras de la Colonia Tovar.
             </p>
-            <p>
+            <p data-i18n="cuello-p2">
               El proceso descrito en el libro parte de una pieza larga de tela blanca que se dobla
               en forma de abanico muchas veces, se divide con una cinta central y se prepara para
               ajustarse al cuello del arlequin. Esa repeticion de pliegues es la que le da su forma
               distintiva.
             </p>
-            <p>
+            <p data-i18n="cuello-p3">
               Mas que un accesorio, el cuello muestra el paso de un saber importado a una practica
               dominada y sostenida localmente.
             </p>
             <div class="data-strip">
-              <span>Color blanco</span>
-              <span>Plisado manual</span>
-              <span>Herencia de Endingen</span>
+              <span data-i18n="cuello-tag1">Color blanco</span>
+              <span data-i18n="cuello-tag2">Plisado manual</span>
+              <span data-i18n="cuello-tag3">Herencia de Endingen</span>
+            </div>
+            <div class="foto-placeholder">
+              <img src="imagenes/Imagenes_seccion_trajes/Cuello.jpg" alt="Cuello del Jokili">
+              <span>Autor por confirmar</span>
             </div>
           </div>
         </article>
 
         <article class="component-card wide" id="traje-gorro">
           <div class="component-copy">
-            <div class="component-label">Estructura del personaje</div>
-            <h2 class="component-title">El Traje y el Gorro</h2>
-            <p>
+            <div class="component-label" data-i18n="traje-label">Estructura del personaje</div>
+            <h2 class="component-title" data-i18n="traje-title">El Traje y el Gorro</h2>
+            <p data-i18n="traje-p1">
               El traje del Jokili se confecciona a la medida y presenta variantes segun quien lo porta.
               En el caso de las damas se trabaja en piezas separadas, mientras que para los caballeros
               se utiliza una braga. En ambos casos domina el rojo, que sirve como base para el juego de
               flecos y campanillas.
             </p>
-            <p>
+            <p data-i18n="traje-p2">
               El gorro de tres puntas se fabrica con la misma tela del traje y se rellena para darle
               firmeza. Cada uno se personaliza para ajustarse a la mascara de su portador, por lo que
               no se trata de un accesorio generico, sino de una pieza medida y pensada para cada Jokili.
             </p>
-            <p>
+            <p data-i18n="traje-p3">
               El libro tambien destaca el papel de la costurera oficial y de la organizacion en la
               coordinacion del trabajo, reafirmando que el traje es resultado de una labor comunitaria.
             </p>
             <div class="data-strip">
-              <span>Base roja</span>
-              <span>Gorro de tres puntas</span>
-              <span>Confeccion a medida</span>
+              <span data-i18n="traje-tag1">Base roja</span>
+              <span data-i18n="traje-tag2">Gorro de tres puntas</span>
+              <span data-i18n="traje-tag3">Confeccion a medida</span>
+            </div>
+            <div class="foto-placeholder">
+              <img src="imagenes/Imagenes_seccion_trajes/Baston.jpg" alt="Traje del Jokili">
+              <span>Autor por confirmar</span>
             </div>
           </div>
         </article>
 
         <article class="component-card" id="flecos">
           <div class="component-copy">
-            <div class="component-label">Ritmo visual</div>
-            <h2 class="component-title">Los Flecos</h2>
-            <p>
+            <div class="component-label" data-i18n="flecos-label">Ritmo visual</div>
+            <h2 class="component-title" data-i18n="flecos-title">Los Flecos</h2>
+            <p data-i18n="flecos-p1">
               Los flecos son una de las señas visuales mas fuertes del traje. En la version tovareña,
               se preparan en amarillo, azul y rojo, evocando la bandera nacional y diferenciando al
               Jokili local de su referente aleman.
             </p>
-            <p>
+            <p data-i18n="flecos-p2">
               Su produccion se organiza en grupo: se marcan los picos sobre patrones, se corta la tela
               y despues se cosen con sesgo blanco para colocarlos en mangas, botas del pantalon y piezas
               removibles de cuello y cintura.
             </p>
-            <p>
+            <p data-i18n="flecos-p3">
               El resultado final crea movimiento, sonido y una silueta festiva que hace al personaje
               inmediatamente reconocible en desfile.
             </p>
             <div class="data-strip">
-              <span>Amarillo, azul y rojo</span>
-              <span>Sesgo blanco</span>
-              <span>Trabajo colectivo</span>
+              <span data-i18n="flecos-tag1">Amarillo, azul y rojo</span>
+              <span data-i18n="flecos-tag2">Sesgo blanco</span>
+              <span data-i18n="flecos-tag3">Trabajo colectivo</span>
+            </div>
+            <div class="foto-placeholder">
+              <img src="imagenes/Imagenes_seccion_trajes/Flecos.jpg" alt="Flecos del Jokili">
+              <span>Autor por confirmar</span>
             </div>
           </div>
         </article>
 
         <article class="component-card" id="baston">
           <div class="component-copy">
-            <div class="component-label">Accesorio distintivo</div>
-            <h2 class="component-title">El Baston con Vejiga</h2>
-            <p>
+            <div class="component-label" data-i18n="baston-label">Accesorio distintivo</div>
+            <h2 class="component-title" data-i18n="baston-title">El Baston con Vejiga</h2>
+            <p data-i18n="baston-p1">
               El baston con vejiga de cerdo es uno de los accesorios mas singulares del Jokili.
-              El libro lo presenta como un elemento heredado de practicas carnavalescas del sur de
+              El libro lo presenta como un elemento heredado de practicas fasneteras del sur de
               Alemania, donde se usaba como parte del juego callejero propio de la fiesta.
             </p>
-            <p>
+            <p data-i18n="baston-p2">
               En la Colonia Tovar esta costumbre llego directamente con el Jokili y paso a ser un rasgo
-              diferenciador dentro del carnaval local. Cada año, uno de los miembros se encarga de conseguir
+              diferenciador dentro de la fasnet local. Cada año, uno de los miembros se encarga de conseguir
               las vejigas y prepararlas antes de su uso.
             </p>
-            <p>
+            <p data-i18n="baston-p3">
               Es una pieza de fuerte carga simbolica porque conecta la puesta en escena actual con una
               memoria festiva mucho mas antigua.
             </p>
             <div class="data-strip">
-              <span>Accesorio unico</span>
-              <span>Tradicion alemana</span>
-              <span>Uso ceremonial y festivo</span>
+              <span data-i18n="baston-tag1">Accesorio unico</span>
+              <span data-i18n="baston-tag2">Tradicion alemana</span>
+              <span data-i18n="baston-tag3">Uso ceremonial y festivo</span>
+            </div>
+            <div class="foto-placeholder">
+              <img src="imagenes/Imagenes_seccion_trajes/Jokiliconvejiga.png" alt="Baston del Jokili">
+              <span>Autor por confirmar</span>
             </div>
           </div>
         </article>
