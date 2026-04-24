@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="css/style_v1.css">
   <script src="js/header.js" defer></script>
   <script src="js/footer.js" defer></script>
+  <script src="js/galeria-beta.js" defer></script>
+  <script src="js/i18n-galeria.js" defer></script>
   <style>
     body {
       display: block;
@@ -168,6 +170,138 @@
       padding: 3.5rem clamp(1rem, 2vw, 3rem) 16rem;
     }
 
+    .beta-aviso {
+      width: min(94%, 1180px);
+      margin: 1.4rem auto 0;
+      color: rgba(245,237,224,.9);
+      border: 1px solid rgba(245,197,24,.38);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(245,197,24,.16), rgba(204,0,1,.1)),
+        rgba(8,12,46,.84);
+      box-shadow: 0 18px 48px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+      overflow: hidden;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: opacity .35s var(--ease), transform .35s var(--ease), margin .25s var(--ease);
+    }
+
+    .beta-aviso.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .beta-aviso.oculto {
+      display: none;
+    }
+
+    .beta-aviso-main {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem clamp(1rem, 2vw, 1.35rem);
+    }
+
+    .beta-aviso-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      color: var(--azul-oscuro);
+      background: var(--amarillo);
+      box-shadow: 0 0 28px rgba(245,197,24,.24);
+    }
+
+    .beta-aviso-copy {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .beta-aviso-kicker {
+      margin: 0 0 .25rem;
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+    }
+
+    .beta-aviso-title {
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.9rem, 2vw, 1.08rem);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .beta-aviso-text {
+      margin: .35rem 0 0;
+      font-size: .92rem;
+      line-height: 1.5;
+      color: rgba(245,237,224,.72);
+    }
+
+    .beta-aviso-actions {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      flex: 0 0 auto;
+    }
+
+    .beta-aviso-btn {
+      border: 1px solid rgba(245,197,24,.3);
+      background: rgba(0,0,0,.24);
+      color: rgba(245,237,224,.86);
+      min-height: 38px;
+      padding: 0 .85rem;
+      border-radius: 999px;
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s, transform .2s;
+    }
+
+    .beta-aviso-btn:hover {
+      background: rgba(245,197,24,.16);
+      border-color: rgba(245,197,24,.62);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .beta-aviso-close {
+      width: 38px;
+      padding: 0;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .beta-aviso-details {
+      max-height: 0;
+      overflow: hidden;
+      border-top: 1px solid transparent;
+      transition: max-height .3s var(--ease), border-color .3s var(--ease);
+    }
+
+    .beta-aviso.expanded .beta-aviso-details {
+      max-height: 160px;
+      border-top-color: rgba(245,197,24,.2);
+    }
+
+    .beta-aviso-details-inner {
+      padding: .85rem clamp(1rem, 2vw, 1.35rem) 1.05rem calc(clamp(1rem, 2vw, 1.35rem) + 58px);
+      color: rgba(245,237,224,.66);
+      font-size: .86rem;
+      line-height: 1.55;
+    }
+
     /* ── SECCIÓN ────────────────────────────────────────── */
     .galeria-sec {
       margin-bottom: 5rem;
@@ -211,6 +345,109 @@
       flex: 1;
       height: 1px;
       background: linear-gradient(to right, rgba(201,151,43,.3), transparent);
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 760px) {
+      .album-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .album-card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(0,0,0,.34);
+      border: 1px solid rgba(201,151,43,.22);
+      box-shadow: 0 12px 34px rgba(0,0,0,.35);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .42s var(--ease), transform .42s var(--ease),
+                  border-color .3s, box-shadow .3s;
+    }
+
+    .album-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .album-card:hover {
+      border-color: rgba(245,197,24,.55);
+      box-shadow: 0 18px 46px rgba(0,0,0,.5), 0 0 24px rgba(245,197,24,.08);
+    }
+
+    .album-card-btn {
+      display: block;
+      width: 100%;
+      padding: 0;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+    }
+
+    .album-cover {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+    }
+
+    .album-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .55s var(--ease);
+    }
+
+    .album-card:hover .album-cover img { transform: scale(1.05); }
+
+    .album-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,12,46,.92) 0%, rgba(8,12,46,.25) 52%, transparent 100%);
+    }
+
+    .album-badge {
+      position: absolute;
+      top: .9rem;
+      left: .9rem;
+      z-index: 2;
+      font-size: .56rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,197,24,.92);
+      background: rgba(8,12,46,.72);
+      border: 1px solid rgba(201,151,43,.28);
+      border-radius: 999px;
+      padding: .28rem .55rem;
+    }
+
+    .album-info {
+      padding: 1rem 1.05rem 1.1rem;
+      border-top: 1px solid rgba(201,151,43,.14);
+      background: rgba(6,10,38,.62);
+    }
+
+    .album-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: .86rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: .35rem;
+    }
+
+    .album-meta {
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.45);
     }
 
     /* ── GRID ───────────────────────────────────────────── */
@@ -351,6 +588,44 @@
       animation: lbIn .28s var(--ease) both;
     }
 
+    .album-modal {
+      z-index: 2800;
+      align-items: flex-start;
+      overflow-y: auto;
+    }
+
+    .album-frame {
+      width: min(1280px, 96vw);
+      max-height: none;
+      margin: 2rem auto;
+      padding: clamp(1rem, 2.4vw, 2rem);
+      overflow: visible;
+    }
+
+    .album-modal-head {
+      padding: .25rem 3rem 1.2rem 0;
+      border-bottom: 1px solid rgba(201,151,43,.22);
+      margin-bottom: 1.25rem;
+    }
+
+    .album-modal-head .lb-titulo {
+      margin-top: .25rem;
+      font-size: clamp(1.05rem, 3vw, 1.7rem);
+      letter-spacing: .12em;
+    }
+
+    .album-modal-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 760px) {
+      .album-modal-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 1160px) {
+      .album-modal-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
     @keyframes lbIn {
       from { opacity: 0; transform: scale(.96); }
       to   { opacity: 1; transform: scale(1); }
@@ -459,6 +734,9 @@
       .sec-subtitulo  { display: none; }
       .lb-bar { flex-direction: column; align-items: flex-start; gap: .5rem; }
       .sec-nav-btn { padding: .8rem .9rem; font-size: .58rem; }
+      .beta-aviso-main { align-items: flex-start; flex-wrap: wrap; }
+      .beta-aviso-actions { width: 100%; justify-content: flex-end; }
+      .beta-aviso-details-inner { padding-left: clamp(1rem, 2vw, 1.35rem); }
     }
   </style>
 </head>
@@ -467,34 +745,48 @@
   <!-- BANNER -->
   <div class="galeria-banner" role="img" aria-label="Galería Jokili">
     <div class="galeria-banner-content">
-      <p class="banner-eyebrow">Memoria Viva del Carnaval</p>
-      <h1 class="banner-titulo">Galería Jokili</h1>
+      <p class="banner-eyebrow" data-i18n="banner-eyebrow">Memoria Viva del Carnaval</p>
+      <h1 class="banner-titulo" data-i18n="banner-titulo">Galería Jokili</h1>
     </div>
     <div class="banner-bands" aria-hidden="true">
       <span class="bb-am"></span><span class="bb-az"></span><span class="bb-ro"></span>
     </div>
   </div>
 
+  <aside class="beta-aviso" id="galeriaBetaAviso" aria-live="polite">
+    <div class="beta-aviso-main">
+      <span class="beta-aviso-icon" aria-hidden="true">B</span>
+      <div class="beta-aviso-copy">
+        <p class="beta-aviso-kicker" data-i18n="beta-kicker">Version beta</p>
+        <h2 class="beta-aviso-title" data-i18n="beta-title">Galeria en actualizacion</h2>
+        <p class="beta-aviso-text" data-i18n="beta-text">Estamos actualizando las fotos de los albumes. Algunas imagenes o colecciones pueden cambiar mientras se completa la galeria.</p>
+      </div>
+      <div class="beta-aviso-actions">
+        <button class="beta-aviso-btn" type="button" id="galeriaBetaToggle" aria-expanded="false" aria-controls="galeriaBetaDetails" data-i18n="beta-toggle-show">Ver detalles</button>
+        <button class="beta-aviso-btn beta-aviso-close" type="button" id="galeriaBetaClose" aria-label="Cerrar aviso">&times;</button>
+      </div>
+    </div>
+    <div class="beta-aviso-details" id="galeriaBetaDetails">
+      <div class="beta-aviso-details-inner" data-i18n="beta-details">
+        Las secciones estan disponibles para navegar, pero el contenido fotografico seguira creciendo y reorganizandose por album. Gracias por revisar esta version mientras afinamos la memoria visual del Jokili.
+      </div>
+    </div>
+  </aside>
+
   <!-- NAV SECCIONES -->
   <div class="sec-nav-wrap" id="secNavWrap">
     <nav class="sec-nav" aria-label="Secciones de la galería">
-      <button class="sec-nav-btn active" data-target="sec-raices">
-        Raíces Jokilis <span class="sec-nav-count" id="cnt-raices">0</span>
-      </button>
-      <button class="sec-nav-btn" data-target="sec-archivo-historico">
-        Archivo Histórico <span class="sec-nav-count" id="cnt-archivoHistorico">0</span>
-      </button>
-      <button class="sec-nav-btn" data-target="sec-archivo-vivo">
-        Archivo Vivo <span class="sec-nav-count" id="cnt-archivoVivo">0</span>
+      <button class="sec-nav-btn active" data-target="sec-fotos-viejas">
+        <span data-i18n="nav-fotos-viejas">Fotos Viejas</span> <span class="sec-nav-count" id="cnt-fotosViejas">0</span>
       </button>
       <button class="sec-nav-btn" data-target="sec-desfile">
-        Desfile <span class="sec-nav-count" id="cnt-desfile">0</span>
+        <span data-i18n="nav-desfile">Desfile</span> <span class="sec-nav-count" id="cnt-desfile">0</span>
       </button>
       <button class="sec-nav-btn" data-target="sec-personajes">
-        Personajes <span class="sec-nav-count" id="cnt-personajes">0</span>
+        <span data-i18n="nav-personajes">Personajes</span> <span class="sec-nav-count" id="cnt-personajes">0</span>
       </button>
       <button class="sec-nav-btn" data-target="sec-rituales">
-        Rituales <span class="sec-nav-count" id="cnt-rituales">0</span>
+        <span data-i18n="nav-rituales">Rituales</span> <span class="sec-nav-count" id="cnt-rituales">0</span>
       </button>
     </nav>
   </div>
@@ -502,62 +794,61 @@
   <main>
     <div class="galeria-wrap">
 
-      <section class="galeria-sec" id="sec-raices" aria-labelledby="tit-raices">
+      <section class="galeria-sec" id="sec-fotos-viejas" aria-labelledby="tit-fotosViejas">
         <header class="sec-header">
-          <h2 class="sec-titulo" id="tit-raices">Raíces <span>Jokilis</span></h2>
-          <span class="sec-subtitulo" id="cnt-txt-raices"></span>
+          <h2 class="sec-titulo" id="tit-fotosViejas" data-i18n="sec-fotos-viejas">Fotos <span>Viejas</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-fotosViejas"></span>
           <span class="sec-linea" aria-hidden="true"></span>
         </header>
-        <div class="galeria-grid" id="grid-raices"></div>
-      </section>
 
-      <section class="galeria-sec" id="sec-archivo-historico" aria-labelledby="tit-archivoHistorico">
-        <header class="sec-header">
-          <h2 class="sec-titulo" id="tit-archivoHistorico">Archivo <span>Histórico</span></h2>
-          <span class="sec-subtitulo" id="cnt-txt-archivoHistorico"></span>
-          <span class="sec-linea" aria-hidden="true"></span>
-        </header>
-        <div class="galeria-grid" id="grid-archivoHistorico"></div>
-      </section>
-
-      <section class="galeria-sec" id="sec-archivo-vivo" aria-labelledby="tit-archivoVivo">
-        <header class="sec-header">
-          <h2 class="sec-titulo" id="tit-archivoVivo">Archivo <span>Vivo</span></h2>
-          <span class="sec-subtitulo" id="cnt-txt-archivoVivo"></span>
-          <span class="sec-linea" aria-hidden="true"></span>
-        </header>
-        <div class="galeria-grid" id="grid-archivoVivo"></div>
+        <div class="album-grid" id="grid-fotosViejas"></div>
       </section>
 
       <section class="galeria-sec" id="sec-desfile" aria-labelledby="tit-desfile">
         <header class="sec-header">
-          <h2 class="sec-titulo" id="tit-desfile">El <span>Desfile</span></h2>
+          <h2 class="sec-titulo" id="tit-desfile" data-i18n="sec-desfile">El <span>Desfile</span></h2>
           <span class="sec-subtitulo" id="cnt-txt-desfile"></span>
           <span class="sec-linea" aria-hidden="true"></span>
         </header>
-        <div class="galeria-grid" id="grid-desfile"></div>
+        <div class="album-grid" id="grid-desfile"></div>
       </section>
 
       <section class="galeria-sec" id="sec-personajes" aria-labelledby="tit-personajes">
         <header class="sec-header">
-          <h2 class="sec-titulo" id="tit-personajes">Los <span>Personajes</span></h2>
+          <h2 class="sec-titulo" id="tit-personajes" data-i18n="sec-personajes">Los <span>Personajes</span></h2>
           <span class="sec-subtitulo" id="cnt-txt-personajes"></span>
           <span class="sec-linea" aria-hidden="true"></span>
         </header>
-        <div class="galeria-grid" id="grid-personajes"></div>
+        <div class="album-grid" id="grid-personajes"></div>
       </section>
 
       <section class="galeria-sec" id="sec-rituales" aria-labelledby="tit-rituales">
         <header class="sec-header">
-          <h2 class="sec-titulo" id="tit-rituales">Los <span>Rituales</span></h2>
+          <h2 class="sec-titulo" id="tit-rituales" data-i18n="sec-rituales">Los <span>Rituales</span></h2>
           <span class="sec-subtitulo" id="cnt-txt-rituales"></span>
           <span class="sec-linea" aria-hidden="true"></span>
         </header>
-        <div class="galeria-grid" id="grid-rituales"></div>
+        <div class="album-grid" id="grid-rituales-albumes"></div>
       </section>
 
     </div>
   </main>
+
+  <!-- MODAL ALBUM -->
+  <div class="lightbox album-modal" id="albumModal" role="dialog" aria-modal="true" aria-label="Álbum de fotos">
+    <div class="lb-frame album-frame" id="albumFrame">
+      <button class="lb-close" id="albumClose" aria-label="Cerrar álbum">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+          <path d="M1 1L10 10M10 1L1 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="album-modal-head">
+        <p class="lb-meta" id="albumModalMeta"></p>
+        <h2 class="lb-titulo" id="albumModalTitulo"></h2>
+      </div>
+      <div class="album-modal-grid galeria-grid" id="albumModalGrid"></div>
+    </div>
+  </div>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista de imagen">
@@ -605,17 +896,50 @@
       archivoVivo: [
         { src: 'imagenes/Jokili_15Reel.png',   titulo: 'Archivo Vivo',        meta: 'Historia del carnaval' },
       ],
-      desfile: [
+      desfileApertura: [
         { src: 'imagenes/Jokili_Desfile.png',  titulo: 'Desfile Principal',   meta: 'Carnaval · Colonia Tovar' },
+        { src: 'imagenes/Estandartes.jpg',     titulo: 'Estandartes',         meta: 'Inicio del recorrido' },
+      ],
+      desfileRecorrido: [
         { src: 'imagenes/Jokili_10Reel.png',   titulo: 'Recorrido Jokili',    meta: 'Tradición y desfile' },
         { src: 'imagenes/Jokili_16Reel.png',   titulo: 'Calle y Fiesta',      meta: 'Desfile popular' },
-        { src: 'imagenes/Despedida_3Reel.png', titulo: 'Despedida',           meta: 'Cierre de temporada' },
       ],
-      personajes: [
+      desfileCierre: [
+        { src: 'imagenes/Despedida_3Reel.png', titulo: 'Despedida',           meta: 'Cierre de temporada' },
+        { src: 'imagenes/Despedida_4.png',     titulo: 'Último Recorrido',    meta: 'Final del carnaval' },
+      ],
+      oberjokiliCiguena: [
+        { src: 'imagenes/Ciiguena.png',         titulo: 'Cigüeña',            meta: 'Personaje tradicional' },
         { src: 'imagenes/Oberjokili_1Reel.png', titulo: 'Oberjokili',         meta: 'Personaje emblemático' },
         { src: 'imagenes/Jokili_11Reel.png',    titulo: 'Traje y Personajes', meta: 'Comparsa Jokili' },
         { src: 'imagenes/Jokili_16_1Reel.png',  titulo: 'Guardia Jokili',     meta: 'Personajes del año' },
         { src: 'imagenes/ArgenisReel.png',       titulo: 'Jokili en Acción',   meta: 'Carnaval' },
+      ],
+      zunfmeistern: [
+        { src: 'imagenes/Jokili_11Reel.png',    titulo: 'Zunfmeistern',       meta: 'Comparsa Jokili' },
+        { src: 'imagenes/Batasblancas.png',     titulo: 'Batas Blancas',      meta: 'Personajes del desfile' },
+        { src: 'imagenes/JulioCarrillo.png',    titulo: 'Tradicion Viva',     meta: 'Carnaval y comunidad' },
+      ],
+      stattierNochCrop: [
+        { src: 'imagenes/Stattier.jpg',         titulo: 'Stattier',           meta: 'Personaje tradicional' },
+        { src: 'imagenes/Jokili_16_1Reel.png',  titulo: 'Noch Crop',          meta: 'Personajes del ano' },
+        { src: 'imagenes/ArgenisReel.png',      titulo: 'Jokili en Accion',   meta: 'Carnaval' },
+      ],
+      ritualMisa: [
+        { src: 'imagenes/Misa_1Reel.png',              titulo: 'Misa Tradicional',        meta: 'Rituales del carnaval' },
+        { src: 'imagenes/Arco_Iglesia_BenitzReel.png', titulo: 'Entrada a la Iglesia',    meta: 'Inicio ceremonial' },
+      ],
+      ritualBautismo: [
+        { src: 'imagenes/Jokili_12Reel.png',           titulo: 'Bautismo Jokili',         meta: 'Ceremonia comunitaria' },
+        { src: 'imagenes/Jokili_5.png',                titulo: 'Tradicion en Escena',     meta: 'Rituales y cultura' },
+      ],
+      ritualFasnet: [
+        { src: 'imagenes/Seccion_Rituales.png',        titulo: 'Fasnet Jokili',           meta: 'Ceremonias anuales' },
+        { src: 'imagenes/Jokili_16Reel.png',           titulo: 'Celebracion Fasnet',      meta: 'Carnaval y comunidad' },
+      ],
+      ritualDespedida: [
+        { src: 'imagenes/Despedida_3Reel.png',         titulo: 'Despedida del Espiritu',  meta: 'Cierre del carnaval' },
+        { src: 'imagenes/Despedida_4.png',             titulo: 'Ultimo Ritual',           meta: 'Final de temporada' },
       ],
       rituales: [
         { src: 'imagenes/Misa_1Reel.png',       titulo: 'Misa Tradicional',   meta: 'Rituales del carnaval' },
@@ -625,15 +949,149 @@
       ]
     };
 
+    const albumesFotosViejas = [
+      {
+        id: 'raices',
+        titulo: 'Raíces Jokili',
+        meta: 'Origen y primeras memorias',
+        cover: 'imagenes/Historia_1Reel.png',
+      },
+      {
+        id: 'archivoHistorico',
+        titulo: 'Archivo Histórico',
+        meta: 'Registros antiguos del carnaval',
+        cover: 'imagenes/Jokili_1.jpg',
+      },
+      {
+        id: 'archivoVivo',
+        titulo: 'Archivo Vivo',
+        meta: 'Recuerdos que siguen presentes',
+        cover: 'imagenes/Jokili_15Reel.png',
+      },
+    ];
+
+    const albumesDesfile = [
+      {
+        id: 'desfileApertura',
+        titulo: 'Apertura del Desfile',
+        meta: 'Primeros pasos del recorrido',
+        cover: 'imagenes/Jokili_Desfile.png',
+      },
+      {
+        id: 'desfileRecorrido',
+        titulo: 'Recorrido Jokili',
+        meta: 'Calles, comparsa y tradición',
+        cover: 'imagenes/Jokili_10Reel.png',
+      },
+      {
+        id: 'desfileCierre',
+        titulo: 'Cierre y Despedida',
+        meta: 'El final de la temporada',
+        cover: 'imagenes/Despedida_3Reel.png',
+      },
+    ];
+
     /* ── RENDER ───────────────────────────────────────────── */
+    const albumesPersonajes = [
+      {
+        id: 'oberjokiliCiguena',
+        titulo: 'Oberjokili Cigüeña',
+        meta: 'Personajes centrales de la tradicion',
+        cover: 'imagenes/Oberjokili_1Reel.png',
+      },
+      {
+        id: 'zunfmeistern',
+        titulo: 'Zunfmeistern',
+        meta: 'Figuras y guardianes del carnaval',
+        cover: 'imagenes/Jokili_11Reel.png',
+      },
+      {
+        id: 'stattierNochCrop',
+        titulo: 'Stattier und Noch Crop',
+        meta: 'Personajes del recorrido Jokili',
+        cover: 'imagenes/Stattier.jpg',
+      },
+    ];
+
+    const albumesRituales = [
+      {
+        id: 'ritualMisa',
+        titulo: 'Misa',
+        meta: 'Celebracion religiosa del carnaval',
+        cover: 'imagenes/Misa_1Reel.png',
+      },
+      {
+        id: 'ritualBautismo',
+        titulo: 'Bautismo Jokili',
+        meta: 'Rito de bienvenida y tradicion',
+        cover: 'imagenes/Jokili_12Reel.png',
+      },
+      {
+        id: 'ritualFasnet',
+        titulo: 'Fasnet',
+        meta: 'Fiesta y ceremonia carnavalesca',
+        cover: 'imagenes/Seccion_Rituales.png',
+      },
+      {
+        id: 'ritualDespedida',
+        titulo: 'Despedida del Espiritu del Carnaval',
+        meta: 'Cierre ritual de la temporada',
+        cover: 'imagenes/Despedida_3Reel.png',
+      },
+    ];
+
     let lbPool = [];
     let lbIdx  = 0;
+    let currentLang = localStorage.getItem('jokili-lang') || 'es';
+    let currentAlbum = null;
+
+    function pluralFotos(total) {
+      return currentLang === 'de'
+        ? `${total} Foto${total !== 1 ? 's' : ''}`
+        : `${total} foto${total !== 1 ? 's' : ''}`;
+    }
+
+    function pluralAlbumes(total) {
+      return currentLang === 'de'
+        ? `${total} Album${total !== 1 ? 's' : ''}`
+        : `${total} álbum${total !== 1 ? 'es' : ''}`;
+    }
+
+    function translateCollection(collection, translated) {
+      if (!translated) return;
+      collection.forEach(item => {
+        if (translated[item.id]) Object.assign(item, translated[item.id]);
+      });
+    }
+
+    function translateFotos(translatedFotos) {
+      if (!translatedFotos) return;
+      Object.entries(translatedFotos).forEach(([cat, items]) => {
+        if (!fotos[cat]) return;
+        items.forEach((item, idx) => {
+          if (fotos[cat][idx]) Object.assign(fotos[cat][idx], item);
+        });
+      });
+    }
+
+    window.__galeriaApplyI18n = function (lang, galleryDict) {
+      if (!galleryDict) return;
+      currentLang = lang;
+      translateFotos(galleryDict.fotos);
+      translateCollection(albumesFotosViejas, galleryDict.albumesFotosViejas);
+      translateCollection(albumesDesfile, galleryDict.albumesDesfile);
+      translateCollection(albumesPersonajes, galleryDict.albumesPersonajes);
+      translateCollection(albumesRituales, galleryDict.albumesRituales);
+      renderSecciones();
+      if (albumModal?.classList.contains('open') && currentAlbum) abrirAlbum(currentAlbum);
+      if (lb?.classList.contains('open')) abrirLb();
+    };
 
     function crearCard(foto, idx, pool) {
       const art = document.createElement('article');
       art.className = 'foto-card';
       art.innerHTML = `
-        <button class="foto-card-btn" type="button" aria-label="Ver imagen: ${foto.titulo}">
+        <button class="foto-card-btn" type="button" aria-label="${currentLang === 'de' ? 'Bild ansehen' : 'Ver imagen'}: ${foto.titulo}">
           <img src="${foto.src}" alt="${foto.titulo}" loading="lazy" decoding="async">
           <div class="foto-overlay" aria-hidden="true">
             <span class="foto-overlay-zoom">
@@ -641,7 +1099,7 @@
                 <circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.4"/>
                 <path d="M9 9L12 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
               </svg>
-              Ver imagen
+              ${currentLang === 'de' ? 'Bild ansehen' : 'Ver imagen'}
             </span>
           </div>
         </button>
@@ -658,13 +1116,41 @@
       return art;
     }
 
+    function crearAlbumCard(album, idx) {
+      const pool = fotos[album.id];
+      const art = document.createElement('article');
+      art.className = 'album-card';
+      art.innerHTML = `
+        <button class="album-card-btn" type="button" aria-label="${currentLang === 'de' ? 'Album öffnen' : 'Abrir álbum'}: ${album.titulo}">
+          <div class="album-cover">
+            <img src="${album.cover}" alt="${album.titulo}" loading="lazy" decoding="async">
+            <span class="album-badge">${pluralFotos(pool.length)}</span>
+          </div>
+          <div class="album-info">
+            <p class="album-titulo">${album.titulo}</p>
+            <p class="album-meta">${album.meta}</p>
+          </div>
+        </button>`;
+
+      art.querySelector('.album-card-btn').addEventListener('click', () => abrirAlbum(album));
+      requestAnimationFrame(() => {
+        setTimeout(() => art.classList.add('visible'), 70 * idx);
+      });
+      return art;
+    }
+
     function renderSecciones() {
+      document.querySelectorAll('.galeria-grid, .album-grid').forEach(grid => {
+        if (grid.id !== 'albumModalGrid') grid.innerHTML = '';
+      });
+
       Object.entries(fotos).forEach(([cat, pool]) => {
         const grid = document.getElementById(`grid-${cat}`);
         const cnt  = document.getElementById(`cnt-${cat}`);
         const txt  = document.getElementById(`cnt-txt-${cat}`);
         if (cnt) cnt.textContent = pool.length;
-        if (txt) txt.textContent = `${pool.length} foto${pool.length !== 1 ? 's' : ''}`;
+        if (txt) txt.textContent = pluralFotos(pool.length);
+        if (!grid) return;
 
         pool.forEach((foto, idx) => {
           const card = crearCard(foto, idx, pool);
@@ -674,7 +1160,97 @@
           });
         });
       });
+
+      const fotosViejasTotal = albumesFotosViejas.length;
+      const fotosViejasCnt = document.getElementById('cnt-fotosViejas');
+      const fotosViejasTxt = document.getElementById('cnt-txt-fotosViejas');
+      if (fotosViejasCnt) fotosViejasCnt.textContent = fotosViejasTotal;
+      if (fotosViejasTxt) fotosViejasTxt.textContent = pluralAlbumes(fotosViejasTotal);
+
+      const albumGrid = document.getElementById('grid-fotosViejas');
+      if (albumGrid) {
+        albumesFotosViejas.forEach((album, idx) => {
+          albumGrid.appendChild(crearAlbumCard(album, idx));
+        });
+      }
+
+      const desfileTotal = albumesDesfile.length;
+      const desfileCnt = document.getElementById('cnt-desfile');
+      const desfileTxt = document.getElementById('cnt-txt-desfile');
+      if (desfileCnt) desfileCnt.textContent = desfileTotal;
+      if (desfileTxt) desfileTxt.textContent = pluralAlbumes(desfileTotal);
+
+      const desfileGrid = document.getElementById('grid-desfile');
+      if (desfileGrid) {
+        albumesDesfile.forEach((album, idx) => {
+          desfileGrid.appendChild(crearAlbumCard(album, idx));
+        });
+      }
+
+      const personajesTotal = albumesPersonajes.length;
+      const personajesCnt = document.getElementById('cnt-personajes');
+      const personajesTxt = document.getElementById('cnt-txt-personajes');
+      if (personajesCnt) personajesCnt.textContent = personajesTotal;
+      if (personajesTxt) personajesTxt.textContent = pluralAlbumes(personajesTotal);
+
+      const personajesGrid = document.getElementById('grid-personajes');
+      if (personajesGrid) {
+        albumesPersonajes.forEach((album, idx) => {
+          personajesGrid.appendChild(crearAlbumCard(album, idx));
+        });
+      }
+
+      const ritualesTotal = albumesRituales.length;
+      const ritualesCnt = document.getElementById('cnt-rituales');
+      const ritualesTxt = document.getElementById('cnt-txt-rituales');
+      if (ritualesCnt) ritualesCnt.textContent = ritualesTotal;
+      if (ritualesTxt) ritualesTxt.textContent = pluralAlbumes(ritualesTotal);
+
+      const ritualesGrid = document.getElementById('grid-rituales-albumes');
+      if (ritualesGrid) {
+        albumesRituales.forEach((album, idx) => {
+          ritualesGrid.appendChild(crearAlbumCard(album, idx));
+        });
+      }
     }
+
+    /* ── ALBUMES ─────────────────────────────────────────── */
+    const albumModal = document.getElementById('albumModal');
+    const albumModalGrid = document.getElementById('albumModalGrid');
+    const albumModalTitulo = document.getElementById('albumModalTitulo');
+    const albumModalMeta = document.getElementById('albumModalMeta');
+
+    function bloquearScroll() {
+      document.body.style.overflow = (albumModal.classList.contains('open') || lb.classList.contains('open')) ? 'hidden' : '';
+    }
+
+    function abrirAlbum(album) {
+      currentAlbum = album;
+      const pool = fotos[album.id];
+      albumModalTitulo.textContent = album.titulo;
+      albumModalMeta.textContent = `${pluralFotos(pool.length)} · ${album.meta}`;
+      albumModalGrid.innerHTML = '';
+
+      pool.forEach((foto, idx) => {
+        const card = crearCard(foto, idx, pool);
+        albumModalGrid.appendChild(card);
+        requestAnimationFrame(() => {
+          setTimeout(() => card.classList.add('visible'), 55 * idx);
+        });
+      });
+
+      albumModal.classList.add('open');
+      bloquearScroll();
+    }
+
+    function cerrarAlbum() {
+      albumModal.classList.remove('open');
+      bloquearScroll();
+    }
+
+    document.getElementById('albumClose').addEventListener('click', cerrarAlbum);
+    albumModal.addEventListener('click', e => { if (e.target === albumModal) cerrarAlbum(); });
+    document.getElementById('albumFrame').addEventListener('click', e => e.stopPropagation());
 
     /* ── LIGHTBOX ─────────────────────────────────────────── */
     const lb      = document.getElementById('lightbox');
@@ -691,12 +1267,12 @@
       lbMeta.textContent = f.meta;
       lbCount.textContent = `${lbIdx + 1} / ${lbPool.length}`;
       lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      bloquearScroll();
     }
 
     function cerrarLb() {
       lb.classList.remove('open');
-      document.body.style.overflow = '';
+      bloquearScroll();
     }
 
     function moverLb(dir) {
@@ -711,15 +1287,19 @@
     document.getElementById('lbFrame').addEventListener('click', e => e.stopPropagation());
 
     document.addEventListener('keydown', e => {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape')     cerrarLb();
-      if (e.key === 'ArrowLeft')  moverLb(-1);
-      if (e.key === 'ArrowRight') moverLb(1);
+      if (lb.classList.contains('open')) {
+        if (e.key === 'Escape')     cerrarLb();
+        if (e.key === 'ArrowLeft')  moverLb(-1);
+        if (e.key === 'ArrowRight') moverLb(1);
+        return;
+      }
+
+      if (albumModal.classList.contains('open') && e.key === 'Escape') cerrarAlbum();
     });
 
     /* ── NAV + SCROLL SPY ─────────────────────────────────── */
     const secBtns = document.querySelectorAll('.sec-nav-btn');
-    const secIds  = ['sec-raices','sec-archivo-historico','sec-archivo-vivo','sec-desfile','sec-personajes','sec-rituales'];
+    const secIds  = ['sec-fotos-viejas','sec-desfile','sec-personajes','sec-rituales'];
 
     secBtns.forEach(btn => {
       btn.addEventListener('click', () => {
