@@ -478,8 +478,14 @@
   <!-- NAV SECCIONES -->
   <div class="sec-nav-wrap" id="secNavWrap">
     <nav class="sec-nav" aria-label="Secciones de la galería">
-      <button class="sec-nav-btn active" data-target="sec-historia">
-        Fotos Viejas <span class="sec-nav-count" id="cnt-historia">0</span>
+      <button class="sec-nav-btn active" data-target="sec-raices">
+        Raíces Jokilis <span class="sec-nav-count" id="cnt-raices">0</span>
+      </button>
+      <button class="sec-nav-btn" data-target="sec-archivo-historico">
+        Archivo Histórico <span class="sec-nav-count" id="cnt-archivoHistorico">0</span>
+      </button>
+      <button class="sec-nav-btn" data-target="sec-archivo-vivo">
+        Archivo Vivo <span class="sec-nav-count" id="cnt-archivoVivo">0</span>
       </button>
       <button class="sec-nav-btn" data-target="sec-desfile">
         Desfile <span class="sec-nav-count" id="cnt-desfile">0</span>
@@ -496,13 +502,31 @@
   <main>
     <div class="galeria-wrap">
 
-      <section class="galeria-sec" id="sec-historia" aria-labelledby="tit-historia">
+      <section class="galeria-sec" id="sec-raices" aria-labelledby="tit-raices">
         <header class="sec-header">
-          <h2 class="sec-titulo" id="tit-historia">Fotos <span>Viejas</span></h2>
-          <span class="sec-subtitulo" id="cnt-txt-historia"></span>
+          <h2 class="sec-titulo" id="tit-raices">Raíces <span>Jokilis</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-raices"></span>
           <span class="sec-linea" aria-hidden="true"></span>
         </header>
-        <div class="galeria-grid" id="grid-historia"></div>
+        <div class="galeria-grid" id="grid-raices"></div>
+      </section>
+
+      <section class="galeria-sec" id="sec-archivo-historico" aria-labelledby="tit-archivoHistorico">
+        <header class="sec-header">
+          <h2 class="sec-titulo" id="tit-archivoHistorico">Archivo <span>Histórico</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-archivoHistorico"></span>
+          <span class="sec-linea" aria-hidden="true"></span>
+        </header>
+        <div class="galeria-grid" id="grid-archivoHistorico"></div>
+      </section>
+
+      <section class="galeria-sec" id="sec-archivo-vivo" aria-labelledby="tit-archivoVivo">
+        <header class="sec-header">
+          <h2 class="sec-titulo" id="tit-archivoVivo">Archivo <span>Vivo</span></h2>
+          <span class="sec-subtitulo" id="cnt-txt-archivoVivo"></span>
+          <span class="sec-linea" aria-hidden="true"></span>
+        </header>
+        <div class="galeria-grid" id="grid-archivoVivo"></div>
       </section>
 
       <section class="galeria-sec" id="sec-desfile" aria-labelledby="tit-desfile">
@@ -571,11 +595,15 @@
   <script>
     /* ── DATOS ────────────────────────────────────────────── */
     const fotos = {
-      historia: [
-        { src: 'imagenes/Historia_1Reel.png',  titulo: 'Raíces Jokili',       meta: 'Archivo histórico' },
-        { src: 'imagenes/Jokili_15Reel.png',   titulo: 'Archivo Vivo',        meta: 'Historia del carnaval' },
-        { src: 'imagenes/Jokili_1.jpg',        titulo: 'Memoria Carnavalera', meta: 'Colección histórica' },
+      raices: [
+        { src: 'imagenes/Historia_1Reel.png',  titulo: 'Raíces Jokili',       meta: 'Origen del carnaval' },
         { src: 'imagenes/Jokili_2.png',        titulo: 'Generaciones',        meta: 'Tradición familiar' },
+      ],
+      archivoHistorico: [
+        { src: 'imagenes/Jokili_1.jpg',        titulo: 'Memoria Carnavalera', meta: 'Colección histórica' },
+      ],
+      archivoVivo: [
+        { src: 'imagenes/Jokili_15Reel.png',   titulo: 'Archivo Vivo',        meta: 'Historia del carnaval' },
       ],
       desfile: [
         { src: 'imagenes/Jokili_Desfile.png',  titulo: 'Desfile Principal',   meta: 'Carnaval · Colonia Tovar' },
@@ -691,7 +719,7 @@
 
     /* ── NAV + SCROLL SPY ─────────────────────────────────── */
     const secBtns = document.querySelectorAll('.sec-nav-btn');
-    const secIds  = ['sec-historia','sec-desfile','sec-personajes','sec-rituales'];
+    const secIds  = ['sec-raices','sec-archivo-historico','sec-archivo-vivo','sec-desfile','sec-personajes','sec-rituales'];
 
     secBtns.forEach(btn => {
       btn.addEventListener('click', () => {
