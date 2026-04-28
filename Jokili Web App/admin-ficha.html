@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nueva Ficha — Admin Jokili</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         hsl(221, 57%, 5%);
+      --surface:    #0c1526;
+      --surface2:   #111e33;
+      --border:     #1c2c47;
+      --gold:       #c8920e;
+      --gold-light: #e8aa22;
+      --gold-dim:   #7a5a08;
+      --gold-glow:  #c8920e40;
+      --text:       #ddd0b4;
+      --text-dim:   #7a8fa8;
+      --text-muted: #3d5070;
+      --green:      #1fad62;
+      --green-bg:   #081d10;
+      --green-bdr:  #0f4020;
+      --red:        #8b1525;
+      --red-bright: #c02037;
+    }
+
+    body {
+      background:
+        linear-gradient(to top,
+          rgb(10, 15, 60)      0%,
+          rgba(10,15,60,0.75)  25%,
+          rgba(10,15,60,0.40)  50%,
+          rgba(10,15,60,0.15)  70%
+        ),
+        url("../../imagenes/Arco_Iglesia_BenitzReel.png"),
+        url("../../imagenes/Jokili_de_FondoReel.png"),
+        radial-gradient(circle at center, #283278d9 40%, #0a0f3c 100%);
+      background-repeat:   no-repeat, no-repeat, no-repeat, no-repeat;
+      background-position: bottom center, bottom center, center 25%, center;
+      background-size:     auto 120px, auto 94px, 25% auto, cover;
+      background-attachment: fixed;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 32px 20px 60px;
+    }
+
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      animation: fadeUp 0.35s ease forwards;
+    }
+
+    /* ── ENCABEZADO ─────────────────────────────────────────────── */
+    .header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px 18px 0 0;
+      padding: 18px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gold-dim);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .escudo-img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px var(--gold-glow));
+    }
+
+    .club-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .club-sub {
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .header-right {
+      text-align: right;
+    }
+
+    .ficha-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .ficha-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    /* ── BARRA DE PROGRESO ──────────────────────────────────────── */
+    .progreso-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 16px 26px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .progreso-texto {
+      font-size: 12px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .progreso-texto strong {
+      color: var(--gold-light);
+    }
+
+    .progreso-track {
+      flex: 1;
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .progreso-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold-light));
+      border-radius: 10px;
+      transition: width 0.4s ease;
+    }
+
+    .progreso-pct {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-light);
+      min-width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── CUERPO ─────────────────────────────────────────────────── */
+    .body {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 18px 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ── SECCIÓN ────────────────────────────────────────────────── */
+    .seccion {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .seccion-titulo {
+      background: var(--surface2);
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .seccion-titulo .icono { font-size: 15px; }
+
+    .seccion-titulo .titulo-texto {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .seccion-titulo .badge-requerido {
+      font-size: 9px;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .seccion-titulo .badge-opcional {
+      font-size: 9px;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .seccion.especial {
+      border-color: var(--gold-dim);
+    }
+
+    .seccion.especial .seccion-titulo {
+      background: linear-gradient(90deg, #1c1200, var(--surface2));
+      border-bottom-color: var(--gold-dim);
+    }
+
+    .seccion.especial .seccion-titulo .titulo-texto {
+      color: var(--gold-light);
+    }
+
+    /* ── GRID DE CAMPOS ─────────────────────────────────────────── */
+    .grid {
+      display: grid;
+      gap: 0;
+      background: var(--border);
+    }
+
+    .grid-2  { grid-template-columns: 1fr 1fr; }
+    .grid-3  { grid-template-columns: 1fr 1fr 1fr; }
+    .grid-1  { grid-template-columns: 1fr; }
+
+    .campo {
+      background: var(--surface);
+      padding: 14px 18px;
+    }
+
+    .campo.ancho { grid-column: 1 / -1; }
+
+    .campo label {
+      display: block;
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .campo label .req {
+      color: var(--gold);
+      margin-left: 2px;
+    }
+
+    .campo input,
+    .campo select,
+    .campo textarea {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+
+    .campo input::placeholder,
+    .campo textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .campo select option { background: var(--surface2); }
+
+    .campo textarea { min-height: 80px; resize: vertical; }
+
+    /* Campo lleno — resalta sutilmente */
+    .campo input.lleno,
+    .campo select.lleno,
+    .campo textarea.lleno {
+      border-color: #1c3828;
+    }
+
+    /* ── GRUPO SÍ/NO + FECHA ─────────────────────────────────────── */
+    .sino-grupo {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .sino-grupo .toggle-wrap {
+      flex-shrink: 0;
+      display: flex;
+      gap: 4px;
+      margin-top: 1px;
+    }
+
+    .toggle-btn {
+      padding: 8px 12px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .toggle-btn.activo-si {
+      background: var(--green-bg);
+      border-color: var(--green-bdr);
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .toggle-btn.activo-no {
+      background: #1a0a0a;
+      border-color: #3a1010;
+      color: #ff7070;
+      font-weight: 600;
+    }
+
+    .sino-extra {
+      flex: 1;
+    }
+
+    .sino-extra input {
+      width: 100%;
+    }
+
+    /* ── SEPARADOR ───────────────────────────────────────────────── */
+    .sep {
+      height: 1px;
+      background: var(--border);
+      border: none;
+    }
+
+    /* ── BOTONES ─────────────────────────────────────────────────── */
+    .acciones {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      padding-top: 8px;
+    }
+
+    .btn {
+      padding: 11px 24px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #050a12;
+      font-weight: 600;
+      box-shadow: 0 4px 18px var(--gold-glow);
+    }
+
+    .btn-primary:hover { filter: brightness(1.1); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover { border-color: var(--text-dim); }
+
+    /* ── TOAST ───────────────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--green-bg);
+      border: 1px solid var(--green-bdr);
+      color: var(--green);
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      animation: fadeUp 0.3s ease;
+      z-index: 999;
+      display: none;
+    }
+
+    /* ── ANIMACIÓN ───────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="toast" id="toast">✅ Ficha guardada correctamente</div>
+
+<div class="wrap">
+
+  <!-- ENCABEZADO -->
+  <div class="header">
+    <div class="header-left">
+      <img src="../../imagenes/Escudo_Jokili.png" alt="Escudo" class="escudo-img" />
+      <div>
+        <div class="club-nombre">Asociación de Arlequines<br>Jokili Verein</div>
+        <div class="club-sub">Consola de Administración · Colonia Tovar</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="ficha-label">Ficha Nº</div>
+      <div class="ficha-num" id="ficha-num">—</div>
+    </div>
+  </div>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="progreso-bar">
+    <span class="progreso-texto">Completitud de la ficha: <strong id="prog-campos">0 / 20</strong> campos</span>
+    <div class="progreso-track">
+      <div class="progreso-fill" id="prog-fill" style="width: 0%"></div>
+    </div>
+    <span class="progreso-pct" id="prog-pct">0%</span>
+  </div>
+
+  <!-- CUERPO DEL FORMULARIO -->
+  <div class="body">
+
+    <!-- ── SECCIÓN 1: Datos de Inscripción ── -->
+    <div class="seccion">
+      <div class="seccion-titulo">
+        <span class="icono">📋</span>
+        <span class="titulo-texto">Datos de Inscripción</span>
+        <span class="badge-requerido">Obligatorio al ingresar</span>
+      </div>
+
+      <!-- Fila: Nº Ficha + Fecha Inscripción -->
+      <div class="grid grid-2">
+        <div class="campo">
+          <label>Nº de Ficha <span class="req">*</span></label>
+          <input type="text" id="f-numero" placeholder="Ej: 00140" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Fecha de Inscripción <span class="req">*</span></label>
+          <input type="date" id="f-fecha-inscripcion" data-contable="true" />
+        </div>
+      </div>
+
+      <hr class="sep" />
+
+      <!-- Fila: Nombres + Apellido -->
+      <div class="grid grid-2">
+        <div class="campo">
+          <label>Nombres <span class="req">*</span></label>
+          <input type="text" id="f-nombres" placeholder="Ej: Ricardo Enrique" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Apellido <span class="req">*</span></label>
+          <input type="text" id="f-apellido" placeholder="Ej: Álvarez Rodríguez" data-contable="true" />
+        </div>
+      </div>
+
+      <!-- Fila: Cédula + Fecha Nacimiento -->
+      <div class="grid grid-2">
+        <div class="campo">
+          <label>Cédula de Identidad <span class="req">*</span></label>
+          <input type="text" id="f-cedula" placeholder="V-16.012.610" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Fecha de Nacimiento <span class="req">*</span></label>
+          <input type="date" id="f-nacimiento" data-contable="true" />
+        </div>
+      </div>
+
+      <!-- Fila: Sexo + Cónyuge + Lugar de Nacimiento -->
+      <div class="grid grid-3">
+        <div class="campo">
+          <label>Sexo <span class="req">*</span></label>
+          <select id="f-sexo" data-contable="true">
+            <option value="">Seleccionar...</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label>Nombre Cónyuge</label>
+          <input type="text" id="f-conyuge" placeholder="Nombre completo" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Lugar de Nacimiento</label>
+          <input type="text" id="f-lugar-nac" placeholder="Ciudad, Estado" data-contable="true" />
+        </div>
+      </div>
+
+      <!-- Profesión -->
+      <div class="grid grid-1">
+        <div class="campo">
+          <label>Profesión u Ocupación</label>
+          <input type="text" id="f-profesion" placeholder="Ej: Comerciante" data-contable="true" />
+        </div>
+      </div>
+
+      <hr class="sep" />
+
+      <!-- Dirección -->
+      <div class="grid grid-1">
+        <div class="campo">
+          <label>Dirección de Habitación <span class="req">*</span></label>
+          <input type="text" id="f-direccion" placeholder="Ej: Sector Los Claveles" data-contable="true" />
+        </div>
+      </div>
+
+      <!-- Estado + Municipio + Ciudad -->
+      <div class="grid grid-3">
+        <div class="campo">
+          <label>Estado</label>
+          <input type="text" id="f-estado" placeholder="Aragua" value="Aragua" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Municipio</label>
+          <input type="text" id="f-municipio" placeholder="Tovar" value="Tovar" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Ciudad</label>
+          <input type="text" id="f-ciudad" placeholder="Colonia Tovar" value="Colonia Tovar" data-contable="true" />
+        </div>
+      </div>
+
+      <!-- Teléfonos + Correo -->
+      <div class="grid grid-3">
+        <div class="campo">
+          <label>Teléfono Habitación</label>
+          <input type="tel" id="f-telefono" placeholder="0244-..." data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Celular <span class="req">*</span></label>
+          <input type="tel" id="f-celular" placeholder="0412-..." data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Correo Electrónico</label>
+          <input type="email" id="f-email" placeholder="correo@ejemplo.com" data-contable="true" />
+        </div>
+      </div>
+
+      <!-- Padrino -->
+      <div class="grid grid-2">
+        <div class="campo">
+          <label>Padrino <span class="req">*</span></label>
+          <input type="text" id="f-padrino" placeholder="Nombre del padrino" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Nº de Broche</label>
+          <input type="text" id="f-broche" placeholder="Ej: 139" data-contable="true" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECCIÓN 2: Datos del Club (se completan después) ── -->
+    <div class="seccion">
+      <div class="seccion-titulo">
+        <span class="icono">🃏</span>
+        <span class="titulo-texto">Datos del Club</span>
+        <span class="badge-opcional">Se completan con el tiempo</span>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="campo">
+          <label>Nº de Carnet</label>
+          <input type="text" id="f-carnet" placeholder="—" data-contable="true" />
+        </div>
+        <div class="campo">
+          <label>Cargo Actual</label>
+          <select id="f-cargo" data-contable="true">
+            <option value="">Sin cargo asignado</option>
+            <option>Miembro</option>
+            <option>Vocal</option>
+            <option>Secretario/a</option>
+            <option>Tesorero/a</option>
+            <option>Vicepresidente/a</option>
+            <option>Presidente/a</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label>Fecha del Cargo</label>
+          <input type="date" id="f-fecha-cargo" data-contable="true" />
+        </div>
+      </div>
+
+      <div class="grid grid-1">
+        <div class="campo">
+          <label>Cuota Anual que Cancela</label>
+          <input type="text" id="f-cuota" placeholder="Ej: $20 — Cuota estándar" data-contable="true" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECCIÓN 3: Tradiciones Jokili ── -->
+    <div class="seccion especial">
+      <div class="seccion-titulo">
+        <span class="icono">⭐</span>
+        <span class="titulo-texto">Tradiciones Jokili</span>
+        <span class="badge-opcional">Se completan con el tiempo</span>
+      </div>
+
+      <!-- Bautizado -->
+      <div class="grid grid-1">
+        <div class="campo">
+          <label>Bautizado en el Club</label>
+          <div class="sino-grupo">
+            <div class="toggle-wrap">
+              <button class="toggle-btn" id="btn-bautizado-si" onclick="setToggle('bautizado','si')">Sí</button>
+              <button class="toggle-btn" id="btn-bautizado-no" onclick="setToggle('bautizado','no')">No</button>
+            </div>
+            <div class="sino-extra">
+              <input type="date" id="f-fecha-bautismo" placeholder="Fecha de bautismo" data-contable="true" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Oberjokili -->
+      <div class="grid grid-1">
+        <div class="campo">
+          <label>Fue Oberjokili</label>
+          <div class="sino-grupo">
+            <div class="toggle-wrap">
+              <button class="toggle-btn" id="btn-oberjokili-si" onclick="setToggle('oberjokili','si')">Sí</button>
+              <button class="toggle-btn" id="btn-oberjokili-no" onclick="setToggle('oberjokili','no')">No</button>
+            </div>
+            <div class="sino-extra">
+              <input type="text" id="f-periodo-oberjokili" placeholder="Ej: Carnaval 2013" data-contable="true" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jokili Brunnen -->
+      <div class="grid grid-1">
+        <div class="campo">
+          <label>Bautizado en Jokili Brunnen</label>
+          <div class="sino-grupo">
+            <div class="toggle-wrap">
+              <button class="toggle-btn" id="btn-brunnen-si" onclick="setToggle('brunnen','si')">Sí</button>
+              <button class="toggle-btn" id="btn-brunnen-no" onclick="setToggle('brunnen','no')">No</button>
+            </div>
+            <div class="sino-extra">
+              <input type="text" id="f-anio-brunnen" placeholder="Año  (Ej: 2012)" data-contable="true" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Otros -->
+      <div class="grid grid-1">
+        <div class="campo">
+          <label>Otros</label>
+          <textarea id="f-otros" placeholder="Notas adicionales sobre el miembro..." data-contable="true"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BOTONES ── -->
+    <div class="acciones">
+      <button class="btn btn-ghost" onclick="limpiarFormulario()">Limpiar formulario</button>
+      <button class="btn btn-primary" onclick="guardarFicha()">Guardar Ficha</button>
+    </div>
+
+  </div><!-- /body -->
+</div><!-- /wrap -->
+
+<script>
+  // ── Estado de los toggles ────────────────────────────────────────
+  const toggles = { bautizado: null, oberjokili: null, brunnen: null };
+
+  function setToggle(nombre, valor) {
+    toggles[nombre] = valor;
+
+    const btnSi = document.getElementById(`btn-${nombre}-si`);
+    const btnNo = document.getElementById(`btn-${nombre}-no`);
+    btnSi.className = 'toggle-btn' + (valor === 'si' ? ' activo-si' : '');
+    btnNo.className = 'toggle-btn' + (valor === 'no' ? ' activo-no' : '');
+
+    actualizarProgreso();
+  }
+
+  // ── Número de ficha autogenerado ─────────────────────────────────
+  // En producción vendrá de la base de datos. Aquí simulamos el siguiente.
+  const siguienteFicha = String(140).padStart(5, '0');
+  document.getElementById('ficha-num').textContent = siguienteFicha;
+  document.getElementById('f-numero').value = siguienteFicha;
+
+  // ── Calcular progreso ────────────────────────────────────────────
+  const TOTAL_CAMPOS = 20;  // contamos campos marcados con data-contable + 3 toggles
+
+  function actualizarProgreso() {
+    const inputs = document.querySelectorAll('[data-contable]');
+    let llenos = 0;
+
+    inputs.forEach(el => {
+      const val = el.value.trim();
+      if (val && val !== '') {
+        el.classList.add('lleno');
+        llenos++;
+      } else {
+        el.classList.remove('lleno');
+      }
+    });
+
+    // Sumar toggles respondidos
+    const togglesRespondidos = Object.values(toggles).filter(v => v !== null).length;
+    llenos += togglesRespondidos;
+
+    const total = inputs.length + 3;  // inputs + 3 toggles
+    const pct = Math.round((llenos / total) * 100);
+
+    document.getElementById('prog-campos').textContent = `${llenos} / ${total}`;
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-pct').textContent = pct + '%';
+  }
+
+  // Escuchar cambios en todos los inputs
+  document.querySelectorAll('[data-contable]').forEach(el => {
+    el.addEventListener('input', actualizarProgreso);
+    el.addEventListener('change', actualizarProgreso);
+  });
+
+  // Correr al cargar (campos con value por defecto ya cuentan)
+  actualizarProgreso();
+
+  // ── Guardar ficha (simulado) ─────────────────────────────────────
+  function guardarFicha() {
+    const nombres = document.getElementById('f-nombres').value.trim();
+    const apellido = document.getElementById('f-apellido').value.trim();
+
+    if (!nombres || !apellido) {
+      alert('Los campos Nombres y Apellido son obligatorios.');
+      return;
+    }
+
+    const toast = document.getElementById('toast');
+    toast.textContent = `✅ Ficha de ${nombres} ${apellido} guardada`;
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 3500);
+  }
+
+  // ── Limpiar formulario ───────────────────────────────────────────
+  function limpiarFormulario() {
+    if (!confirm('¿Seguro que deseas limpiar todos los campos?')) return;
+    document.querySelectorAll('[data-contable]').forEach(el => {
+      el.value = el.type === 'date' ? '' : '';
+    });
+    // Restaurar defaults
+    document.getElementById('f-estado').value = 'Aragua';
+    document.getElementById('f-municipio').value = 'Tovar';
+    document.getElementById('f-ciudad').value = 'Colonia Tovar';
+    document.getElementById('f-numero').value = siguienteFicha;
+
+    // Resetear toggles
+    Object.keys(toggles).forEach(k => {
+      toggles[k] = null;
+      document.getElementById(`btn-${k}-si`).className = 'toggle-btn';
+      document.getElementById(`btn-${k}-no`).className = 'toggle-btn';
+    });
+
+    actualizarProgreso();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+/* === PAGINA MENSAJES ADMIN === */
+
+.msg-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.msg-compose-card {
+  border-top: 3px solid var(--color-primary);
+}
+
+.msg-compose-kicker {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+.msg-compose-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.msg-compose-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.msg-compose-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.msg-compose-field input,
+.msg-compose-field select,
+.msg-compose-field textarea {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 9px 11px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--color-text);
+  background: var(--color-white);
+  outline: none;
+  resize: vertical;
+}
+
+.msg-compose-field input:focus,
+.msg-compose-field select:focus,
+.msg-compose-field textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(200, 146, 14, 0.12);
+}
+
+.msg-error {
+  font-size: 13px;
+  color: var(--color-red);
+  font-weight: 600;
+  margin: 0;
+}
+
+.msg-success {
+  font-size: 13px;
+  color: var(--color-green);
+  font-weight: 600;
+  background: var(--color-green-lt);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  margin: 0;
+}
+
+/* === LISTA ENVIADOS === */
+
+.msg-sent-heading {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--color-text);
+  margin: 0 0 16px;
+}
+
+.msg-empty {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.msg-sent-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg-sent-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  background: var(--color-gray-lt);
+}
+
+.msg-sent-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.msg-sent-to {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.msg-sent-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.msg-sent-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 4px;
+}
+
+.msg-sent-body {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.msg-sent-unread {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--color-primary-lt);
+  color: var(--color-primary);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* === BANDEJA DEL MIEMBRO === */
+
+.msg-unread-badge {
+  background: var(--color-primary-lt);
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.msg-inbox-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.msg-inbox-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color .12s;
+}
+
+.msg-inbox-item:hover {
+  border-color: var(--color-primary);
+}
+
+.msg-inbox-item--unread {
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-primary-lt);
+}
+
+.msg-inbox-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.msg-inbox-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.msg-inbox-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.msg-inbox-body {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 10px 0 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 760px) {
+  .msg-page-grid {
+    grid-template-columns: 1fr;
+  }
+}

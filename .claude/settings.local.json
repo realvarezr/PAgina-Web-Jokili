@@ -5,7 +5,11 @@
       "Bash(python3 -c ':*)",
       "Bash(powershell -Command ':*)",
       "Bash(grep -i \"link rel=\\\\\"stylesheet\\\\\"\" \"d:/Tovarer Joklili\"/*.html)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npm run *)",
+      "Bash(npx --yes tsc --noEmit --jsx react --esModuleInterop true --skipLibCheck true --allowSyntheticDefaultImports true src/PortalJokili_v2.jsx)",
+      "Bash(npm install *)",
+      "Bash(npx vite *)"
     ]
   }
 }

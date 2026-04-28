@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha de Miembro — Jokili Verein</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #060b16;
+      --surface:    #0c1526;
+      --surface2:   #111e33;
+      --border:     #1c2c47;
+      --gold:       #c8920e;
+      --gold-light: #e8aa22;
+      --gold-dim:   #7a5a08;
+      --gold-glow:  #c8920e40;
+      --text:       #ddd0b4;
+      --text-dim:   #7a8fa8;
+      --text-muted: #3d5070;
+      --green:      #1fad62;
+    }
+
+    body {
+      background:
+        linear-gradient(to top,
+          rgb(10, 15, 60)      0%,
+          rgba(10,15,60,0.75)  25%,
+          rgba(10,15,60,0.40)  50%,
+          rgba(10,15,60,0.15)  70%
+        ),
+        url("../../imagenes/Arco_Iglesia_BenitzReel.png"),
+        url("../../imagenes/Jokili_de_FondoReel.png"),
+        radial-gradient(circle at center, #283278d9 40%, #0a0f3c 100%);
+      background-repeat:   no-repeat, no-repeat, no-repeat, no-repeat;
+      background-position: bottom center, bottom center, center 25%, center;
+      background-size:     auto 120px, auto 98px, 35% auto, cover;
+      background-attachment: fixed;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 32px 20px;
+    }
+
+    .ficha {
+      max-width: 820px;
+      margin: 0 auto;
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    /* ── ENCABEZADO TIPO PORTAL ─────────────────────────────────── */
+    .ficha-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px 18px 0 0;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gold-dim);
+    }
+
+    .ficha-header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .escudo-img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px var(--gold-glow));
+      flex-shrink: 0;
+    }
+
+    .club-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .club-subtitulo {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .ficha-numero {
+      text-align: right;
+    }
+
+    .ficha-numero-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .ficha-numero-valor {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── HERO — NOMBRE DEL MIEMBRO ──────────────────────────────── */
+    .ficha-hero {
+      background: linear-gradient(160deg, #0e1a2e 0%, #070d1a 100%);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 32px 28px 28px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ficha-hero::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .ficha-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--surface2), var(--surface));
+      border: 2px solid var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      flex-shrink: 0;
+    }
+
+    .ficha-hero-info {
+      flex: 1;
+    }
+
+    .miembro-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+    }
+
+    .miembro-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .miembro-cargo {
+      font-size: 13px;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .miembro-desde {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .badge-activo {
+      background: #081d10;
+      color: var(--green);
+      border: 1px solid #0f4020;
+    }
+
+    /* ── CUERPO DE LA FICHA ─────────────────────────────────────── */
+    .ficha-body {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 18px 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ── SECCIÓN ─────────────────────────────────────────────────── */
+    .seccion {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .seccion-titulo {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .seccion-titulo .icono {
+      font-size: 14px;
+    }
+
+    .seccion.especial {
+      border-color: var(--gold-dim);
+    }
+
+    .seccion.especial .seccion-titulo {
+      background: linear-gradient(90deg, #1a1000, var(--surface2));
+      border-bottom-color: var(--gold-dim);
+      color: var(--gold-light);
+    }
+
+    .campos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .campos-grid.tres {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .campos-grid.uno {
+      grid-template-columns: 1fr;
+    }
+
+    .campo {
+      background: var(--surface2);
+      padding: 13px 18px;
+    }
+
+    .campo-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .campo-valor {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .campo-valor.vacio {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    .campo-valor.destacado {
+      color: var(--gold-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .campo-ancho {
+      grid-column: 1 / -1;
+    }
+
+    /* Indicador sí/no */
+    .si-no {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .si-no.si { color: var(--green); }
+    .si-no.no { color: var(--text-muted); }
+
+    .si-no-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .si-no.si .si-no-dot { background: var(--green); }
+    .si-no.no .si-no-dot { background: var(--text-muted); }
+
+    /* ── ANIMACIÓN ───────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SEPARADOR DORADO ────────────────────────────────────────── */
+    .linea-gold {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      border: none;
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="ficha">
+
+  <!-- ENCABEZADO TIPO PORTAL -->
+  <div class="ficha-header">
+    <div class="ficha-header-left">
+      <img src="../../imagenes/Escudo_Jokili.png" alt="Escudo Jokili" class="escudo-img" />
+      <div>
+        <div class="club-nombre">Asociación de Arlequines<br>Jokili Verein</div>
+        <div class="club-subtitulo">Colonia Tovar · Seit 1976</div>
+      </div>
+    </div>
+    <div class="ficha-numero">
+      <div class="ficha-numero-label">Ficha Nº</div>
+      <div class="ficha-numero-valor">00139</div>
+    </div>
+  </div>
+
+  <!-- HERO — NOMBRE GRANDE -->
+  <div class="ficha-hero">
+    <div class="ficha-avatar">🎭</div>
+    <div class="ficha-hero-info">
+      <div class="miembro-nombre">Ricardo Enrique Álvarez Rodríguez</div>
+      <div class="miembro-meta">
+        <span class="miembro-cargo">Vocal</span>
+        <span class="miembro-desde">· Miembro desde 2010</span>
+        <span class="badge badge-activo">Activo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUERPO -->
+  <div class="ficha-body">
+
+    <!-- SECCIÓN 1: Datos Personales -->
+    <div class="seccion">
+      <div class="seccion-titulo"><span class="icono">👤</span> Datos Personales</div>
+      <div class="campos-grid">
+        <div class="campo">
+          <div class="campo-label">Nombres</div>
+          <div class="campo-valor">Ricardo Enrique</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Apellido</div>
+          <div class="campo-valor">Álvarez Rodríguez</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Cédula de Identidad</div>
+          <div class="campo-valor">V-16.012.610</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Fecha de Nacimiento</div>
+          <div class="campo-valor">22 de junio de 1984</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Sexo</div>
+          <div class="campo-valor">Masculino</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Edad</div>
+          <div class="campo-valor" id="edad-calculada">—</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Nombre Cónyuge</div>
+          <div class="campo-valor vacio">—</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Lugar de Nacimiento</div>
+          <div class="campo-valor vacio">—</div>
+        </div>
+        <div class="campo campo-ancho">
+          <div class="campo-label">Profesión u Ocupación</div>
+          <div class="campo-valor">Comerciante</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: Contacto -->
+    <div class="seccion">
+      <div class="seccion-titulo"><span class="icono">📍</span> Contacto y Dirección</div>
+      <div class="campos-grid uno">
+        <div class="campo">
+          <div class="campo-label">Dirección de Habitación</div>
+          <div class="campo-valor">Sector Los Claveles</div>
+        </div>
+      </div>
+      <div class="campos-grid tres">
+        <div class="campo">
+          <div class="campo-label">Estado</div>
+          <div class="campo-valor">Aragua</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Municipio</div>
+          <div class="campo-valor">Tovar</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Ciudad</div>
+          <div class="campo-valor">Colonia Tovar</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Teléfono Habitación</div>
+          <div class="campo-valor">0244-355</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Celular</div>
+          <div class="campo-valor">0412-4909652</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Correo Electrónico</div>
+          <div class="campo-valor vacio">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: Datos del Club -->
+    <div class="seccion">
+      <div class="seccion-titulo"><span class="icono">🃏</span> Datos del Club</div>
+      <div class="campos-grid">
+        <div class="campo">
+          <div class="campo-label">Nº de Broche</div>
+          <div class="campo-valor destacado">139</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Nº de Carnet</div>
+          <div class="campo-valor vacio">—</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Fecha de Inscripción</div>
+          <div class="campo-valor">2010</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Padrino</div>
+          <div class="campo-valor">Claus Othmer</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Cargo Actual</div>
+          <div class="campo-valor vacio">—</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Cuota Anual que Cancela</div>
+          <div class="campo-valor vacio">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 4: Tradiciones Jokili (especial) -->
+    <div class="seccion especial">
+      <div class="seccion-titulo"><span class="icono">⭐</span> Tradiciones Jokili</div>
+      <div class="campos-grid">
+        <div class="campo">
+          <div class="campo-label">Bautizado</div>
+          <div class="campo-valor">
+            <span class="si-no si"><span class="si-no-dot"></span> Sí</span>
+          </div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Fecha de Bautismo</div>
+          <div class="campo-valor">11-11-2010</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Fue Oberjokili</div>
+          <div class="campo-valor">
+            <span class="si-no si"><span class="si-no-dot"></span> Sí</span>
+          </div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Período como Oberjokili</div>
+          <div class="campo-valor">Carnaval 2013</div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Bautizado en Jokili Brunnen</div>
+          <div class="campo-valor">
+            <span class="si-no si"><span class="si-no-dot"></span> Sí</span>
+          </div>
+        </div>
+        <div class="campo">
+          <div class="campo-label">Año Jokili Brunnen</div>
+          <div class="campo-valor">2012</div>
+        </div>
+        <div class="campo campo-ancho">
+          <div class="campo-label">Otros</div>
+          <div class="campo-valor vacio">—</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /ficha-body -->
+</div><!-- /ficha -->
+
+<script>
+  // Calcula edad automáticamente
+  const nacimiento = new Date(1984, 5, 22); // junio = mes 5
+  const hoy = new Date();
+  let edad = hoy.getFullYear() - nacimiento.getFullYear();
+  const cumpleEsteAnio = new Date(hoy.getFullYear(), nacimiento.getMonth(), nacimiento.getDate());
+  if (hoy < cumpleEsteAnio) edad--;
+  document.getElementById('edad-calculada').textContent = edad + ' años';
+</script>
+</body>
+</html>
