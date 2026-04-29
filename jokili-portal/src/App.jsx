@@ -4,7 +4,7 @@ import { useAuth } from './hooks/useAuth.js'
 import ProtectedRoute from './components/auth/ProtectedRoute.jsx'
 import AppLayout from './components/layout/AppLayout.jsx'
 import Header from './components/layout/Header.jsx'
-import ActivateAccountPage from './pages/ActivateAccountPage.jsx'
+import ActivacionPage from './pages/ActivacionPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import MembersPage from './pages/MembersPage.jsx'
 import MemberDetailPage from './pages/MemberDetailPage.jsx'
@@ -20,7 +20,7 @@ import './styles/memberPortal.css'
 import './styles/messages.css'
 
 export default function App() {
-  const { currentUser, login, logout, activateInvitation } = useAuth()
+  const { currentUser, login, logout } = useAuth()
   const {
     members,
     isLoading,
@@ -47,14 +47,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage currentUser={currentUser} onLogin={handleLogin} />} />
       <Route
         path="/activar/:token"
-        element={
-          <ActivateAccountPage
-            currentUser={currentUser}
-            dataReady={!isLoading}
-            memberInvitations={memberInvitations}
-            onActivateInvitation={activateInvitation}
-          />
-        }
+        element={<ActivacionPage />}
       />
       <Route
         path="/portal-miembro"

@@ -18,12 +18,6 @@ export default function LoginPage({ currentUser, onLogin }) {
         </div>
 
         <LoginForm onLogin={onLogin} />
-
-        <div className="auth-help">
-          <strong>Usuarios de prueba</strong>
-          <span>Admin: admin / admin123</span>
-          <span>Miembro: usuario o correo / clave creada en la invitacion</span>
-        </div>
       </section>
     </main>
   )

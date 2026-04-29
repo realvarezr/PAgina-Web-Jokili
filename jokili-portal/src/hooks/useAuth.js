@@ -14,7 +14,7 @@ import {
   setCurrentUser,
 } from '../services/dataService.js'
 
-async function getValidatedAdminUser(firebaseUser) {
+async function getValidatedUser(firebaseUser) {
   let userSnapshot = null
 
   try {
@@ -25,17 +25,32 @@ async function getValidatedAdminUser(firebaseUser) {
   }
 
   if (!userSnapshot.exists()) {
-    throw new Error('No existe un perfil autorizado para este usuario.')
+    throw new Error('No tienes acceso')
   }
 
   const userData = userSnapshot.data()
+  let memberId = null
 
   if (userData.active !== true) {
-    throw new Error('Este usuario no esta activo.')
+    throw new Error('No tienes acceso')
   }
 
-  if (userData.role !== 'admin') {
-    throw new Error('Este usuario no tiene permisos de administrador.')
+  if (!['admin', 'member'].includes(userData.role)) {
+    throw new Error('No tienes acceso')
+  }
+
+  if (userData.role === 'member') {
+    const membersSnapshot = await getDoc(doc(db, 'jokiliPortal', 'members'))
+    const members = membersSnapshot.exists() ? membersSnapshot.data()?.items : []
+    const member = Array.isArray(members)
+      ? members.find((item) => item.uid === firebaseUser.uid)
+      : null
+
+    if (!member) {
+      throw new Error('No se encontró tu ficha de socio')
+    }
+
+    memberId = member.id
   }
 
   return {
@@ -45,6 +60,7 @@ async function getValidatedAdminUser(firebaseUser) {
     username: userData.email || firebaseUser.email,
     name: userData.name || userData.email || firebaseUser.email,
     role: userData.role,
+    memberId,
   }
 }
 
@@ -57,7 +73,7 @@ export function useAuth() {
       const credential = await signInWithEmailAndPassword(auth, username, password);
 
       const firebaseUser = credential.user;
-      const user = await getValidatedAdminUser(firebaseUser);
+      const user = await getValidatedUser(firebaseUser);
 
       setCurrentUser(user);
       setUserState(user);
