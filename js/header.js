@@ -21,10 +21,45 @@
       position: relative;
     }
     .header-top-row .lang-toggle-btn {
-      position: absolute;
-      right: 0;
       transform: scale(1.15);
       transform-origin: right center;
+    }
+    .header-right-actions {
+      position: absolute;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+    @media (max-width: 960px) {
+      .header-right-actions { display: none; }
+    }
+    .portal-btn--mobile {
+      position: absolute;
+      left: 0;
+      display: none !important;
+    }
+    @media (max-width: 960px) {
+      .portal-btn--mobile { display: flex !important; }
+    }
+    .portal-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(201,151,43,.35);
+      border-radius: 50%;
+      background: transparent;
+      color: rgba(201,151,43,.85);
+      text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+      flex-shrink: 0;
+    }
+    .portal-btn:hover {
+      border-color: rgba(201,151,43,.75);
+      color: #e8c96b;
+      background: rgba(201,151,43,.09);
     }
     .lang-toggle-btn {
       background: transparent;
@@ -104,16 +139,30 @@
     <div class="header-inner">
 
       <div class="header-top-row">
+        <a href="https://jokili-portal.web.app/login" class="portal-btn portal-btn--mobile" aria-label="Portal Jokili" target="_blank" rel="noopener">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7"/>
+          </svg>
+        </a>
         <a href="${homeHref}" class="header-logo" aria-label="Tovarerjokili – Inicio">
           <div class="logo-placeholder">
             <img src="imagenes/Gorro.png" alt="Tovarerjokili Logo">
           </div>
         </a>
-        <button class="lang-toggle-btn" id="langToggle" aria-label="Cambiar idioma / Sprache wechseln">
-          <span class="lang-opt fi fi-es" data-lang="es"></span>
-          <span class="lang-sep-char">|</span>
-          <span class="lang-opt fi fi-de" data-lang="de"></span>
-        </button>
+        <div class="header-right-actions">
+          <button class="lang-toggle-btn" id="langToggle" aria-label="Cambiar idioma / Sprache wechseln">
+            <span class="lang-opt fi fi-es" data-lang="es"></span>
+            <span class="lang-sep-char">|</span>
+            <span class="lang-opt fi fi-de" data-lang="de"></span>
+          </button>
+          <a href="https://jokili-portal.web.app/login" class="portal-btn" aria-label="Portal Jokili" target="_blank" rel="noopener">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div class="header-nav">

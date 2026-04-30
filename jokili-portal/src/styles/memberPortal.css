@@ -322,6 +322,73 @@
   }
 }
 
+@media (max-width: 767px) {
+  .member-portal-shell .header {
+    gap: 8px;
+    height: 56px;
+    max-height: 56px;
+    overflow: hidden;
+    padding: 0 10px;
+  }
+
+  .member-portal-shell .header-brand {
+    flex: 1 1 auto;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .member-portal-shell .header-logo {
+    flex: 0 0 auto;
+    height: 36px;
+    width: 36px;
+  }
+
+  .member-portal-shell .header-name {
+    display: block;
+    font-size: 14px;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .member-portal-shell .header-subtitle,
+  .member-portal-shell .header-user {
+    display: none;
+  }
+
+  .member-portal-shell .header-session {
+    flex: 0 0 auto;
+    gap: 0;
+    margin-left: 4px;
+    min-width: max-content;
+  }
+
+  .member-portal-shell .header-session .btn {
+    font-size: 0;
+    min-height: 34px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  .member-portal-shell .header-session .btn::before {
+    content: "Salir";
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .member-portal-main {
+    padding: 18px 12px 32px;
+  }
+
+  .member-portal-profile-name span,
+  .member-portal-profile-name strong {
+    color: #fff6df;
+    font-size: 28px;
+  }
+}
+
 @media (max-width: 620px) {
   .member-portal-details {
     grid-template-columns: 1fr;

@@ -62,7 +62,7 @@ export default function MemberPortalProfile({ member }) {
       <p className="member-portal-section-label">Contacto</p>
       <div className="member-portal-details">
         <Detail label="Cédula" value={member.cedula} />
-        <Detail label="Número de socio" value={member.numeroCarnet} />
+        <Detail label="Ficha Nro." value={member.fichaNro || '—'} />
         {member.email && (
           <div className="member-portal-detail member-portal-detail--full">
             <span>Email</span>
